@@ -12,15 +12,17 @@ function tryParse(json) {
 
 class Wrapper extends Component {
   componentDidMount() {
+    // Parse any content out of the page and send that into the shell.
     const json = window.hexoPageData.innerText;
-    const [parsedJson, error] = tryParse(json);
+    const [hexoPageData, error] = tryParse(json);
     if (error)
       return this.explorer.openWindow("ErrorHandler", {
-        title: "Could not load programs for this page",
         error,
+        title: "Could not load programs for this page",
         debugInfo: json
       });
-    const hexoPageData = parsedJson;
+
+    // Mash up our data.
     const { currentPage, startMenu } = hexoPageData;
     const appData = {
       startMenu,
@@ -31,6 +33,8 @@ class Wrapper extends Component {
     this.setState({
       startMenu
     });
+
+    // If we don't have an app to load in our payload, open an error saying so.
     if (!appData.app) {
       return this.explorer.openWindow("ErrorHandler", {
         title: "Unknown error",
@@ -38,10 +42,13 @@ class Wrapper extends Component {
         debugInfo: JSON.stringify(appData, null, 2)
       });
     }
-    console.log(JSON.stringify(appData));
+
+    // Open the specified window
     this.explorer.openWindow(appData.app, appData);
   }
   render(props) {
+    // Initialise our shell app. This includes the desktop, start menu, space
+    // for all the apps to be drawn in.
     return (
       <Shell
         startMenu={this.state.startMenu}
