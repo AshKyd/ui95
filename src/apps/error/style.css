@@ -1,0 +1,21 @@
+.ui95-window-error {
+  display: flex;
+  margin-top: calc(8 * var(--px));
+}
+.ui95-window-error__icon {
+  width: calc(55 * var(--px));
+  text-align: center;
+}
+
+.ui95-window-error__text {
+  flex: 1;
+}
+.ui95-window-error__buttons {
+  margin-right: 12px;
+  margin-left: 40px;
+}
+.ui95-window-error__buttons > button {
+  width: 75px;
+  height: 24px;
+  margin-bottom: 6px;
+}

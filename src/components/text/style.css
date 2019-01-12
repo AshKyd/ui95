@@ -1,0 +1,6 @@
+.ui95-text {
+  font-family: system;
+  font-size: calc(10 * var(--px));
+  margin: 0;
+  padding: 0;
+}

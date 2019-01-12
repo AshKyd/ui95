@@ -1,0 +1,20 @@
+.ui95-window--wizard__row {
+  display: flex;
+  margin-bottom: calc(5 * var(--px));
+}
+.ui95-window--wizard__content {
+  margin-left: calc(10 * var(--px));
+}
+
+.ui95-window--wizard__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: calc(5 * var(--px));
+}
+
+@media (max-width: 500px) {
+  .ui95-window--wizard__image {
+    height: auto;
+    width: calc(100 * var(--px));
+  }
+}

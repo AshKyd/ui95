@@ -1,0 +1,40 @@
+.ui95-toolbar-item {
+  border: var(--px) solid transparent;
+  background: transparent;
+  display: block;
+  padding: 0;
+}
+
+.ui95-toolbar-item:active,
+.ui95-toolbar-item.active {
+  border-color: var(--grayDark) var(--white) var(--white) var(--grayDark);
+}
+
+.ui95-toolbar-item--text {
+  padding: calc(2 * var(--px)) calc(4 * var(--px));
+}
+
+.ui95-toolbar-item--icon {
+  padding: calc(1 * var(--px)) calc(2 * var(--px));
+  margin: 0 calc(2 * var(--px));
+}
+.ui95-toolbar-item--icon:active,
+.ui95-toolbar-item--icon.active {
+  padding: calc(2 * var(--px)) calc(1 * var(--px)) calc(0 * var(--px))
+    calc(3 * var(--px));
+}
+
+.ui95-toolbar-item--icon:active,
+.ui95-toolbar-item--icon.active {
+  background-image: linear-gradient(
+      45deg,
+      var(--grayLight) 25%,
+      transparent 25%
+    ),
+    linear-gradient(-45deg, var(--grayLight) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--grayLight) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--grayLight) 75%);
+  background-size: 2px 2px;
+  background-position: 0 0, 0 var(--px), var(--px) calc(-1 * var(--px)),
+    calc(-1 * var(--px)) 0px;
+}

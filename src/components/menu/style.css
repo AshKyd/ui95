@@ -1,0 +1,18 @@
+.ui95-menu {
+  position: absolute;
+}
+.ui95-menu .ui95-bezel {
+  display: flex;
+  flex-direction: column;
+}
+.ui95-menu-entry:hover,
+.ui95-menu-entry:active,
+.ui95-menu-entry:focus {
+  background: var(--highlightBackground);
+  color: var(--highlightForeground);
+}
+
+.ui95-menu-entry {
+  color: var(--black);
+  text-decoration: none;
+}

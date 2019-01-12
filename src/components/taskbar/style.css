@@ -1,0 +1,17 @@
+.ui95-start {
+  display: flex;
+  background: var(--gray);
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(22 * var(--px));
+  padding: calc(2 * var(--px));
+  border-top: 1px solid white;
+  box-shadow: 0 calc(-1 * var(--px)) 0 var(--graylight);
+  z-index: 90;
+}
+
+.ui95-start > * {
+  margin-right: 4px;
+}
