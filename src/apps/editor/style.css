@@ -6,30 +6,6 @@
   bottom: calc(2 * var(--px));
 }
 
-.ui95-blog-article__scrollable-container {
-  position: absolute;
-  left: calc(2 * var(--px));
-  right: calc(2 * var(--px));
-  top: calc(80 * var(--px));
-  bottom: calc(2 * var(--px));
-}
-.ui95-bezel--blog-article__scrollable-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-}
-.ui95-blog-article__scrollable {
-  position: absolute;
-  left: calc(2 * var(--px));
-  right: calc(2 * var(--px));
-  top: calc(2 * var(--px));
-  bottom: calc(2 * var(--px));
-  overflow: auto;
-  padding: calc(5 * var(--px));
-}
-
 .ui95-window--blog-article .videoWrapper {
   width: auto;
   height: 0;

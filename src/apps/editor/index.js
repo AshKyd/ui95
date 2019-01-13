@@ -3,7 +3,7 @@ import "./style.css";
 import Window from "../../components/window/index.js";
 import HTML from "../../components/html/index.js";
 import Toolbar from "../../components/toolbar/index.js";
-import Bezel from "../../components/bezel/index.js";
+import ScrollableContainer from "../../components/scrollablecontainer/index.js";
 
 class Editor extends Component {
   constructor(props) {
@@ -32,27 +32,33 @@ class Editor extends Component {
         icon="word"
       >
         <Toolbar
-          items={[
-            { text: "File" },
-            { text: "Edit" },
-            { text: "View" },
-            { text: "Insert" }
-          ]}
+          items={{
+            File: {},
+            Edit: {},
+            View: {},
+            Insert: {}
+          }}
         />
         <Toolbar
-          items={[
-            { icon: "documentNew" },
-            { icon: "open" },
-            { icon: "save" },
-            "divider"
-          ]}
+          iconOnly={true}
+          items={{
+            "New document": { icon: "documentNew" },
+            Open: { icon: "open" },
+            Save: { icon: "save" },
+            divider: "divider"
+          }}
         />
-        <div class="ui95-blog-article__scrollable-container">
-          <Bezel classNames="in blog-article__scrollable-container" />
-          <div class="ui95-blog-article__scrollable">
-            <HTML html={content}>{children}</HTML>
-          </div>
-        </div>
+        <ScrollableContainer
+          style={{
+            position: "absolute",
+            left: "calc(2 * var(--px))",
+            right: "calc(2 * var(--px))",
+            top: "calc(80 * var(--px))",
+            bottom: "calc(2 * var(--px))"
+          }}
+        >
+          <HTML html={content} />
+        </ScrollableContainer>
       </Window>
     );
   }

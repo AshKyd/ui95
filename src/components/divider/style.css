@@ -19,3 +19,18 @@
   border-right: var(--px) solid var(--grayDark);
   border-bottom: var(--px) solid var(--grayDark);
 }
+.ui95-divider--rainbow {
+  display: block;
+  height: calc(2 * var(--px));
+  position: relative;
+  background: linear-gradient(
+    to right,
+    #ff4800 0%,
+    #ff4800 25%,
+    #ffd300 25%,
+    #ffd300 50%,
+    #71d140 50%,
+    #71d140 75%,
+    #00acff 75%
+  );
+}

@@ -26,8 +26,6 @@ class Window extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
-      width: nextProps.width,
-      height: nextProps.height,
       isMinimized:
         typeof nextProps.isMinimized === "boolean"
           ? nextProps.isMinimized
@@ -82,7 +80,7 @@ class Window extends Component {
           classNames="titlebar minimize"
           onClick={() => setTimeout(this.toggleState("isMinimized"), 100)}
         >
-          <img src={require("./icon-minimize.gif")} alt="Minimize" />
+          <Icon size="custom" name="windowMinimize" title="Minimize" />
         </Button>
       ),
       maximize: (
@@ -90,7 +88,11 @@ class Window extends Component {
           classNames="titlebar maximize"
           onClick={() => setTimeout(this.toggleState("isMaximized"), 100)}
         >
-          <img src={require("./icon-maximize.gif")} alt="Maximize" />
+          {this.state.isMaximized ? (
+            <Icon size="custom" name="windowRestore" title="Restore" />
+          ) : (
+            <Icon size="custom" name="windowMaximize" title="Maximize" />
+          )}
         </Button>
       ),
       close: (
@@ -98,7 +100,7 @@ class Window extends Component {
           classNames="titlebar close"
           onClick={() => setTimeout(props.onClose, 100)}
         >
-          <img src={require("./icon-close.gif")} alt="Close" />
+          <Icon size="custom" name="windowClose" title="Close" />
         </Button>
       )
     };
@@ -106,8 +108,6 @@ class Window extends Component {
     const buttons = (props.buttons || "minimize maximize close")
       .split(" ")
       .map(key => buttonComponents[key]);
-
-    console.log("rerendering window", this.state.title);
 
     return h(
       props.type || "div",
@@ -135,7 +135,9 @@ class Window extends Component {
           onMouseDown={e => this.mouseDown(e)}
           onTouchStart={e => this.mouseDown(e)}
         >
-          {props.icon && <Icon size="16" name={props.icon} />}
+          {props.icon && (
+            <Icon size="16" name={props.icon} classNames="application" />
+          )}
           {props.title || "Untitled window"}
           <div class="ui95-window__titlebar-icons">{buttons}</div>
         </h2>,

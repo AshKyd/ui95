@@ -9,7 +9,8 @@ class Divider extends Component {
       {
         className: [className, ...(props.classNames || "").split(" ")].join(
           ` ${className}--`
-        )
+        ),
+        style: props.style
       },
       props.children
     );

@@ -4,13 +4,11 @@ import "./style.css";
 class Bezel extends Component {
   render(props) {
     const className = "ui95-bezel";
+    const classNames = [className, ...(props.classNames || "").split(" ")].join(
+      ` ${className}--`
+    );
     return (
-      <div
-        class={[className, ...(props.classNames || "").split(" ")].join(
-          ` ${className}--`
-        )}
-        style={props.style}
-      >
+      <div class={classNames} style={props.style}>
         {props.children}
       </div>
     );

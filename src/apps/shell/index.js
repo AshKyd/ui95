@@ -8,6 +8,7 @@ import Toolbar from "../../components/toolbar/index.js";
 import ErrorHandler from "../../apps/error/index.js";
 import Webview from "../webview/index.js";
 import Wizard from "../wizard/index.js";
+import Explorer from "../explorer/index.js";
 import Editor from "../editor/index.js";
 import Webamp from "../webamp/index.js";
 import { h, render, Component } from "preact";
@@ -17,7 +18,8 @@ const apps = {
   Webview,
   Webamp,
   Editor,
-  Wizard
+  Wizard,
+  Explorer
 };
 
 class Shell extends Component {
@@ -81,12 +83,6 @@ class Shell extends Component {
       if (!prev) return current;
       if (prev.zIndex <= current.zIndex) isUnsorted = true;
     });
-
-    if (!isUnsorted) {
-      console.log("windows already sorted");
-      return;
-    }
-    console.log("sorting windows");
 
     // Make a copy of the windows and sort them so we can set the zIndex
     const sortedWindows = [...windows];

@@ -1,21 +1,30 @@
-.ui95-window-error {
+.ui95-window--explorer .ui95-scrollable-container__scrollable {
   display: flex;
-  margin-top: calc(8 * var(--px));
+  padding: 0;
 }
-.ui95-window-error__icon {
-  width: calc(55 * var(--px));
-  text-align: center;
+.ui95-explorer-columns__left {
+  background: white url("./explorer-background.png");
+  min-width: calc(300 * var(--px));
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  padding: calc(15 * var(--px));
+  box-sizing: border-box;
 }
 
-.ui95-window-error__text {
-  flex: 1;
+@media (max-width: 640px) {
+  .ui95-explorer-columns__left {
+    min-width: calc(140 * var(--px));
+  }
 }
-.ui95-window-error__buttons {
-  margin-right: 12px;
-  margin-left: 40px;
+
+.ui95-explorer-columns__folder-name {
+  margin: 0;
+  font-size: calc(24 * var(--px));
+  font-weight: bold;
 }
-.ui95-window-error__buttons > button {
-  width: 75px;
-  height: 24px;
-  margin-bottom: 6px;
+
+.ui95-explorer-columns__right {
+  overflow: scroll;
+  flex-grow: 1;
 }

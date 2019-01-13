@@ -1,0 +1,21 @@
+.ui95-file-icon {
+  display: block;
+  width: calc(65 * var(--px));
+  margin: 0 calc(5 * var(--px)) calc(15 * var(--px));
+  text-align: center;
+  cursor: pointer;
+}
+
+.ui95-file-icon .ui95-text--label {
+  display: inline-block;
+}
+.ui95-file-icon--selected .ui95-file-icon__icon,
+.ui95-file-icon:hover .ui95-file-icon__icon {
+  filter: grayscale(100%) brightness(5%) sepia(100%) hue-rotate(170deg)
+    brightness(800%) saturate(500%);
+}
+.ui95-file-icon--selected .ui95-text--label,
+.ui95-file-icon:hover .ui95-text--label {
+  background: var(--color-primary);
+  color: var(--color-primary-alt);
+}

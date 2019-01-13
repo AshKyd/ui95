@@ -1,0 +1,19 @@
+.ui95-scrollable-container {
+  position: relative;
+}
+.ui95-bezel--scrollable-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.ui95-scrollable-container__scrollable {
+  position: absolute;
+  left: calc(2 * var(--px));
+  right: calc(2 * var(--px));
+  top: calc(2 * var(--px));
+  bottom: calc(2 * var(--px));
+  overflow: auto;
+  padding: calc(5 * var(--px));
+}

@@ -57,7 +57,7 @@
   color: var(--white);
   padding-left: calc(3 * var(--px));
 }
-.ui95-window__titlebar .ui95-icon {
+.ui95-window__titlebar .ui95-icon--application {
   margin-bottom: calc(-4 * var(--px));
   margin-right: calc(2 * var(--px));
 }
@@ -68,9 +68,17 @@
   top: calc(3 * var(--px));
   display: flex;
 }
-.ui95-window__titlebar-icons > * {
-  width: 16px;
-  height: 14px;
+.ui95-window__titlebar-icons .ui95-button {
+  width: calc(16 * var(--px));
+  height: calc(14 * var(--px));
+  display: inline-block;
+}
+.ui95-window__titlebar-icons .ui95-icon {
+  width: 12px;
+  height: 10px;
+  position: absolute;
+  left: var(--px);
+  top: var(--px);
 }
 .ui95-button--close {
   margin-left: calc(2 * var(--px));
