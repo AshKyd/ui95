@@ -27,6 +27,7 @@ class Shell extends Component {
   constructor(props) {
     super();
     this.state = {
+      fs: props.fs,
       windows: [],
       startMenu: props.startMenu || {},
       desktopIcons: props.desktopIcons || {}
@@ -93,7 +94,7 @@ class Shell extends Component {
     });
 
     // Apply the old order with the new zIndex
-    this.setState({ windows });
+    this.setState({ windows, raisedWindow: windowId });
   }
   closeWindow(windowId) {
     const windows = this.state.windows;
@@ -113,12 +114,20 @@ class Shell extends Component {
 
     if (!apps[appName]) throw new Error(`${appName} could not be executed.`);
 
-    props.key = this.windowId++;
-    props.onClose = () => this.closeWindow(props.key);
-    props.onFocus = () => this.raiseWindow(props.key);
-    this.setState({
-      windows: [...this.state.windows, [appName, props, children]]
-    });
+    const windowId = this.windowId++;
+    props.key = windowId;
+    this.state.windows = [...this.state.windows, [appName, props, children]];
+
+    // Let raiseWindow call setState.
+    this.raiseWindow(windowId);
+  }
+  windowProps(key) {
+    return {
+      fs: this.state.fs,
+      onClose: () => this.closeWindow(key),
+      onFocus: () => this.raiseWindow(key),
+      onLaunchApp: (...args) => this.openWindow(...args)
+    };
   }
   render(props) {
     return (
@@ -129,7 +138,11 @@ class Shell extends Component {
             onClick={item => this.openWindow(item.app, item.appProps)}
           />
           {this.state.windows.map(([appName, appProps, appChildren]) => {
-            return h(apps[appName], appProps, appChildren);
+            return h(
+              apps[appName],
+              { ...appProps, ...this.windowProps(appProps.key) },
+              appChildren
+            );
           })}
         </WindowArea>
         <StartMenu
@@ -150,6 +163,9 @@ class Shell extends Component {
           {this.state.windows.map(([appName, appProps]) => (
             <Button
               key={appProps.key}
+              classNames={
+                appProps.key === this.state.raisedWindow ? "active" : "inactive"
+              }
               onClick={() => this.raiseWindow(appProps.key)}
             >
               {appProps.title}

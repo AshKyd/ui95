@@ -17,7 +17,7 @@ class FileIcons extends Component {
             key={index}
             selected={this.state.selected === index}
             onSelect={e => this.selectItem(e)}
-            onClick={props.onClick}
+            onClick={() => props.onClick(item)}
           />
         ))}
       </div>

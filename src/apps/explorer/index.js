@@ -15,7 +15,7 @@ class Explorer extends Component {
     this.state = {
       title: props.title,
       zIndex: props.zIndex,
-      folder: props.folder || { label: "My Computer", icon: "default" }
+      path: props.path
     };
   }
   componentWillReceiveProps(nextProps, nextContext) {
@@ -25,18 +25,22 @@ class Explorer extends Component {
     }));
   }
   openItem(item) {
+    console.log("open item", item);
+    if (item.appProps) {
+      return this.props.onLaunchApp(item.appProps.app, item.appProps);
+    }
     if (item.permalink) window.location = item.permalink;
+    const path = [item.path, item.filename].join("/");
+    this.setState({ path });
   }
   setFile(file) {
-    import("../../lib/filesystem/index.js").then(mod => {
-      const filesystem = new mod.default();
-      const inferredFile = filesystem.infer(file);
-      this.setState({ file: inferredFile });
-    });
+    this.setState({ file });
   }
   render(props) {
     const file = this.state.file;
-    const folder = this.state.folder;
+    const fs = this.props.fs;
+    const folder = fs.getFolder(this.state.path);
+    const files = fs.getFiles(this.state.path);
     return (
       <Window
         title={this.state.title}
@@ -58,10 +62,10 @@ class Explorer extends Component {
           }}
         >
           <div class="ui95-explorer-columns__left">
-            <Icon size={32} name={file && file.icon} />
+            <Icon size={32} name={file ? file.icon : folder.icon} />
             <Text style={{ fontWeight: "bold" }}>
               <h2 class="ui95-explorer-columns__folder-name">
-                {file ? file.label : folder.label}
+                {file ? file.filename : folder.filename}
               </h2>
             </Text>
             <Divider
@@ -79,7 +83,7 @@ class Explorer extends Component {
           </div>
           <div class="ui95-explorer-columns__right">
             <FileIcons
-              items={props.items}
+              items={files}
               onSelect={file => this.setFile(file)}
               onClick={file => this.openItem(file)}
               onUnselect={() => this.setState({ file: null })}

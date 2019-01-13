@@ -26,6 +26,8 @@ class Window extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
+      width: nextProps.width || this.state.width,
+      height: nextProps.height || this.state.height,
       isMinimized:
         typeof nextProps.isMinimized === "boolean"
           ? nextProps.isMinimized

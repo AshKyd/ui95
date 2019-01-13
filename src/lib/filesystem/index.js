@@ -1,9 +1,22 @@
-import mocks from "./mocks.js";
 import types from "./types.js";
 
+class File {
+  constructor(path, extras) {
+    const extension = path.substr(-3);
+    const split = path.split("/");
+    this.filename = split.pop();
+    this.path = "/" + split.join("/");
+    this.description = types[extension];
+    Object.assign(this, extras);
+  }
+}
+
 class Filesystem {
-  constructor() {
-    this.files = [];
+  constructor({ files } = {}) {
+    this.files = files || [];
+  }
+  setupMocks() {
+    import("./mocks.js").then(mocks => {});
   }
   loadMocks() {}
   getObjectType(filename) {
@@ -11,13 +24,29 @@ class Filesystem {
     if (!filename.includes(".")) return "folder";
     return filename.substr(-3);
   }
-  infer(file) {
-    if (!file.label) return file;
-    const extension = this.getObjectType(file.label);
-    console.log({ extension });
-    const fileType = types[extension] || `${extension.toUpperCase()} File`;
-    return { ...file, type: fileType };
+  conformPath(path) {
+    return "/" + path.replace(/^\/*/, "").replace(/\/$/, "");
+  }
+  getFolder(requestedPath) {
+    const path = this.conformPath(requestedPath);
+    if (path === "")
+      return new File("", {
+        filename: "My Computer",
+        description: "Select an item to view its description.",
+        path
+      });
+    const folder = this.files.find(
+      file => file.path + "/" + file.filename === path
+    );
+    if (folder) return folder;
+
+    return new File(path);
+  }
+  getFiles(requestedPath) {
+    const path = this.conformPath(requestedPath);
+    const files = this.files.filter(file => file.path === path);
+    return files;
   }
 }
 
-export default Filesystem;
+export { Filesystem, File };

@@ -12,7 +12,7 @@ class ToolbarItem extends Component {
     );
     return (
       <button class={classNames} onClick={onClick}>
-        <Icon size={16} name={props.icon} />
+        {props.icon && <Icon size={16} name={props.icon} />}
         {!props.iconOnly && <Text>{props.label}</Text>}
       </button>
     );

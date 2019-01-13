@@ -80,8 +80,8 @@ class Wizard extends Component {
         isMinimized={this.state.isMinimized}
         onClose={onClose}
         onFocus={onFocus}
-        width={width}
-        height={height}
+        width={width || 450}
+        height={height || 380}
         icon="ash"
       >
         <div class="ui95-window--wizard__row">

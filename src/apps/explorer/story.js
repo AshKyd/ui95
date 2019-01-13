@@ -4,17 +4,10 @@ import Explorer from "./index.js";
 import WindowArea from "../../components/windowarea/index.js";
 import Taskbar from "../../components/taskbar/index.js";
 import Button from "../../components/button/index.js";
+import { Filesystem, File } from "../../lib/filesystem/index.js";
 
-const icons = {};
-["(C:)", "My Documents", "Program Files", "Windows", "README.txt"].forEach(
-  label =>
-    (icons[label] = {
-      permalink: "/",
-      image: null,
-      description: "A description of the item."
-    })
-);
+const fs = new Filesystem();
 
 storiesOf("App/Explorer", module).add("No configuration", () => (
-  <Explorer items={icons} onFocus={() => {}} onClose={() => {}} />
+  <Explorer fs={fs} path="/" onFocus={() => {}} onClose={() => {}} />
 ));

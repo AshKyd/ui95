@@ -1,6 +1,7 @@
 import Shell from "./apps/shell/index.js";
 import { h, render, Component } from "preact";
 import domready from "domready";
+import { Filesystem, File } from "./lib/filesystem/index.js";
 
 function tryParse(json) {
   try {
@@ -10,7 +11,58 @@ function tryParse(json) {
   }
 }
 
+/**
+ * This stuff is really specific to my site, so it should probably be
+ * split out of this repo. Serves as a good example I guess.
+ * @extends Component
+ */
 class Wrapper extends Component {
+  constructor() {
+    super();
+    this.state = {
+      fs: new Filesystem()
+    };
+  }
+  createFilesystem({ posts }) {
+    // make some folders and files.
+    const files = this.state.fs.files;
+    const blogRoot = "c:/My Documents/My Weblogs";
+    const boilerplate = [
+      "c:",
+      "c:/My Documents",
+      "c:/Windows",
+      "c:/Program Files",
+      blogRoot
+    ].forEach(path => files.push(new File(path)));
+
+    // Put links to all my posts in "My Documents"
+    const layouts = new Set();
+    posts.forEach(post => {
+      layouts.add(post.layout);
+
+      const path = [
+        blogRoot,
+        post.layout,
+        post.permalink
+          .substr(0, post.permalink.length - 1)
+          .split("/")
+          .pop() + ".doc"
+      ].join("/");
+      files.push(
+        new File(path, {
+          appProps: {
+            app: "Webview",
+            src: post.permalink,
+            title: post.title
+          }
+        })
+      );
+    });
+
+    Array.from(layouts).forEach(layout =>
+      files.push(new File([blogRoot, layout].join("/")))
+    );
+  }
   componentDidMount() {
     // Parse any content out of the page and send that into the shell.
     const json = window.hexoPageData.innerText;
@@ -23,7 +75,7 @@ class Wrapper extends Component {
       });
 
     // Mash up our data.
-    const { currentPage, startMenu, desktopIcons } = hexoPageData;
+    const { currentPage, startMenu, desktopIcons, posts, pages } = hexoPageData;
     const appData = {
       content: currentPage.content,
       title: currentPage.title,
@@ -33,6 +85,9 @@ class Wrapper extends Component {
       startMenu,
       desktopIcons
     });
+
+    // Set up the filesystem
+    this.createFilesystem({ posts, pages });
 
     // If we don't have an app to load in our payload, open an error saying so.
     if (!appData.app) {
@@ -51,6 +106,7 @@ class Wrapper extends Component {
     // for all the apps to be drawn in.
     return (
       <Shell
+        fs={this.state.fs}
         startMenu={this.state.startMenu}
         desktopIcons={this.state.desktopIcons}
         ref={explorer => (this.explorer = explorer)}

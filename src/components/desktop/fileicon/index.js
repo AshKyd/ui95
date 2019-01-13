@@ -21,7 +21,7 @@ class FileIcon extends Component {
           <Icon size="32" name={props.icon} classNames="file-icon" />
         </div>
         <Text type="div" classNames="label">
-          {props.label}
+          {props.filename}
         </Text>
       </a>
     );
