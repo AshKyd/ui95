@@ -12,7 +12,6 @@ import menuItems from "./menuItems.js";
 class Explorer extends Component {
   constructor(props) {
     super();
-    console.log({ props });
     this.state = {
       title: props.title,
       zIndex: props.zIndex,
@@ -26,7 +25,7 @@ class Explorer extends Component {
     }));
   }
   openItem(item) {
-    console.log("open", { item });
+    if (item.permalink) window.location = item.permalink;
   }
   setFile(file) {
     import("../../lib/filesystem/index.js").then(mod => {

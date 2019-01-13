@@ -4,6 +4,7 @@ import WindowArea from "../../components/windowarea/index.js";
 import Taskbar from "../../components/taskbar/index.js";
 import Button from "../../components/button/index.js";
 import StartMenu from "../../components/startmenu/index.js";
+import FileIcons from "../../components/desktop/fileicons/index.js";
 import Toolbar from "../../components/toolbar/index.js";
 import ErrorHandler from "../../apps/error/index.js";
 import Webview from "../webview/index.js";
@@ -27,7 +28,8 @@ class Shell extends Component {
     super();
     this.state = {
       windows: [],
-      startMenu: props.startMenu || {}
+      startMenu: props.startMenu || {},
+      desktopIcons: props.desktopIcons || {}
     };
     this.windowId = 100;
   }
@@ -62,7 +64,8 @@ class Shell extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
-      startMenu: nextProps.startMenu
+      startMenu: nextProps.startMenu,
+      desktopIcons: nextProps.desktopIcons
     });
   }
   openStart(e) {
@@ -78,17 +81,15 @@ class Shell extends Component {
   raiseWindow(windowId) {
     const windows = this.state.windows;
 
-    let isUnsorted = false;
-    windows.reduce((prev, current) => {
-      if (!prev) return current;
-      if (prev.zIndex <= current.zIndex) isUnsorted = true;
-    });
-
     // Make a copy of the windows and sort them so we can set the zIndex
     const sortedWindows = [...windows];
     sortedWindows.sort((a, b) => a[1].zIndex > b[1].zIndex);
     sortedWindows.forEach(([appName, appProps, appChildren], i) => {
-      appProps.zIndex = appProps.key === windowId ? windows.length : i;
+      appProps.zIndex = i;
+      if (appProps.key === windowId) {
+        appProps.zIndex = windows.length;
+        appProps.isMinimized = false;
+      }
     });
 
     // Apply the old order with the new zIndex
@@ -123,6 +124,10 @@ class Shell extends Component {
     return (
       <Desktop>
         <WindowArea>
+          <FileIcons
+            items={this.state.desktopIcons}
+            onClick={item => this.openWindow(item.app, item.appProps)}
+          />
           {this.state.windows.map(([appName, appProps, appChildren]) => {
             return h(apps[appName], appProps, appChildren);
           })}
@@ -145,7 +150,7 @@ class Shell extends Component {
           {this.state.windows.map(([appName, appProps]) => (
             <Button
               key={appProps.key}
-              onClick={() => this.openWindow(appName, appProps)}
+              onClick={() => this.raiseWindow(appProps.key)}
             >
               {appProps.title}
             </Button>

@@ -12,7 +12,6 @@ class StartMenu extends Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    console.log("start has props", nextProps);
     this.setState({ items: nextProps.items });
   }
   render({ text1, text2, isOpen, onClose, onLaunchApp }) {
@@ -39,7 +38,6 @@ class StartMenu extends Component {
             <a
               class="ui95-startmenu-entry"
               onMouseUp={e => {
-                console.log("mouseUp");
                 e.preventDefault();
                 onClose(onLaunchApp(value.appProps.app, value.appProps));
               }}
@@ -63,7 +61,7 @@ class StartMenu extends Component {
       >
         <div class="ui95-startmenu__branding">
           <div class="ui95-startmenu__branding-rotated">
-            <span>{text1}</span> <span>{text2}</span>
+            <span>{text1 || "Windows"}</span> <span>{text2 || "ME"}</span>
           </div>
         </div>
         <div class="ui95-startmenu-entries">{renderableItems}</div>

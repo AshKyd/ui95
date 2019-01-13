@@ -4,7 +4,7 @@ import "./style.css";
 
 class FileIcons extends Component {
   selectItem(item) {
-    this.props.onSelect(item);
+    this.props.onSelect && this.props.onSelect(item);
     this.setState({ selected: item.key });
   }
   render(props) {

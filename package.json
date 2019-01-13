@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "parcel build src/init.js --detailed-report",
+    "build": "rm -rf dist;parcel build src/init.js --detailed-report",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-storybook": "build-storybook"
   },

@@ -23,15 +23,15 @@ class Wrapper extends Component {
       });
 
     // Mash up our data.
-    const { currentPage, startMenu } = hexoPageData;
+    const { currentPage, startMenu, desktopIcons } = hexoPageData;
     const appData = {
-      startMenu,
       content: currentPage.content,
       title: currentPage.title,
       ...(currentPage.appProps || {})
     };
     this.setState({
-      startMenu
+      startMenu,
+      desktopIcons
     });
 
     // If we don't have an app to load in our payload, open an error saying so.
@@ -52,6 +52,7 @@ class Wrapper extends Component {
     return (
       <Shell
         startMenu={this.state.startMenu}
+        desktopIcons={this.state.desktopIcons}
         ref={explorer => (this.explorer = explorer)}
       />
     );
