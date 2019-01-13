@@ -103,14 +103,22 @@ class Wizard extends Component {
         <Divider classNames="horizontal" />
         <div class="ui95-window--wizard__buttons">
           {this.state.steps.length > 1 && (
-            <Button style={buttonStyle} onClick={() => this.goBack()}>
+            <Button
+              key="back"
+              style={buttonStyle}
+              onClick={() => this.goBack()}
+            >
               &lt; Back
             </Button>
           )}
-          <Button style={buttonStyle} onClick={() => this.performAction()}>
+          <Button
+            key="forward"
+            style={buttonStyle}
+            onClick={() => this.performAction()}
+          >
             {buttonText}
           </Button>
-          <Button style={buttonStyle} onClick={onClose}>
+          <Button key="cancel" style={buttonStyle} onClick={onClose}>
             Cancel
           </Button>
         </div>
