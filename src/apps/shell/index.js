@@ -129,6 +129,8 @@ class Shell extends Component {
           // FIXME: setting state directly
           Object.assign(props, newProps);
           this.setState({});
+
+          // TODO: change window permalink
         })
         .catch(e => {
           this.openWindow("ErrorHandler", {
