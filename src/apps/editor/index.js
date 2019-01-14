@@ -9,13 +9,15 @@ class Editor extends Component {
   constructor(props) {
     super();
     this.state = {
-      zIndex: props.zIndex
+      zIndex: props.zIndex,
+      content: props.content
     };
   }
-  componentWillReceiveProps(nextProps, nextContext) {
+  componentWillReceiveProps(nextProps) {
     this.setState(() => ({
       zIndex: nextProps.zIndex,
-      isMinimized: nextProps.isMinimized
+      isMinimized: nextProps.isMinimized,
+      content: nextProps.content
     }));
   }
   render({ content, url, onClose, onFocus, children }) {
@@ -57,7 +59,7 @@ class Editor extends Component {
             bottom: "calc(2 * var(--px))"
           }}
         >
-          <HTML html={content} />
+          <HTML html={this.props.content} />
         </ScrollableContainer>
       </Window>
     );

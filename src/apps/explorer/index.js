@@ -25,7 +25,6 @@ class Explorer extends Component {
     }));
   }
   openItem(item) {
-    console.log("open item", item);
     if (item.appProps) {
       return this.props.onLaunchApp(item.appProps.app, item.appProps);
     }

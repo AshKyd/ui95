@@ -86,6 +86,7 @@ class Shell extends Component {
     const sortedWindows = [...windows];
     sortedWindows.sort((a, b) => a[1].zIndex > b[1].zIndex);
     sortedWindows.forEach(([appName, appProps, appChildren], i) => {
+      // FIXME: setting state directly
       appProps.zIndex = i;
       if (appProps.key === windowId) {
         appProps.zIndex = windows.length;
@@ -120,6 +121,21 @@ class Shell extends Component {
 
     // Let raiseWindow call setState.
     this.raiseWindow(windowId);
+
+    if (props.asyncProps)
+      props
+        .asyncProps(props)
+        .then(newProps => {
+          // FIXME: setting state directly
+          Object.assign(props, newProps);
+          this.setState({});
+        })
+        .catch(e => {
+          this.openWindow("ErrorHandler", {
+            title: e.message,
+            error: event.error
+          });
+        });
   }
   windowProps(key) {
     return {

@@ -12,6 +12,39 @@ function tryParse(json) {
 }
 
 /**
+ * Convert the payload from Hexo to something the editor app can use
+ */
+function articleToAppProps(currentPage) {
+  return {
+    content: currentPage.content,
+    title: currentPage.title,
+    ...(currentPage.appProps || {})
+  };
+}
+
+/**
+ * Fetch a page asynchronously & parse out the JS payload.
+ */
+function fetchAsync(props) {
+  return (
+    fetch(props.permalink)
+      .then(res => res.text())
+      .then(html => {
+        const doc = document.implementation.createHTMLDocument("");
+        doc.documentElement.innerHTML = html;
+        const payload = doc.documentElement.querySelector("#hexoPageData")
+          .innerText;
+        return JSON.parse(payload);
+      })
+      // FIXME: only works for article pages rn
+      .then(page => {
+        return articleToAppProps(page.currentPage);
+      })
+      .catch(console.error)
+  );
+}
+
+/**
  * This stuff is really specific to my site, so it should probably be
  * split out of this repo. Serves as a good example I guess.
  * @extends Component
@@ -51,9 +84,10 @@ class Wrapper extends Component {
       files.push(
         new File(path, {
           appProps: {
-            app: "Webview",
-            src: post.permalink,
-            title: post.title
+            app: "Editor",
+            permalink: post.permalink.replace("https://ash.ms", ""),
+            title: post.title,
+            asyncProps: fetchAsync
           }
         })
       );
@@ -76,11 +110,7 @@ class Wrapper extends Component {
 
     // Mash up our data.
     const { currentPage, startMenu, desktopIcons, posts, pages } = hexoPageData;
-    const appData = {
-      content: currentPage.content,
-      title: currentPage.title,
-      ...(currentPage.appProps || {})
-    };
+
     this.setState({
       startMenu,
       desktopIcons
@@ -88,6 +118,8 @@ class Wrapper extends Component {
 
     // Set up the filesystem
     this.createFilesystem({ posts, pages });
+
+    const appData = articleToAppProps(currentPage);
 
     // If we don't have an app to load in our payload, open an error saying so.
     if (!appData.app) {
