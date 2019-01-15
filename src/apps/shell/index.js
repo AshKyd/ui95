@@ -33,6 +33,13 @@ class Shell extends Component {
       desktopIcons: props.desktopIcons || {}
     };
     this.windowId = 100;
+    this.onPopState = e => {
+      if (e.state) {
+        const [appName, appProps] = e.state;
+        this.openWindow(appName, appProps, [], { updateHistory: false });
+      }
+    };
+    window.addEventListener("popstate", this.onPopState);
   }
   componentDidMount() {
     this.globalClick = e => {
@@ -80,6 +87,7 @@ class Shell extends Component {
     );
   }
   raiseWindow(windowId) {
+    const before = JSON.stringify(this.state.windows);
     const windows = this.state.windows;
 
     // Make a copy of the windows and sort them so we can set the zIndex
@@ -93,6 +101,10 @@ class Shell extends Component {
         appProps.isMinimized = false;
       }
     });
+    const after = JSON.stringify(this.state.windows);
+
+    // Fake vdom diff because Preact is going slightly wild
+    if (before === after && windowId === this.state.raisedWindow) return;
 
     // Apply the old order with the new zIndex
     this.setState({ windows, raisedWindow: windowId });
@@ -104,7 +116,23 @@ class Shell extends Component {
     );
     this.setState({ windows: newState });
   }
-  openWindow(appName, props = {}, children) {
+  updateWindowHistory(action, appName, props) {
+    console.log(action, props.title);
+    const cloneableProps = {
+      ...props,
+      ...{
+        asyncFetch: undefined,
+        asyncProps: undefined
+      }
+    };
+    window.history[action](
+      [appName, cloneableProps],
+      props.title,
+      props.permalink
+    );
+  }
+  openWindow(appName, props = {}, children, options = {}) {
+    const { updateHistory } = options;
     props.title = props.title || appName;
 
     const existingWindow = this.getWindowByTitle(props.title);
@@ -119,9 +147,11 @@ class Shell extends Component {
     props.key = windowId;
     this.state.windows = [...this.state.windows, [appName, props, children]];
 
-    // Let raiseWindow call setState.
     this.raiseWindow(windowId);
+    this.setState({});
 
+    // Add an entry to the history
+    if (updateHistory) this.updateWindowHistory("pushState", appName, props);
     if (props.asyncProps)
       props
         .asyncProps(props)
@@ -130,7 +160,8 @@ class Shell extends Component {
           Object.assign(props, newProps);
           this.setState({});
 
-          // TODO: change window permalink
+          if (updateHistory)
+            this.updateWindowHistory("replaceState", appName, props);
         })
         .catch(e => {
           this.openWindow("ErrorHandler", {

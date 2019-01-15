@@ -10,7 +10,9 @@ class Editor extends Component {
     super();
     this.state = {
       zIndex: props.zIndex,
-      content: props.content
+      content: props.content,
+      width: props.width || 800,
+      height: props.height || 600
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -23,14 +25,14 @@ class Editor extends Component {
   render({ content, url, onClose, onFocus, children }) {
     return (
       <Window
-        title={this.state.title}
+        title={this.props.title}
         zIndex={this.state.zIndex}
         classNames="blog-article"
         isMinimized={this.state.isMinimized}
         onClose={onClose}
         onFocus={onFocus}
-        width={470}
-        height={320}
+        width={this.state.width}
+        height={this.state.height}
         icon="word"
       >
         <Toolbar

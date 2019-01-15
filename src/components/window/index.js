@@ -8,13 +8,17 @@ class Window extends Component {
   constructor(props) {
     if (!props.onFocus) throw new Error("Window needs onFocus handler");
     if (!props.onClose) throw new Error("Window needs onClose handler");
-
     super();
     this.state = {
       x: 0,
       y: 0,
-      width: Math.min(props.width || 800, window.innerWidth - 50),
-      height: Math.min(props.height || 600, window.innerHeight - 50)
+      ...this.conformDimsToScreen(props.width, props.height)
+    };
+  }
+  conformDimsToScreen(width, height) {
+    return {
+      width: Math.min(width || 800, window.innerWidth - 50),
+      height: Math.min(height || 600, window.innerHeight - 50)
     };
   }
   componentDidMount() {
@@ -26,8 +30,10 @@ class Window extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
-      width: nextProps.width || this.state.width,
-      height: nextProps.height || this.state.height,
+      ...this.conformDimsToScreen(
+        nextProps.width || this.state.width,
+        nextProps.height || this.state.height
+      ),
       isMinimized:
         typeof nextProps.isMinimized === "boolean"
           ? nextProps.isMinimized

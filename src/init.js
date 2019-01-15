@@ -14,9 +14,9 @@ function tryParse(json) {
 /**
  * Convert the payload from Hexo to something the editor app can use
  */
-function articleToAppProps(currentPage) {
+function articleToAppProps(currentPage, content) {
   return {
-    content: currentPage.content,
+    content,
     title: currentPage.title,
     ...(currentPage.appProps || {})
   };
@@ -32,13 +32,15 @@ function fetchAsync(props) {
       .then(html => {
         const doc = document.implementation.createHTMLDocument("");
         doc.documentElement.innerHTML = html;
-        const payload = doc.documentElement.querySelector("#hexoPageData")
-          .innerText;
-        return JSON.parse(payload);
+        const page = JSON.parse(
+          doc.documentElement.querySelector("#hexoPageData").innerText
+        );
+        const content = doc.documentElement.querySelector("article").innerHTML;
+        return { page, content };
       })
       // FIXME: only works for article pages rn
-      .then(page => {
-        return articleToAppProps(page.currentPage);
+      .then(({ page, content }) => {
+        return articleToAppProps(page.currentPage, content);
       })
       .catch(console.error)
   );
@@ -119,7 +121,8 @@ class Wrapper extends Component {
     // Set up the filesystem
     this.createFilesystem({ posts, pages });
 
-    const appData = articleToAppProps(currentPage);
+    const content = document.querySelector("article").innerHTML;
+    const appData = articleToAppProps(currentPage, content);
 
     // If we don't have an app to load in our payload, open an error saying so.
     if (!appData.app) {
