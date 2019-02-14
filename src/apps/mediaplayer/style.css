@@ -1,0 +1,85 @@
+.ui95-mediaplayer__container {
+  --top: calc(20 * var(--px));
+  --margins: calc(2 * var(--px));
+  position: absolute;
+  left: var(--margins);
+  width: calc(100% - calc(2 * var(--margins)));
+  height: calc(calc(100% - var(--top)) - var(--margins));
+  top: var(--top);
+  background: no-repeat url("./assets/ui-top-left.png") left top,
+    no-repeat url("./assets/ui-top-right.png") right top,
+    no-repeat url("./assets/ui-bottom-left.png") left bottom,
+    no-repeat url("./assets/ui-bottom-right.png") right bottom,
+    repeat-x url("./assets/ui-top.png") top,
+    repeat-y url("./assets/ui-left.png") left,
+    repeat-y url("./assets/ui-right.png") right,
+    repeat-x url("./assets/ui-bottom.png") bottom;
+}
+
+.ui95-mediaplayer__container iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ui95-mediaplayer__sidebar {
+  position: absolute;
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  top: 71px;
+  left: 5px;
+}
+.ui95-mediaplayer__sidebar-button {
+  position: relative;
+}
+.ui95-mediaplayer__sidebar-img {
+  width: 90px;
+  height: 40px;
+  display: block;
+}
+.ui95-mediaplayer__sidebar-text {
+  position: absolute;
+  display: flex;
+  width: calc(80% - 5px);
+  height: 100%;
+  left: 20%;
+  top: 0;
+  text-align: right;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px black;
+}
+.ui95-mediaplayer__sidebar-button:hover .ui95-mediaplayer__sidebar-img {
+  filter: sepia(80%) hue-rotate(171deg) brightness(80%) saturate(125%);
+}
+.ui95-mediaplayer__sidebar-button--active .ui95-mediaplayer__sidebar-img {
+  filter: sepia(100%) hue-rotate(171deg) brightness(70%) saturate(200%);
+}
+.ui95-mediaplayer__sidebar-img--0 {
+  background-image: url("./assets/button-1.png");
+}
+.ui95-mediaplayer__sidebar-img--1 {
+  background-image: url("./assets/button-2.png");
+}
+.ui95-mediaplayer__sidebar-img--2 {
+  background-image: url("./assets/button-3.png");
+}
+.ui95-mediaplayer__sidebar-img--3 {
+  background-image: url("./assets/button-4.png");
+}
+.ui95-mediaplayer__sidebar-img--4 {
+  background-image: url("./assets/button-5.png");
+}
+.ui95-mediaplayer__sidebar-img--5 {
+  background-image: url("./assets/button-6.png");
+}
+.ui95-mediaplayer__sidebar-img--6 {
+  background-image: url("./assets/button-7.png");
+}

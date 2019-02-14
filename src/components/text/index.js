@@ -10,7 +10,8 @@ class Button extends Component {
         className: [className, ...(props.classNames || "").split(" ")].join(
           ` ${className}--`
         ),
-        style: props.style,
+        style: `${props.style || ""} font-size: calc(${props.size ||
+          10} * var(--px));`,
         dangerouslySetInnerHTML: props.html && { __html: props.html }
       },
       props.children

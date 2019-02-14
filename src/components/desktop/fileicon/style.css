@@ -4,6 +4,7 @@
   margin: 0 calc(5 * var(--px)) calc(15 * var(--px));
   text-align: center;
   cursor: pointer;
+  color: var(--black);
 }
 
 .ui95-file-icon .ui95-text--label {

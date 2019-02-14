@@ -46,8 +46,9 @@ class Window extends Component {
   /**
    * Handle window movement
    */
-  mouseDown(e) {
+  mouseDownMoveWindow(e) {
     e.preventDefault();
+    if (this.state.isMaximized) return;
     let coordsPrev;
     this.setState({ moving: true });
     const onMove = e => {
@@ -62,6 +63,65 @@ class Window extends Component {
         x: prev.x + diffX,
         y: prev.y + diffY
       }));
+      coordsPrev = [clientX, clientY];
+      e.preventDefault();
+    };
+    const onDone = () => {
+      document.body.removeEventListener("mousemove", onMove);
+      document.body.removeEventListener("mouseup", onDone);
+      document.body.removeEventListener("touchmove", onMove, {
+        passive: false
+      });
+      document.body.removeEventListener("touchend", onDone, { passive: false });
+      this.setState({ moving: false });
+    };
+    document.body.addEventListener("mousemove", onMove);
+    document.body.addEventListener("mouseup", onDone);
+    document.body.addEventListener("touchmove", onMove, { passive: false });
+    document.body.addEventListener("touchend", onDone, { passive: false });
+  }
+
+  /**
+   * Handle window resize
+   */
+  mouseDownResizeWindow(e, direction) {
+    e.preventDefault();
+    if (this.state.isMaximized) return;
+
+    let applyWidth = ["corner", "left", "right"].includes(direction);
+    let applyHeight = ["corner", "top", "bottom"].includes(direction);
+    let widthOperator = direction === "left" ? -1 : +1;
+    let heightOperator = direction === "top" ? -1 : +1;
+
+    e.preventDefault();
+    let coordsPrev;
+    this.setState({ resizing: true });
+    const onMove = e => {
+      const { clientX, clientY } = e.touches ? e.touches[0] : e;
+      if (!coordsPrev) {
+        coordsPrev = [clientX, clientY];
+        return;
+      }
+
+      const [diffX, diffY] = [clientX - coordsPrev[0], clientY - coordsPrev[1]];
+
+      const width = applyWidth
+        ? Math.max(
+            this.props.minWidth || 200,
+            this.state.width + diffX * widthOperator
+          )
+        : this.state.width;
+      const height = applyHeight
+        ? Math.max(
+            this.props.minHeight || 200,
+            this.state.height + diffY * heightOperator
+          )
+        : this.state.height;
+
+      const x = direction === "left" ? this.state.x + diffX : this.state.x;
+      const y = direction === "top" ? this.state.y + diffY : this.state.y;
+
+      this.setState(prev => ({ width, height, x, y }));
       coordsPrev = [clientX, clientY];
       e.preventDefault();
     };
@@ -140,13 +200,14 @@ class Window extends Component {
       [
         <h2
           class="ui95-window__titlebar"
-          onMouseDown={e => this.mouseDown(e)}
-          onTouchStart={e => this.mouseDown(e)}
+          onMouseDown={e => this.mouseDownMoveWindow(e)}
+          onTouchStart={e => this.mouseDownMoveWindow(e)}
         >
           {props.icon && (
             <Icon size="16" name={props.icon} classNames="application" />
           )}
-          {props.title || "Untitled window"}
+          {props.title || "Untitled window "}
+          {" - " + [this.state.width, this.state.height].join()}
           <div class="ui95-window__titlebar-icons">{buttons}</div>
         </h2>,
         <div
@@ -156,6 +217,14 @@ class Window extends Component {
           }}
         >
           {props.children}
+          {props.resizeable !== false &&
+            ["left", "right", "top", "bottom", "corner"].map(position => (
+              <div
+                class={`ui95-window__resize-${position}`}
+                onMouseDown={e => this.mouseDownResizeWindow(e, position)}
+                onTouchStart={e => this.mouseDownResizeWindow(e, position)}
+              />
+            ))}
         </div>
       ]
     );

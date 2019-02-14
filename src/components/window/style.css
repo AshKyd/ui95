@@ -83,3 +83,48 @@
 .ui95-button--close {
   margin-left: calc(2 * var(--px));
 }
+
+.ui95-window__resize-corner {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 20000;
+  width: 10px;
+  height: 10px;
+}
+
+.ui95-window__resize-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 20000;
+  width: 100%;
+  height: 5px;
+}
+
+.ui95-window__resize-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20000;
+  width: 100%;
+  height: 3px;
+}
+
+.ui95-window__resize-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20000;
+  height: 100%;
+  width: 5px;
+}
+
+.ui95-window__resize-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20000;
+  height: 100%;
+  width: 5px;
+}

@@ -16,6 +16,7 @@ class FileIcon extends Component {
         className={classNames}
         onMouseEnter={() => props.onSelect(props)}
         onClick={() => props.onClick(props)}
+        href="#"
       >
         <div class="ui95-file-icon__icon">
           <Icon size="32" name={props.icon} classNames="file-icon" />

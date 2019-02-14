@@ -34,6 +34,7 @@ class Shell extends Component {
     };
     this.windowId = 100;
     this.onPopState = e => {
+      console.log(e);
       if (e.state) {
         const [appName, appProps] = e.state;
         this.openWindow(appName, appProps, [], { updateHistory: false });
@@ -117,7 +118,6 @@ class Shell extends Component {
     this.setState({ windows: newState });
   }
   updateWindowHistory(action, appName, props) {
-    console.log(action, props.title);
     const cloneableProps = {
       ...props,
       ...{
@@ -132,10 +132,11 @@ class Shell extends Component {
     );
   }
   openWindow(appName, props = {}, children, options = {}) {
-    const { updateHistory } = options;
+    const { updateHistory = true } = options;
     props.title = props.title || appName;
 
     const existingWindow = this.getWindowByTitle(props.title);
+    console.log({ existingWindow });
     if (existingWindow) {
       existingWindow[1].isMinimized = false;
       return this.setState({});

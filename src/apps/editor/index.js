@@ -58,7 +58,8 @@ class Editor extends Component {
             left: "calc(2 * var(--px))",
             right: "calc(2 * var(--px))",
             top: "calc(80 * var(--px))",
-            bottom: "calc(2 * var(--px))"
+            bottom: "calc(2 * var(--px))",
+            padding: "calc(5 * var(--px))"
           }}
         >
           <HTML html={this.props.content} />

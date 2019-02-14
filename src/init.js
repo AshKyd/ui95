@@ -10,6 +10,11 @@ function tryParse(json) {
     return [null, error];
   }
 }
+function initCap(str) {
+  const chars = str.split("");
+  chars[0] = chars[0].toUpperCase();
+  return chars.join("");
+}
 
 /**
  * Convert the payload from Hexo to something the editor app can use
@@ -61,7 +66,7 @@ class Wrapper extends Component {
   createFilesystem({ posts }) {
     // make some folders and files.
     const files = this.state.fs.files;
-    const blogRoot = "c:/My Documents/My Weblogs";
+    const blogRoot = "c:/My Documents";
     const boilerplate = [
       "c:",
       "c:/My Documents",
@@ -73,11 +78,12 @@ class Wrapper extends Component {
     // Put links to all my posts in "My Documents"
     const layouts = new Set();
     posts.forEach(post => {
-      layouts.add(post.layout);
+      const layoutFolder = initCap(post.layout) + "s";
+      layouts.add(layoutFolder);
 
       const path = [
         blogRoot,
-        post.layout,
+        layoutFolder,
         post.permalink
           .substr(0, post.permalink.length - 1)
           .split("/")

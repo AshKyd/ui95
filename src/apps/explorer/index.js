@@ -49,6 +49,7 @@ class Explorer extends Component {
         height={480}
         onClose={props.onClose}
         onFocus={props.onFocus}
+        icon="explorer"
       >
         <Toolbar items={menuItems} />
         <ScrollableContainer

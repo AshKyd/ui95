@@ -1,13 +1,33 @@
-import types from "./types.js";
+const types = {
+  com: "MS-DOS Application",
+  sys: "System File",
+  bat: "MS-DOS Batch File",
+  txt: "Text Document",
+  folder: "File Folder",
+  drive: "Local Disk"
+};
 
 class File {
   constructor(path, extras) {
-    const extension = path.substr(-3);
     const split = path.split("/");
     this.filename = split.pop();
     this.path = "/" + split.join("/");
-    this.description = types[extension];
+    this.extension = this.filename.includes(".")
+      ? this.filename.split(".").pop()
+      : null;
+    this.description = types[this.extension];
+    this.setIcon();
     Object.assign(this, extras);
+  }
+  setIcon() {
+    if (this.filename === "My Documents") return (this.icon = "mydocuments");
+    if (this.filename === "My Computer") return (this.icon = "mycomputer");
+    if (this.filename.includes(":")) return (this.icon = "drive");
+    if (this.extension === null) return (this.icon = "folder");
+    if (["txt", "doc", "ini", "cfg"].includes(this.extension))
+      return (this.icon = "text");
+    if (["exe", "bat"].includes(this.extension)) return (this.icon = "default");
+    return (this.icon = "document");
   }
 }
 

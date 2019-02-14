@@ -9,18 +9,21 @@ class FileIcons extends Component {
   }
   render(props) {
     return (
-      <div class="ui95-file-icons">
+      <ul class="ui95-file-icons">
         {Object.entries(props.items || {}).map(([label, item], index) => (
-          <FileIcon
-            {...item}
-            label={label}
-            key={index}
-            selected={this.state.selected === index}
-            onSelect={e => this.selectItem(e)}
-            onClick={() => props.onClick(item)}
-          />
+          <li>
+            {" "}
+            <FileIcon
+              {...item}
+              label={label}
+              key={index}
+              selected={this.state.selected === index}
+              onSelect={e => this.selectItem(e)}
+              onClick={() => props.onClick(item)}
+            />
+          </li>
         ))}
-      </div>
+      </ul>
     );
   }
 }

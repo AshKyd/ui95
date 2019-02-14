@@ -15,5 +15,4 @@
   top: calc(2 * var(--px));
   bottom: calc(2 * var(--px));
   overflow: auto;
-  padding: calc(5 * var(--px));
 }
