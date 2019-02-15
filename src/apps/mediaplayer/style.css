@@ -16,14 +16,6 @@
     repeat-x url("./assets/ui-bottom.png") bottom;
 }
 
-.ui95-mediaplayer__container iframe {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .ui95-mediaplayer__sidebar {
   position: absolute;
   width: 90px;

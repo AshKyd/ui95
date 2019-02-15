@@ -15,7 +15,7 @@ function Guide({ playlist, playItems, width }) {
             <a
               href={`https://www.youtube.com/playlist?list=${playlist.id}`}
               onClick={e =>
-                playItems(playlist.videos, playlist.id) && e.preventDefault()
+                playItems("playlistId", playlist.id) && e.preventDefault()
               }
             >
               <span class="ui95-mpguide__bullet" /> Play all
@@ -33,7 +33,9 @@ function Guide({ playlist, playItems, width }) {
                   href={`https://www.youtube.com/watch?v=${video.id}&list=${
                     playlist.id
                   }`}
-                  onClick={e => playItems([video]) && e.preventDefault()}
+                  onClick={e =>
+                    playItems("videoId", video.id) && e.preventDefault()
+                  }
                 >
                   <img
                     src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}

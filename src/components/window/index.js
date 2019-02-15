@@ -221,7 +221,6 @@ class Window extends Component {
             <Icon size="16" name={props.icon} classNames="application" />
           )}
           {props.title || "Untitled window "}
-          {" - " + [this.state.width, this.state.height].join()}
           <div class="ui95-window__titlebar-icons">{buttons}</div>
         </h2>,
         <div
