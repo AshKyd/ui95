@@ -91,6 +91,7 @@
   z-index: 20000;
   width: 10px;
   height: 10px;
+  cursor: nwse-resize;
 }
 
 .ui95-window__resize-bottom {
@@ -100,6 +101,7 @@
   z-index: 20000;
   width: 100%;
   height: 5px;
+  cursor: ns-resize;
 }
 
 .ui95-window__resize-top {
@@ -109,6 +111,7 @@
   z-index: 20000;
   width: 100%;
   height: 3px;
+  cursor: ns-resize;
 }
 
 .ui95-window__resize-left {
@@ -118,6 +121,7 @@
   z-index: 20000;
   height: 100%;
   width: 5px;
+  cursor: ew-resize;
 }
 
 .ui95-window__resize-right {
@@ -127,4 +131,5 @@
   z-index: 20000;
   height: 100%;
   width: 5px;
+  cursor: ew-resize;
 }

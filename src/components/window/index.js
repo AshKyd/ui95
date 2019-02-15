@@ -9,16 +9,30 @@ class Window extends Component {
     if (!props.onFocus) throw new Error("Window needs onFocus handler");
     if (!props.onClose) throw new Error("Window needs onClose handler");
     super();
+
+    this.props = props;
     this.state = {
       x: 0,
       y: 0,
-      ...this.conformDimsToScreen(props.width, props.height)
+      hasResized: false,
+      minWidth: props.minWidth || 200,
+      minHeight: props.minHeight || 200
+    };
+    this.state = {
+      ...this.conformDimsToScreen(props.width, props.height),
+      ...this.state
     };
   }
   conformDimsToScreen(width, height) {
     return {
-      width: Math.min(width || 800, window.innerWidth - 50),
-      height: Math.min(height || 600, window.innerHeight - 50)
+      width: Math.max(
+        this.state.minWidth,
+        Math.min(width || 800, window.innerWidth - 50)
+      ),
+      height: Math.max(
+        this.state.minHeight,
+        Math.min(height || 600, window.innerHeight - 50)
+      )
     };
   }
   componentDidMount() {
@@ -107,13 +121,13 @@ class Window extends Component {
 
       const width = applyWidth
         ? Math.max(
-            this.props.minWidth || 200,
+            this.state.minWidth,
             this.state.width + diffX * widthOperator
           )
         : this.state.width;
       const height = applyHeight
         ? Math.max(
-            this.props.minHeight || 200,
+            this.state.minHeight,
             this.state.height + diffY * heightOperator
           )
         : this.state.height;

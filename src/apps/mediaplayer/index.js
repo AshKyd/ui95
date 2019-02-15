@@ -35,7 +35,6 @@ class MediaPlayer extends Component {
 
     this.state = {
       mode: "renderViewPlaylist",
-      title: props.title,
       zIndex: props.zIndex,
       playlist: props.playlists[0],
       title: props.playlists[0].title,
@@ -44,7 +43,6 @@ class MediaPlayer extends Component {
   }
   componentWillReceiveProps(nextProps, nextContext) {
     this.setState(() => ({
-      title: nextProps.title,
       zIndex: nextProps.zIndex
     }));
   }
@@ -66,8 +64,12 @@ class MediaPlayer extends Component {
     });
   }
   renderViewPlaylist() {
-    const playlist = this.state.playlist;
-    return <Guide playlist={playlist} playItems={this.playItems.bind(this)} />;
+    return (
+      <Guide
+        playlist={this.state.playlist}
+        playItems={this.playItems.bind(this)}
+      />
+    );
   }
   renderCurrentlyPlaying() {
     return (
@@ -91,8 +93,6 @@ class MediaPlayer extends Component {
         title={this.state.title + " - Media Player"}
         zIndex={this.state.zIndex}
         classNames="mediaplayer"
-        width={640}
-        height={480}
         minWidth={320}
         minHeight={480}
         onClose={props.onClose}
