@@ -1,6 +1,7 @@
 import { h, render, Component } from "preact";
 import "./style.css";
 import Text from "../../../components/text/index.js";
+import Subscribe from "../subscribebutton/index.js";
 
 function Guide({ playlist, playItems, width }) {
   return (
@@ -9,7 +10,12 @@ function Guide({ playlist, playItems, width }) {
     >
       <Text size="13">
         <div class="ui95-mediaplayer__guide-playlist">
-          <h2>{playlist.title}</h2>
+          <h2>
+            {playlist.title}{" "}
+            <div class="ui95-mediaplayer__subscribe">
+              <Subscribe channel="ashkyd" />
+            </div>
+          </h2>
           <p>{playlist.description}</p>
           <div>
             <a
@@ -27,7 +33,7 @@ function Guide({ playlist, playItems, width }) {
             </a>
           </div>
           <ul>
-            {playlist.videos.slice(0, 6).map(video => (
+            {playlist.videos.map(video => (
               <li>
                 <a
                   href={`https://www.youtube.com/watch?v=${video.id}&list=${

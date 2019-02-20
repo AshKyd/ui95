@@ -1,0 +1,20 @@
+.ui95-toolbar-text {
+  border: var(--px) solid transparent;
+  background: transparent;
+  display: block;
+  padding: 2px 7px;
+}
+
+.ui95-toolbar-text:hover,
+.ui95-toolbar-text.hover {
+  border-color: var(--white) var(--grayDark) var(--grayDark) var(--white);
+}
+
+.ui95-toolbar-text:active,
+.ui95-toolbar-text.active {
+  border-color: var(--grayDark) var(--white) var(--white) var(--grayDark);
+}
+
+.ui95-toolbar-text--text {
+  padding: calc(2 * var(--px)) calc(4 * var(--px));
+}

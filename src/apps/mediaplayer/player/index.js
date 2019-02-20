@@ -2,12 +2,21 @@ import { h, render, Component } from "preact";
 import loadYoutubeApi from "./loadYoutubeApi";
 import "./style.css";
 
+const playStates = {
+  "-1": "unstarted",
+  "0": "ended",
+  "1": "playing",
+  "2": "paused",
+  "3": "buffering",
+  "5": "video cued"
+};
+
 class Player extends Component {
-  constructor({ videoId, playlistId }) {
-    console.log({ videoId, playlistId });
+  constructor({ videoId, playlistId, playState }) {
     super();
     this.state = {
       playlistId,
+      playState,
       videoId: playlistId ? undefined : videoId,
       title: ""
     };
@@ -16,18 +25,45 @@ class Player extends Component {
     return false;
   }
   play() {
+    this.player && this.player.playVideo();
+  }
+  pause() {
+    this.player && this.player.pauseVideo();
+  }
+  load() {
     const { videoId, playlistId } = this.state;
-    this.player = new this.YT.Player(this.rootElement, {
+
+    const events = {
+      onReady: event => {
+        if (this.playlistId) this.player.loadPlaylist(this.playlistId);
+      },
+      onStateChange: () => this.updateState(),
+      onError: () => e => this.playerError(e)
+    };
+    const playlistOpts = {
+      events,
+      playerVars: { autoplay: true, listType: "playlist", list: playlistId }
+    };
+    const videoOpts = {
       videoId,
-      playlistId,
-      autoplay: true,
-      events: {
-        onReady: event => {
-          this.player.loadPlaylist(this.playlistId);
-          // this.setState({ title: event.target.getVideoData().title });
-        }
-      }
-    });
+      events,
+      playerVars: { autoplay: true }
+    };
+
+    this.player = new this.YT.Player(
+      this.rootElement,
+      playlistId ? playlistOpts : videoOpts
+    );
+  }
+  updateState() {
+    if (!this.player || !this.player.getCurrentTime) return;
+    const seconds = this.player.getCurrentTime();
+    const title = this.player.getVideoData().title;
+    const playState = playStates[this.player.getPlayerState()];
+    this.props.onChange({ seconds, title, playState });
+  }
+  playerError(e) {
+    console.log("playerError", e);
   }
   componentWillUnmount() {
     if (this.timer) clearInterval(this.timer);
@@ -35,12 +71,11 @@ class Player extends Component {
   componentDidMount() {
     loadYoutubeApi().then(YT => {
       this.YT = YT;
-      this.play();
+      this.load();
     });
     this.timer = setInterval(() => {
-      const seconds = this.player.getCurrentTime();
-      this.props.onChange({ seconds, title: this.state.title });
-    }, 1000);
+      this.updateState();
+    }, 500);
   }
   render() {
     return (

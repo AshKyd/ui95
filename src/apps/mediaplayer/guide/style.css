@@ -82,3 +82,12 @@
 .ui95-mpguide p {
   margin-bottom: calc(10 * var(--px));
 }
+
+.ui95-mediaplayer__subscribe {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 0 5px;
+  background: white;
+  border: 1px solid #004275;
+}

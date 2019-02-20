@@ -15,8 +15,8 @@ class Window extends Component {
       x: 0,
       y: 0,
       hasResized: false,
-      minWidth: props.minWidth || 200,
-      minHeight: props.minHeight || 200
+      minWidth: props.minWidth || 0,
+      minHeight: props.minHeight || 0
     };
     this.state = {
       ...this.conformDimsToScreen(props.width, props.height),
@@ -24,15 +24,17 @@ class Window extends Component {
     };
   }
   conformDimsToScreen(width, height) {
+    const newWidth = Math.max(
+      this.state.minWidth,
+      Math.min(width || 800, window.innerWidth - 50)
+    );
+    const newHeight = Math.max(
+      this.state.minHeight,
+      Math.min(height || 600, window.innerHeight - 50)
+    );
     return {
-      width: Math.max(
-        this.state.minWidth,
-        Math.min(width || 800, window.innerWidth - 50)
-      ),
-      height: Math.max(
-        this.state.minHeight,
-        Math.min(height || 600, window.innerHeight - 50)
-      )
+      width: width === "auto" ? "auto" : newWidth,
+      height: height === "auto" ? "auto" : newHeight
     };
   }
   componentDidMount() {
@@ -61,6 +63,9 @@ class Window extends Component {
    * Handle window movement
    */
   mouseDownMoveWindow(e) {
+    // Don't override button actions
+    if (e.target.tagName === "BUTTON") return;
+
     e.preventDefault();
     if (this.state.isMaximized) return;
     let coordsPrev;
@@ -94,6 +99,9 @@ class Window extends Component {
     document.body.addEventListener("touchmove", onMove, { passive: false });
     document.body.addEventListener("touchend", onDone, { passive: false });
   }
+  isResizeable() {
+    return this.props.resizeable !== false;
+  }
 
   /**
    * Handle window resize
@@ -101,6 +109,7 @@ class Window extends Component {
   mouseDownResizeWindow(e, direction) {
     e.preventDefault();
     if (this.state.isMaximized) return;
+    if (!this.isResizeable()) return;
 
     let applyWidth = ["corner", "left", "right"].includes(direction);
     let applyHeight = ["corner", "top", "bottom"].includes(direction);
@@ -226,11 +235,11 @@ class Window extends Component {
         <div
           class="ui95-window__content"
           style={{
-            "pointer-events": this.state.moving ? "none" : "inherit"
+            "pointer-events": this.state.moving ? "none" : "unset"
           }}
         >
           {props.children}
-          {props.resizeable !== false &&
+          {this.isResizeable() &&
             ["left", "right", "top", "bottom", "corner"].map(position => (
               <div
                 class={`ui95-window__resize-${position}`}

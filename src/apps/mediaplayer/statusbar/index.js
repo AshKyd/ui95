@@ -10,7 +10,7 @@ function formatSeconds(seconds) {
 
 function StatusBar({ title, seconds = 0 }) {
   let text;
-  if (title) text = `Track: ${title}`;
+  if (title) text = title;
   if (!title) text = "Ready";
   return (
     <div class={`ui95-mpstatus`}>

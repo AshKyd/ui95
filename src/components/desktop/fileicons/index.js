@@ -7,19 +7,20 @@ class FileIcons extends Component {
     this.props.onSelect && this.props.onSelect(item);
     this.setState({ selected: item.key });
   }
-  render(props) {
+  render({ items, onClick, solidColor }) {
     return (
       <ul class="ui95-file-icons">
-        {Object.entries(props.items || {}).map(([label, item], index) => (
+        {Object.entries(items || {}).map(([filename, item], index) => (
           <li>
             {" "}
             <FileIcon
               {...item}
-              label={label}
+              solidColor={solidColor}
+              label={item.label || item.filename}
               key={index}
               selected={this.state.selected === index}
               onSelect={e => this.selectItem(e)}
-              onClick={() => props.onClick(item)}
+              onClick={() => onClick(item)}
             />
           </li>
         ))}

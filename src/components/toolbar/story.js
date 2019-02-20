@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import Toolbar from "./index.js";
 
 storiesOf("Toolbar", module)
-  .add("Text style", () => (
+  .add("Text style (default)", () => (
     <Toolbar
       items={{
         File: {},
@@ -13,14 +13,13 @@ storiesOf("Toolbar", module)
       }}
     />
   ))
-  .add("Icon style", () => (
+  .add("Stacked icons", () => (
     <Toolbar
-      iconOnly={true}
+      variant="stacked"
       items={{
-        "New document": { icon: "documentNew" },
-        Open: { icon: "open" },
-        Save: { icon: "save" },
-        divider: "divider"
+        Back: { icon: "explorer-back" },
+        Forward: { icon: "explorer-forward" },
+        Up: { icon: "explorer-up" }
       }}
     />
   ));

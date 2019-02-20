@@ -10,12 +10,17 @@ import FileIcons from "../../components/desktop/fileicons/index.js";
 import menuItems from "./menuItems.js";
 
 class Explorer extends Component {
-  constructor(props) {
+  constructor({ title, zIndex, path, fs }) {
     super();
     this.state = {
-      title: props.title,
-      zIndex: props.zIndex,
-      path: props.path
+      title,
+      zIndex,
+      path,
+      folder: fs.getFolder(path)
+    };
+    this.history = {
+      past: [],
+      future: []
     };
   }
   componentWillReceiveProps(nextProps, nextContext) {
@@ -30,34 +35,64 @@ class Explorer extends Component {
     }
     if (item.permalink) window.location = item.permalink;
     const path = [item.path, item.filename].join("/");
-    this.setState({ path });
+    this.navigateTo(path);
+  }
+  goUp() {
+    this.navigateTo(this.state.folder.path);
+  }
+  goBack() {
+    const previousFolder = this.history.past.pop();
+    if (!previousFolder) return;
+    this.history.future.push(this.state.folder);
+    this.setState({ folder: previousFolder, file: previousFolder });
+  }
+  goForward() {
+    const previousFolder = this.history.future.pop();
+    if (!previousFolder) return;
+    this.history.past.push(this.state.folder);
+    this.setState({ folder: previousFolder, file: previousFolder });
+  }
+  navigateTo(path) {
+    const fs = this.props.fs;
+    const folder = fs.getFolder(path);
+    this.history.past.push(this.state.folder);
+    this.history.future = [];
+    this.setState({ folder });
   }
   setFile(file) {
     this.setState({ file });
   }
   render(props) {
-    const file = this.state.file;
+    const { file, folder } = this.state;
     const fs = this.props.fs;
-    const folder = fs.getFolder(this.state.path);
-    const files = fs.getFiles(this.state.path);
+    const files = fs.getFiles(folder.fullPath());
     return (
       <Window
         title={this.state.title}
         zIndex={this.state.zIndex}
         classNames="explorer"
-        width={640}
-        height={480}
         onClose={props.onClose}
         onFocus={props.onFocus}
         icon="explorer"
       >
-        <Toolbar items={menuItems} />
+        <Toolbar variant="text" items={menuItems} />{" "}
+        <Toolbar
+          variant="stacked"
+          items={{
+            Back: { icon: "explorer-back", onClick: () => this.goBack() },
+            Forward: {
+              icon: "explorer-forward",
+              onClick: () => this.goForward()
+            },
+            Up: { icon: "explorer-up", onClick: () => this.goUp() }
+          }}
+        />
         <ScrollableContainer
           style={{
             position: "absolute",
             left: "calc(2 * var(--px))",
             right: "calc(2 * var(--px))",
-            top: "calc(80 * var(--px))",
+            top: "calc(100 * var(--px))",
             bottom: "calc(2 * var(--px))"
           }}
         >
@@ -65,7 +100,7 @@ class Explorer extends Component {
             <Icon size={32} name={file ? file.icon : folder.icon} />
             <Text style={{ fontWeight: "bold" }}>
               <h2 class="ui95-explorer-columns__folder-name">
-                {file ? file.filename : folder.filename}
+                {file ? file.label || file.filename : folder.filename}
               </h2>
             </Text>
             <Divider

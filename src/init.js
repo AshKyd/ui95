@@ -45,10 +45,34 @@ function fetchAsync(props) {
       })
       // FIXME: only works for article pages rn
       .then(({ page, content }) => {
+        console.log(page, content);
         return articleToAppProps(page.currentPage, content);
       })
       .catch(console.error)
   );
+}
+
+function createFile(path, post) {
+  const permalink = post.permalink.replace("https://ash.ms", "");
+  if (post.layout === "video") {
+    return new File(path + ".avi", {
+      appProps: {
+        app: "MediaPlayer",
+        permalink,
+        title: post.title,
+        asyncProps: fetchAsync
+      }
+    });
+  }
+
+  return new File(path + ".doc", {
+    appProps: {
+      app: "Editor",
+      permalink,
+      title: post.title,
+      asyncProps: fetchAsync
+    }
+  });
 }
 
 /**
@@ -67,13 +91,36 @@ class Wrapper extends Component {
     // make some folders and files.
     const files = this.state.fs.files;
     const blogRoot = "c:/My Documents";
-    const boilerplate = [
-      "c:",
-      "c:/My Documents",
-      "c:/Windows",
-      "c:/Program Files",
-      blogRoot
-    ].forEach(path => files.push(new File(path)));
+    files.push(
+      new File("a:", {
+        label: "3½ Floppy (A:)",
+        appProps: {
+          app: "Alert",
+          icon: "info",
+          title: "A:",
+          text:
+            "There is no disk in this drive or the drive door is open. Insert a disk in the drive and make sure the drive door is closed, and then click Retry.",
+          width: 400,
+          height: 248,
+          buttons: [{ text: "Retry" }, { text: "Cancel" }]
+        }
+      })
+    );
+    files.push(new File("c:", { label: "Local Disk (C:)" }));
+    files.push(new File(blogRoot));
+
+    const boilerplate = ["c:/Windows", "c:/Program Files"].forEach(path =>
+      files.push(
+        new File(path, {
+          appProps: {
+            app: "Alert",
+            title: path,
+            html: `${path} is not accessible<br><br>Access is denied.`,
+            icon: "error-circle"
+          }
+        })
+      )
+    );
 
     // Put links to all my posts in "My Documents"
     const layouts = new Set();
@@ -87,18 +134,9 @@ class Wrapper extends Component {
         post.permalink
           .substr(0, post.permalink.length - 1)
           .split("/")
-          .pop() + ".doc"
+          .pop()
       ].join("/");
-      files.push(
-        new File(path, {
-          appProps: {
-            app: "Editor",
-            permalink: post.permalink.replace("https://ash.ms", ""),
-            title: post.title,
-            asyncProps: fetchAsync
-          }
-        })
-      );
+      files.push(createFile(path, post));
     });
 
     Array.from(layouts).forEach(layout =>

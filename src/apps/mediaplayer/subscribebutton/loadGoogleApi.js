@@ -2,15 +2,15 @@ const loadScript = require("load-script");
 let loading = false;
 function loadYoutubeApi() {
   return new Promise((resolve, reject) => {
-    if (window.YT) return resolve(window.YT);
+    if (window.gapi) return resolve(window.gapi);
 
     // Set a callback (preserving previous callbacks if set)
-    const previousCallback = window.onYouTubeIframeAPIReady || (() => {});
-    window.onYouTubeIframeAPIReady = (...args) => {
+    const previousCallback = window.loadGoogleApiCallback || (() => {});
+    window.loadGoogleApiCallback = (...args) => {
       status = "ready";
-      resolve(window.YT);
+      resolve(window.gapi);
       previousCallback(...args);
-      delete window.onYouTubeIframeAPIReady;
+      delete window.loadGoogleApiCallback;
     };
 
     // Script is already loading. Wait for it.
@@ -18,9 +18,12 @@ function loadYoutubeApi() {
 
     // Script needs to be loaded.
     loading = true;
-    loadScript("https://www.youtube.com/iframe_api", err => {
-      if (err) reject(err);
-    });
+    loadScript(
+      "https://apis.google.com/js/platform.js?onload=loadGoogleApiCallback",
+      err => {
+        if (err) reject(err);
+      }
+    );
   });
 }
 

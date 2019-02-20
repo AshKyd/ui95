@@ -6,10 +6,16 @@
   bottom: 68px;
   right: 65px;
 }
+.ui95-mpstatus > * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .ui95-mpstatus > :first-child {
   flex: 1;
 }
 .ui95-mpstatus > :first-child + * {
   justify-content: flex-end;
+  padding-left: 10px;
 }

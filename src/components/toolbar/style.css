@@ -1,7 +1,7 @@
 .ui95-toolbar {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   background: var(--gray);
   color: black;
   border: var(--px) solid black;

@@ -4,6 +4,7 @@
 }
 .ui95-explorer-columns__left {
   background: white url("./explorer-background.png");
+  width: calc(300 * var(--px));
   min-width: calc(300 * var(--px));
   background-repeat: no-repeat;
   position: relative;

@@ -1,4 +1,4 @@
-export const Menubar = {
+export const menuItems = {
   File: {
     "Create Shortcut": {},
     Delete: {},
@@ -70,3 +70,5 @@ export const Menubar = {
     "Internet Call": {}
   }
 };
+
+export default menuItems;

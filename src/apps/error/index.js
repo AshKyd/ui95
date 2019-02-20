@@ -7,14 +7,16 @@ import Text from "../../components/text/index.js";
 import Input from "../../components/forms/input/index.js";
 
 class ErrorHandler extends Component {
-  constructor(props) {
+  constructor({ error, title, zIndex }) {
     super();
     this.state = {
-      title: props.title,
-      zIndex: props.zIndex,
-      errorShown: false
+      title: title,
+      zIndex: zIndex,
+      errorShown: false,
+      message: error.message,
+      stack: error.stack || new Error().stack
     };
-    console.error("ErrorHandler", props.error);
+    console.error("ErrorHandler", error);
   }
   componentWillReceiveProps(nextProps, nextContext) {
     this.setState(() => ({
@@ -23,6 +25,7 @@ class ErrorHandler extends Component {
     }));
   }
   render({ error, onClose, onFocus, debugInfo }) {
+    const { message, stack, title, zIndex, errorShown } = this.state;
     const renderedDebugInfo = debugInfo
       ? [
           "Debug information follows:",
@@ -31,19 +34,16 @@ class ErrorHandler extends Component {
         ].join("\n")
       : "";
 
-    const errorDetails = [
-      error.message,
-      error.stack,
-      renderedDebugInfo || ""
-    ].join("\n");
+    const errorDetails = [message, stack, renderedDebugInfo || ""].join("\n");
 
     return (
       <Window
-        title={this.state.title}
-        zIndex={this.state.zIndex}
+        title={title}
+        zIndex={zIndex}
         classNames="error"
         width={400}
-        height={this.state.errorShown ? 270 : 125}
+        resizeable={false}
+        height={errorShown ? 270 : 125}
         buttons="close"
         onClose={onClose}
         onFocus={onFocus}
@@ -62,16 +62,12 @@ class ErrorHandler extends Component {
           <div class="ui95-window-error__buttons">
             <Button onClick={onClose}>Close</Button>
             <Button disabled={true}>Debug</Button>
-            <Button
-              onClick={() =>
-                this.setState({ errorShown: !this.state.errorShown })
-              }
-            >
+            <Button onClick={() => this.setState({ errorShown: !errorShown })}>
               Details
             </Button>
           </div>
         </div>
-        {this.state.errorShown && (
+        {errorShown && (
           <Input
             multiline={true}
             disabled={true}

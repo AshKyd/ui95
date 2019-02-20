@@ -12,6 +12,8 @@ import Wizard from "../wizard/index.js";
 import Explorer from "../explorer/index.js";
 import Editor from "../editor/index.js";
 import Webamp from "../webamp/index.js";
+import MediaPlayer from "../mediaplayer/index.js";
+import Alert from "../alert/index.js";
 import { h, render, Component } from "preact";
 
 const apps = {
@@ -20,7 +22,9 @@ const apps = {
   Webamp,
   Editor,
   Wizard,
-  Explorer
+  Explorer,
+  MediaPlayer,
+  Alert
 };
 
 class Shell extends Component {
@@ -125,11 +129,20 @@ class Shell extends Component {
         asyncProps: undefined
       }
     };
-    window.history[action](
-      [appName, cloneableProps],
-      props.title,
-      props.permalink
-    );
+    try {
+      window.history[action](
+        [appName, JSON.parse(JSON.stringify(cloneableProps))],
+        props.title,
+        props.permalink
+      );
+    } catch (error) {
+      this.openWindow("ErrorHandler", {
+        error,
+        title: "History could not be saved",
+        debugInfo: "History payload has been logged to the console."
+      });
+      console.error([appName, cloneableProps]);
+    }
   }
   openWindow(appName, props = {}, children, options = {}) {
     const { updateHistory = true } = options;
@@ -185,6 +198,7 @@ class Shell extends Component {
         <WindowArea>
           <FileIcons
             items={this.state.desktopIcons}
+            solidColor={true}
             onClick={item => this.openWindow(item.app, item.appProps)}
           />
           {this.state.windows.map(([appName, appProps, appChildren]) => {

@@ -1,34 +1,47 @@
 import { h, render, Component } from "preact";
 import Divider from "../divider/index.js";
-import ToolbarItem from "./toolbar-item/index.js";
+import ToolbarItemText from "./toolbar-item-text/index.js";
+import ToolbarItemStacked from "./toolbar-item-stacked/index.js";
 import "./style.css";
+
+const variants = {
+  text: ToolbarItemText,
+  stacked: ToolbarItemStacked
+};
 
 class Toolbar extends Component {
   getItems(items = []) {
-    return Object.entries(items).map((label, item) => {
+    const { onClick, variant } = this.props;
+    return Object.entries(items).map(([label, item]) => {
       if (item === "divider") return <Divider classNames="vertical" />;
+      const ToolbarItem = variants[variant || "text"];
       return (
-        <ToolbarItem label={label} item={item} iconOnly={this.props.iconOnly} />
+        <ToolbarItem
+          label={label}
+          icon={item.icon}
+          onClick={() => (item.onClick || onClick)(item)}
+        />
       );
     });
   }
-  render(props) {
+  render({ classNames, onClick, onMouseDown, items, children }) {
     const className = "ui95-toolbar";
     return h(
       "div",
       {
-        className: [className, ...(props.classNames || "").split(" ")].join(
+        className: [className, ...(classNames || "").split(" ")].join(
           ` ${className}--`
         ),
-        onClick: props.onClick,
-        onMouseDown: props.onMouseDown
+        onClick: onClick,
+        onMouseDown: onMouseDown
       },
       [
         <Divider classNames="draggable" />,
         <div style="padding-right:var(--px)" />,
         <Divider classNames="draggable" />,
-        props.children,
-        this.getItems(props.items)
+        <div style="padding-right:var(--px)" />,
+        children,
+        this.getItems(items)
       ]
     );
   }

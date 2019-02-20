@@ -1,7 +1,7 @@
 import { h, render, Component } from "preact";
 import "./style.css";
 
-class Button extends Component {
+class Text extends Component {
   render(props) {
     const className = "ui95-text";
     return h(
@@ -19,4 +19,4 @@ class Button extends Component {
   }
 }
 
-export default Button;
+export default Text;

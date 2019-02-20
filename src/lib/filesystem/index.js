@@ -22,12 +22,17 @@ class File {
   setIcon() {
     if (this.filename === "My Documents") return (this.icon = "mydocuments");
     if (this.filename === "My Computer") return (this.icon = "mycomputer");
-    if (this.filename.includes(":")) return (this.icon = "drive");
+    if (this.filename.match(/a:$/)) return (this.icon = "floppy");
+    if (this.filename.match(/:$/)) return (this.icon = "drive");
     if (this.extension === null) return (this.icon = "folder");
     if (["txt", "doc", "ini", "cfg"].includes(this.extension))
       return (this.icon = "text");
     if (["exe", "bat"].includes(this.extension)) return (this.icon = "default");
+    if (["avi"].includes(this.extension)) return (this.icon = "video");
     return (this.icon = "document");
+  }
+  fullPath() {
+    return [this.path, this.filename].join("/");
   }
 }
 
