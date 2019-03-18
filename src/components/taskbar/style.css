@@ -15,3 +15,12 @@
 .ui95-start > * {
   margin-right: 4px;
 }
+
+.ui95-start .ui95-button--window {
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: start;
+  padding-left: 2px;
+}

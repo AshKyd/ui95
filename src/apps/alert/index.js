@@ -6,12 +6,12 @@ import Icon from "../../components/icon/index.js";
 import Text from "../../components/text/index.js";
 import Input from "../../components/forms/input/index.js";
 
-class Alert extends Component {
+class TabDialog extends Component {
   render({
     title,
     text,
     html,
-    buttons,
+    buttons = [{ text: "Ok", onClick: onClose }],
     onClose,
     onFocus,
     icon,
@@ -19,7 +19,10 @@ class Alert extends Component {
     width,
     height
   }) {
-    const normalizedButtons = buttons || [{ text: "Ok", onClick: onClose }];
+    const normalizedButtons = buttons.map(({ text, onClick = () => {} }) => ({
+      text,
+      onClick
+    }));
     return (
       <Window
         title={title}
@@ -56,4 +59,4 @@ class Alert extends Component {
   }
 }
 
-export default Alert;
+export default TabDialog;

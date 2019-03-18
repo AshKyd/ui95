@@ -6,33 +6,25 @@ import Toolbar from "../../components/toolbar/index.js";
 import ScrollableContainer from "../../components/scrollablecontainer/index.js";
 
 class Editor extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      zIndex: props.zIndex,
-      content: props.content,
-      width: props.width || 800,
-      height: props.height || 600
-    };
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState(() => ({
-      zIndex: nextProps.zIndex,
-      isMinimized: nextProps.isMinimized,
-      content: nextProps.content
-    }));
-  }
-  render({ content, url, onClose, onFocus, children }) {
+  render({
+    children,
+    content,
+    isMinimized,
+    layout,
+    onClose,
+    onFocus,
+    title,
+    url,
+    zIndex
+  }) {
     return (
       <Window
-        title={this.props.title}
-        zIndex={this.state.zIndex}
+        title={title}
+        zIndex={zIndex}
         classNames="blog-article"
-        isMinimized={this.state.isMinimized}
+        isMinimized={isMinimized}
         onClose={onClose}
         onFocus={onFocus}
-        width={this.state.width}
-        height={this.state.height}
         icon="word"
       >
         <Toolbar
@@ -53,6 +45,7 @@ class Editor extends Component {
           }}
         />
         <ScrollableContainer
+          classNames={layout}
           style={{
             position: "absolute",
             left: "calc(2 * var(--px))",
@@ -62,7 +55,7 @@ class Editor extends Component {
             padding: "calc(5 * var(--px))"
           }}
         >
-          <HTML html={this.props.content} />
+          <HTML html={content} />
         </ScrollableContainer>
       </Window>
     );

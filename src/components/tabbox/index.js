@@ -4,9 +4,13 @@ import Tab from "./tab/index.js";
 import Bezel from "../bezel/index.js";
 
 class TabBox extends Component {
-  state = {
-    selectedIndex: 0
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      selectedIndex: 0
+    };
+  }
   render({ tabs, style }) {
     const className = "ui95-tabbox";
     const tabMap = Object.entries(tabs);

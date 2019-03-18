@@ -80,7 +80,7 @@ class Player extends Component {
   render() {
     return (
       <div class="ui95-player">
-        <div ref={ref => (this.rootElement = ref)} />
+        <div key={this.videoId} ref={ref => (this.rootElement = ref)} />
       </div>
     );
   }

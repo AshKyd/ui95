@@ -11,7 +11,7 @@ class FileIcons extends Component {
     return (
       <ul class="ui95-file-icons">
         {Object.entries(items || {}).map(([filename, item], index) => (
-          <li>
+          <li key={item.path + "/" + item.filename}>
             {" "}
             <FileIcon
               {...item}

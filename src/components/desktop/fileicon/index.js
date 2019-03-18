@@ -9,6 +9,7 @@ class FileIcon extends Component {
       classNames,
       filename,
       icon,
+      key,
       label,
       onClick,
       onSelect,
@@ -26,8 +27,13 @@ class FileIcon extends Component {
       <a
         className={classNamesString}
         onMouseEnter={() => onSelect(props)}
-        onClick={() => onClick(props)}
+        onClick={e => {
+          e.preventDefault();
+          e.stopPropagation();
+          onClick(props);
+        }}
         href="#"
+        key={key}
       >
         <div class="ui95-file-icon__icon">
           <Icon size="32" name={icon} classNames="file-icon" />
