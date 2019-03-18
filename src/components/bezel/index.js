@@ -3,14 +3,12 @@ import { getClasses } from "../../util";
 
 import "./style.css";
 
-class Bezel extends Component {
-  render(props) {
-    return (
-      <div class={getClasses("bezel", props.classNames)} style={props.style}>
-        {props.children}
-      </div>
-    );
-  }
+function Bezel({ classNames, style, children }) {
+  return (
+    <div class={getClasses("bezel", classNames)} style={style}>
+      {children}
+    </div>
+  );
 }
 
 export default Bezel;

@@ -1,7 +1,7 @@
 import { h, render, Component } from "preact";
 import "./style.css";
 
-function Button({ onClick, children, style }) {
+function Tab({ onClick, children, style }) {
   const className = "ui95-tab";
   return h("button", { className, onClick, style }, [
     h("div", { class: "ui95-tab__ring" }),
@@ -9,4 +9,4 @@ function Button({ onClick, children, style }) {
   ]);
 }
 
-export default Button;
+export default Tab;
