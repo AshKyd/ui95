@@ -2,16 +2,19 @@ import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import Wizard from "./index.js";
 
-const wizardOptions = {
-  "I would like to find out more about Ash": { app: "Blog", mode: "Latest" },
-  "I would like to play a game": null,
-  "No thanks, I will explore by myself": {
+function generateStep() {
+  return {
     mode: "update",
-    content:
-      "No worries. You can access everything from the desktop and start menu, or open this wizard again from the desktop.",
+    content: faker.lorem.paragraph(),
     wizardOptions: {},
     buttonText: "Finish"
-  }
+  };
+}
+
+const wizardOptions = {
+  "I would like to find out more about the thing": generateStep(),
+  "I would like to play a game": generateStep(),
+  "No thanks, I will explore by myself": generateStep()
 };
 
 storiesOf("App/Wizard", module).add("Wizard style", () => (
@@ -22,5 +25,8 @@ storiesOf("App/Wizard", module).add("Wizard style", () => (
     error={new Error("an error")}
     onFocus={() => {}}
     onClose={() => {}}
-  />
+    content={faker.lorem.paragraph() + "<br><br>"}
+  >
+    Test
+  </Wizard>
 ));

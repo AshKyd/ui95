@@ -11,14 +11,14 @@ class FileIcons extends Component {
     return (
       <ul class="ui95-file-icons">
         {Object.entries(items || {}).map(([filename, item], index) => (
-          <li key={item.path + "/" + item.filename}>
+          <li class="ui95-file-icons__item">
             {" "}
             <FileIcon
               {...item}
               solidColor={solidColor}
               label={item.label || item.filename}
               key={index}
-              selected={this.state.selected === index}
+              selected={item.selected || this.state.selected === index}
               onSelect={e => this.selectItem(e)}
               onClick={() => onClick(item)}
             />

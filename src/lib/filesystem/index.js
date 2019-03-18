@@ -49,8 +49,8 @@ class Filesystem {
     if (!filename.includes(".")) return "folder";
     return filename.substr(-3);
   }
-  conformPath(path) {
-    return "/" + path.replace(/^\/*/, "").replace(/\/$/, "");
+  conformPath(path = "") {
+    return ("/" + path.replace(/^\/*/, "").replace(/\/$/, "")).toLowerCase();
   }
   getFolder(requestedPath) {
     const path = this.conformPath(requestedPath);
@@ -61,15 +61,18 @@ class Filesystem {
         path
       });
     const folder = this.files.find(
-      file => file.path + "/" + file.filename === path
+      file =>
+        file.path.toLowerCase() + "/" + file.filename.toLowerCase() === path
     );
+
     if (folder) return folder;
 
     return new File(path);
   }
   getFiles(requestedPath) {
     const path = this.conformPath(requestedPath);
-    const files = this.files.filter(file => file.path === path);
+
+    const files = this.files.filter(file => file.path.toLowerCase() === path);
     return files;
   }
 }

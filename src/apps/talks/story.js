@@ -4,7 +4,7 @@ import TabDialog from "./index.js";
 
 const noop = () => {};
 
-storiesOf("App/TabDialog", module).add("System Properties", () => (
+storiesOf("App/Talks", module).add("System Properties", () => (
   <TabDialog
     title="System Properties"
     tabs={{

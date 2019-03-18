@@ -1,23 +1,27 @@
 import { h, render, Component } from "preact";
+import { getClasses } from "../../util";
 import "./style.css";
 
-class Button extends Component {
-  render(props) {
-    const className = "ui95-button";
-    return h(
-      props.type || "button",
-      {
-        className: [className, ...(props.classNames || "").split(" ")].join(
-          ` ${className}--`
-        ),
-        onClick: props.onClick,
-        onMouseDown: props.onMouseDown,
-        disabled: props.disabled,
-        style: props.style
-      },
-      props.children
-    );
-  }
+function Button({
+  type,
+  classNames,
+  onClick,
+  onMouseDown,
+  disabled,
+  style,
+  children
+}) {
+  return h(
+    type || "button",
+    {
+      className: getClasses("button", classNames),
+      onClick,
+      onMouseDown,
+      disabled,
+      style
+    },
+    children
+  );
 }
 
 export default Button;

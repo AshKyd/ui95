@@ -24,6 +24,16 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /story\.jsx?$/,
+        loaders: [
+          {
+            loader: require.resolve("@storybook/addon-storysource/loader"),
+            options: {}
+          }
+        ],
+        enforce: "pre"
       }
     ]
   },

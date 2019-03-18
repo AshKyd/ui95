@@ -2,7 +2,7 @@ import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import ScrollableContainer from "./index.js";
 
-storiesOf("ScrollableContainer", module).add("Pop out", () => (
+storiesOf("Components/ScrollableContainer", module).add("Pop out", () => (
   <ScrollableContainer
     classNames="hello"
     style={{ width: "300px", height: "200px" }}

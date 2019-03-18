@@ -1,4 +1,5 @@
 import { h, render, Component } from "preact";
+import { getClasses } from "../../../util";
 import Icon from "../../icon/index.js";
 import Text from "../../text/index.js";
 import "./style.css";
@@ -6,7 +7,7 @@ import "./style.css";
 class FileIcon extends Component {
   render(props) {
     const {
-      classNames,
+      classNames = "",
       filename,
       icon,
       key,
@@ -16,13 +17,14 @@ class FileIcon extends Component {
       selected,
       solidColor
     } = props;
-    const className = "ui95-file-icon";
-    const classNamesString = [
-      className,
-      selected ? "selected" : "deselected",
-      solidColor ? "solid-color" : "no-color",
-      ...(classNames || "").split(" ")
-    ].join(` ${className}--`);
+    const classNamesString = getClasses(
+      "file-icon",
+      [
+        selected ? "selected" : "deselected",
+        solidColor ? "solid-color" : "no-color",
+        ...classNames.split(" ")
+      ].join(" ")
+    );
     return (
       <a
         className={classNamesString}

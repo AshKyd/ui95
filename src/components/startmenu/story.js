@@ -19,6 +19,6 @@ const menu = {
   "Shut Down": { icon: "windowsupdate" }
 };
 
-storiesOf("Start menu", module).add("render some text", () => (
+storiesOf("Components/Start menu", module).add("render some text", () => (
   <StartMenu items={menu} isOpen="true" />
 ));

@@ -4,7 +4,7 @@ import Taskbar from "./index.js";
 import Button from "../button/index.js";
 import Icon from "../icon/index.js";
 
-storiesOf("Taskbar", module).add("Render a taskbar", () => (
+storiesOf("Components/Taskbar", module).add("Render a taskbar", () => (
   <Taskbar>
     <Button classNames="bold left">
       <Icon size="16" name="folder" />

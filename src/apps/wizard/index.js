@@ -82,6 +82,7 @@ class Wizard extends Component {
         onFocus={onFocus}
         width={width || 450}
         height={height || 380}
+        minHeight={height || 380}
         icon="ash"
       >
         <div class="ui95-window--wizard__row">

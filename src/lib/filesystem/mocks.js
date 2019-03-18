@@ -1102,6 +1102,8 @@ const mocks = `/COMMAND.COM
 /Program Files/Uninstall Information
 /Program Files/DirectX
 /Program Files/Oracle
-`.split("\n");
+`
+  .split("\n")
+  .filter(Boolean);
 
 export default mocks;

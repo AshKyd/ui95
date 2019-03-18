@@ -129,6 +129,13 @@ class Shell extends Component {
     console.log("setting new title", raisedWindow.title);
     onUrlChange(raisedWindow.permalink);
   }
+  /**
+   * Open a new window
+   * @param  {String} appName      Name of the app to launch, eg. Alert.
+   * @param  {Object} [props={}]   Props to send to the app
+   * @param  {[type]} children     Any children elements to pass to the app.
+   * @param  {Object} [options={}] Send updateHistory=false to suppress history for this window
+   */
   openWindow(appName, props = {}, children, options = {}) {
     const { updateHistory = true } = options;
     const { apps } = this.props;
@@ -164,7 +171,7 @@ class Shell extends Component {
           <FileIcons
             items={this.state.desktopIcons}
             solidColor={true}
-            onClick={item => this.openWindow(item.app, item.appProps)}
+            onClick={item => this.openWindow(item.appProps.app, item.appProps)}
           />
           {this.state.windows.map(([appName, appProps, appChildren]) => {
             return h(

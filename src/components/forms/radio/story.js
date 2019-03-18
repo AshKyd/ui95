@@ -12,7 +12,7 @@ const values = {
   "No thanks, I will explore by myself": {}
 };
 
-storiesOf("Input/Radio button", module)
+storiesOf("Components/Radio button", module)
   .add("Down", () => (
     <Radio classNames="down" onChange={console.log} values={values} />
   ))

@@ -2,7 +2,7 @@ import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import Toolbar from "./index.js";
 
-storiesOf("Toolbar", module)
+storiesOf("Components/Toolbar", module)
   .add("Text style (default)", () => (
     <Toolbar
       items={{

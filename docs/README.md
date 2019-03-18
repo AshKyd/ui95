@@ -1,6 +1,4 @@
-# Docs
-
-## Who is this for?
+# Who is this for?
 
 This project is mostly for me, because I'm a weirdo who likes making stuff. The
 eventual goal is that this will replace my site at [ash.ms](https://ash.ms/)
@@ -9,16 +7,19 @@ and look real cool.
 But you might find it interesting if you have a burning need to implement an
 old-school interface, maybe in a game or something.
 
-## Using ui95
+# Using ui95
 
-### In your app
+⚠️ While you should consider this alpha quality and subject to change ⚠️, you can implement the components or the full-on apps in your own projects.
 
-Consider this alpha quality. But if you want to implement something, you
-can directly require the Preact components into your app.
+## Using components in your app
 
-For examples, see the [Storybook](/storybook/) components.
+But if you want to implement these components or apps, you can directly require the Preact components into your app.
 
-### As a desktop
+For examples, see the [Storybook](https://ui95.ash.ms/storybook/) components.
+
+<iframe src="/storybook/" width="100%" height="600"></iframe>
+
+## Using the full desktop in your app
 
 To run a full desktop, you can mount the `Shell` component in your Preact app.
 
@@ -41,7 +42,23 @@ To run a full desktop, you can mount the `Shell` component in your Preact app.
 | apps         | Object containing the list of apps imported from the `apps/` folder, or created yourself.                                                                 |
 | site         | Object containing site-wide config. Presently only requires the title field. Eg. `{ title: "Example ui95 app" }`                                          |
 
-### Developing
+### appProps
+
+App props are used by the Shell to encapsulate info about an instance of an app. This is used in various places around the app, including in the FileIcons implementation, Start menu & toolbars. These props are passed directly to the app when the app is launched.
+
+For instance, to show an alert with a message you might use the following appProps:
+
+```js
+{
+  app: 'Alert',
+  title: 'Untitled window',
+  test: 'An error occurred'
+}
+```
+
+You can see this pattern in the startMenu and desktopIcons examples under [As a desktop](/?id=as-a-desktop).
+
+# Developing
 
 Develop new components against Storybook:
 
@@ -83,3 +100,25 @@ export default Webview;
 ```
 
 This component largely passes props from the shell into the window, then fills the window with an iframe. The props are all fairly self-explanatory, and are used to maintain the desktop.
+
+Once you have a window implementation running you can fill it with any content you like.
+
+### Launching other apps from your app
+
+The shell always passes a `onLaunchApp` function. You can use this to directly hook into the `openWindow` method of the shell.
+
+For instance, the following will open the Alert app with some sample text:
+
+```js
+props.openWindow("Alert", {
+  app: "Alert",
+  title: "Untitled window",
+  test: "An error occurred"
+});
+```
+
+# Roadmap
+
+There is no firm roadmap, but I am separately working on an integration with the [Hexo static site generator](https://hexo.io/) so I can add ui95 as a frontend to my entire blog.
+
+In the meantime, this is a fun project that I think looks pretty cool.

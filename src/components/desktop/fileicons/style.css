@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
 }
-.ui95-file-icons li {
+.ui95-file-icons__item {
   list-style: none;
+  overflow: hidden;
 }

@@ -33,13 +33,12 @@ class MediaPlayer extends Component {
       this.setState({ appLoaded: true });
     });
   }
-  componentWillReceiveProps({ zIndex, videoId, playlists, mode }, nextContext) {
+  componentWillReceiveProps({ zIndex, videoId, playlists }, nextContext) {
     this.setState(() => ({
       zIndex,
       videoId,
       playlists,
-      playlist: playlists && playlists[0],
-      mode
+      playlist: playlists && playlists[0]
     }));
   }
   playItems(itemType, itemId) {

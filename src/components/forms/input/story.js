@@ -2,7 +2,7 @@ import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import Input from "./index.js";
 
-storiesOf("Input/Input", module)
+storiesOf("Components/Input", module)
   .add("Empty", () => <Input width="100px" value="" />)
   .add("prefilled", () => <Input width="200px" value="Hello world" />)
   .add("multiline", () => (

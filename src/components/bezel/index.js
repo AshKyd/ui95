@@ -1,14 +1,12 @@
 import { h, render, Component } from "preact";
+import { getClasses } from "../../util";
+
 import "./style.css";
 
 class Bezel extends Component {
   render(props) {
-    const className = "ui95-bezel";
-    const classNames = [className, ...(props.classNames || "").split(" ")].join(
-      ` ${className}--`
-    );
     return (
-      <div class={classNames} style={props.style}>
+      <div class={getClasses("bezel", props.classNames)} style={props.style}>
         {props.children}
       </div>
     );

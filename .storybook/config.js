@@ -1,4 +1,6 @@
 import { configure } from "@storybook/react";
+import faker from "faker";
+window.faker = faker;
 
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);

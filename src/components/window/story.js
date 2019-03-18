@@ -5,7 +5,7 @@ import WindowArea from "../windowarea/index.js";
 import Taskbar from "../taskbar/index.js";
 import Button from "../button/index.js";
 
-storiesOf("Window", module)
+storiesOf("Components/Window", module)
   .add("Without icon", () => (
     <Window onFocus={() => {}} onClose={() => {}}>
       Hello window
