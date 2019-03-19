@@ -8,8 +8,8 @@
   border: var(--px) solid black;
   border-color: var(--white) var(--black) var(--black) var(--white);
   font-family: system;
-  font-size: calc(10 * var(--px));
-  padding: 0 calc(2 * var(--px));
+  font-size: 10px;
+  padding: 0 2px;
   justify-content: center;
 }
 .ui95-button[disabled] {

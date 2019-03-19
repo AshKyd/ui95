@@ -4,24 +4,24 @@
 }
 .ui95-explorer-columns__left {
   background: white url("./explorer-background.png");
-  width: calc(300 * var(--px));
-  min-width: calc(300 * var(--px));
+  width: 300px;
+  min-width: 300px;
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
-  padding: calc(15 * var(--px));
+  padding: 15px;
   box-sizing: border-box;
 }
 
 @media (max-width: 640px) {
   .ui95-explorer-columns__left {
-    min-width: calc(140 * var(--px));
+    min-width: 140px;
   }
 }
 
 .ui95-explorer-columns__folder-name {
   margin: 0;
-  font-size: calc(24 * var(--px));
+  font-size: 24px;
   font-weight: bold;
 }
 

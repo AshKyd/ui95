@@ -90,10 +90,10 @@ class Explorer extends Component {
         <ScrollableContainer
           style={{
             position: "absolute",
-            left: "calc(2 * var(--px))",
-            right: "calc(2 * var(--px))",
-            top: "calc(100 * var(--px))",
-            bottom: "calc(2 * var(--px))"
+            left: "2px",
+            right: "2px",
+            top: "100px",
+            bottom: "2px"
           }}
         >
           <div class="ui95-explorer-columns__left">
@@ -106,8 +106,8 @@ class Explorer extends Component {
             <Divider
               classNames="rainbow"
               style={{
-                marginTop: "calc(5 * var(--px))",
-                marginBottom: "calc(15 * var(--px))"
+                marginTop: "5px",
+                marginBottom: "15px"
               }}
             />
             <Text>

@@ -3,7 +3,7 @@
 }
 .ui95-window-alert__icon {
   padding-top: 10px;
-  width: calc(55 * var(--px));
+  width: 55px;
   display: flex;
   align-items: flex-start;
   justify-content: center;

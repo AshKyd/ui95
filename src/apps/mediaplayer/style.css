@@ -1,6 +1,6 @@
 .ui95-mediaplayer__container {
-  --top: calc(20 * var(--px));
-  --margins: calc(2 * var(--px));
+  --top: 20px;
+  --margins: 2px;
   position: absolute;
   left: var(--margins);
   width: calc(100% - calc(2 * var(--margins)));

@@ -130,10 +130,10 @@ class MediaPlayer extends Component {
             <ScrollableContainer
               style={{
                 position: "absolute",
-                left: "calc(98 * var(--px))",
-                right: "calc(19 * var(--px))",
-                top: "calc(42 * var(--px))",
-                bottom: "calc(83 * var(--px))"
+                left: "98px",
+                right: "19px",
+                top: "42px",
+                bottom: "83px"
               }}
             >
               {this[mode]()}

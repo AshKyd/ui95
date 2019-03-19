@@ -15,8 +15,8 @@ function Input(props) {
     <Bezel
       classNames={classNames}
       style={{
-        width: props.width || "calc(100 * var(--px))",
-        height: props.height || "calc(16 * var(--px))",
+        width: props.width || "100px",
+        height: props.height || "16px",
         ...(props.style || {})
       }}
     >

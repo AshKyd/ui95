@@ -1,7 +1,7 @@
 .ui95-file-icon {
   display: block;
-  width: calc(65 * var(--px));
-  margin: 0 calc(5 * var(--px)) calc(15 * var(--px));
+  width: 65px;
+  margin: 0 5px 15px;
   text-align: center;
   cursor: pointer;
   color: var(--black);

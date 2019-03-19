@@ -1,9 +1,9 @@
 .ui95-window-error {
   display: flex;
-  margin-top: calc(8 * var(--px));
+  margin-top: 8px;
 }
 .ui95-window-error__icon {
-  width: calc(55 * var(--px));
+  width: 55px;
   text-align: center;
 }
 

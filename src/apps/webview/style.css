@@ -1,8 +1,8 @@
 .ui95-webview {
   position: absolute;
-  left: calc(2 * var(--px));
-  top: calc(19 * var(--px));
-  width: calc(100% - calc(4 * var(--px)));
-  height: calc(100% - calc(21 * var(--px)));
+  left: 2px;
+  top: 19px;
+  width: calc(100% - 4px);
+  height: calc(100% - 21px);
   border: none;
 }

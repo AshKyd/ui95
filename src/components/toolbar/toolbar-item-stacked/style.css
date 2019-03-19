@@ -18,12 +18,12 @@
 }
 
 .ui95-toolbar-stacked--text {
-  padding: calc(2 * var(--px)) calc(4 * var(--px));
+  padding: 2px 4px;
 }
 
 .ui95-toolbar-stacked .ui95-icon {
-  padding: calc(1 * var(--px)) calc(2 * var(--px));
-  margin: 0 calc(2 * var(--px));
+  padding: 1px 2px;
+  margin: 0 2px;
   filter: grayscale(100%);
 }
 .ui95-toolbar-stacked:hover .ui95-icon,

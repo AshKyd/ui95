@@ -59,7 +59,7 @@
 }
 
 .ui95-mpguide h2 {
-  font-size: calc(30 * var(--px));
+  font-size: 30px;
   background: linear-gradient(to bottom, #f9f9fb, #9e9fa8 96%, #000);
   color: black;
   margin: -10px -10px 10px;
@@ -74,13 +74,13 @@
   bottom: 0;
   background: #004275;
   clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
-  font-size: calc(12 * var(--px));
+  font-size: 12px;
   padding: 2px 20px 2px 5px;
   color: white;
 }
 
 .ui95-mpguide p {
-  margin-bottom: calc(10 * var(--px));
+  margin-bottom: 10px;
 }
 
 .ui95-mediaplayer__subscribe {

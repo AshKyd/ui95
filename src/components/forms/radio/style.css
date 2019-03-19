@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 .ui95-radio__dot {
-  --size: calc(4 * var(--px));
+  --size: 4px;
   display: block;
   width: var(--size);
   height: var(--size);
@@ -34,16 +34,16 @@
 }
 
 .ui95-radio .ui95-text {
-  margin-left: calc(8 * var(--px));
+  margin-left: 8px;
 }
 
 .ui95-radio--down li {
-  margin-bottom: calc(8 * var(--px));
+  margin-bottom: 8px;
 }
 .ui95-radio--across {
   display: flex;
   flex-direction: row;
 }
 .ui95-radio--across li {
-  margin-right: calc(8 * var(--px));
+  margin-right: 8px;
 }

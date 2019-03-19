@@ -1,9 +1,9 @@
 .ui95-window--blog-article .ui95-recess {
   position: absolute;
-  left: calc(2 * var(--px));
-  right: calc(2 * var(--px));
-  top: calc(69 * var(--px));
-  bottom: calc(2 * var(--px));
+  left: 2px;
+  right: 2px;
+  top: 69px;
+  bottom: 2px;
 }
 
 .ui95-window--blog-article .videoWrapper {

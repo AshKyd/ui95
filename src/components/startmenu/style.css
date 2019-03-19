@@ -1,17 +1,17 @@
 .ui95-startmenu {
   position: absolute;
   left: 0;
-  bottom: calc(24 * var(--px));
+  bottom: 24px;
   background: var(--gray);
   color: black;
   border: none;
   border: var(--px) solid black;
   border-color: var(--white) var(--black) var(--black) var(--white);
-  min-height: calc(22 * var(--px));
+  min-height: 22px;
   font-family: system;
-  font-size: calc(10 * var(--px));
-  padding: calc(2 * var(--px));
-  min-width: calc(190 * var(--px));
+  font-size: 10px;
+  padding: 2px;
+  min-width: 190px;
   z-index: 100;
 }
 
@@ -35,10 +35,10 @@
 .ui95-startmenu-entries {
   display: flex;
   flex-direction: column;
-  margin-left: calc(22 * var(--px));
+  margin-left: 22px;
 }
 .ui95-startmenu-entry {
-  line-height: calc(36 * var(--px));
+  line-height: 36px;
   cursor: pointer;
   padding-left: 40px;
   margin-left: calc(-2 * var(--px));
@@ -81,12 +81,12 @@
   position: absolute;
   background: var(--highlightBackground);
   color: var(--highlightForeground);
-  line-height: calc(21 * var(--px));
+  line-height: 21px;
   left: var(--px);
   top: var(--px);
   bottom: var(--px);
-  width: calc(21 * var(--px));
-  font-size: calc(14 * var(--px));
+  width: 21px;
+  font-size: 14px;
   background-image: url("data:image/gif;base64,R0lGODdhFQBtAOMLAAAzzAAz/wAAmQAzmQAAzAAAZjMz/zMAmTMAzDMzmTMzzAQz/wQz/wQz/wQz/wQz/ywAAAAAFQBtAAAE/vAMIems+E4hZgFFJ05DuCXkyJkcoIpqCpagmIhfDu4xl/49gYnlE9Y8gEGyNfq8PMZcEQZcAoE6Key26VKDvJRg5/RyRa4BEO3kfV3s9KE4gV+p4urUHaePe2k+bnobgWiFLW1jiogyI3OOjm4uAJSLljxWX3UqgZhMmX9KfzwKlJScdh2ofYGjn6Sxn2mYr3WYn6Njs7K7f71JtMCnvsO+lceVp7PEvMukyMrLyi3RzcXP1Nbb1tAABC7gY+Lg35UI5rvm693a7Mrg8ZXy6PPm5fjv9fnyp/3r+eYFAPgtID97/eQpvAdg4LqB5QZCbMhQ4sOK5iTKG2gAnMWP/hkxTlw4MYBFcAhMmmyo8WQAAicFfnNJcSbLlS8proTJsqHCjx59QuRoAKdJjy9B5tSos+lRnASK+mTJc6lQpyqFqsTJsujSqhSR7pRolOzWmRzNkvUoViXMqkm3nk07V6naj3HlwkzaVa7WrHoBy1UL16vfwYgFJ14cuKdixokNQ55MubLly5gza6bsmGznvppv8n06eO9jpTrVpg5sdK/roTa3epRq9uZUz7R1iqXquSpYtmGHdnQ42mlTgUHfBrfJs2bzkuYM6GYeMvk74mGdZydgkKDDcvsIMkTJ7uA7aefhIVw4HkB4aeXcR1PnS5y9ZNDo4yq3yz4cd7EMSPNfftII6AwoARJIyi0LsoKGAKaA4YQsG8QiwwdrqDHDg1XosIILWYDYwxl3cELEAJAI4QcJZTQxRh4fdsBCCDiQ0QGMqxQQAQA7");
   background-repeat: no-repeat;
   background-position: center bottom;
@@ -98,8 +98,8 @@
   bottom: 0;
   transform-origin: bottom left;
   transform: rotate(-90deg);
-  width: calc(100 * var(--px));
-  padding-left: calc(5 * var(--px));
+  width: 100px;
+  padding-left: 5px;
 }
 .ui95-startmenu__branding-rotated > :first-child {
   font-weight: bold;

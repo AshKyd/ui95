@@ -16,5 +16,5 @@
 }
 
 .ui95-toolbar-text--text {
-  padding: calc(2 * var(--px)) calc(4 * var(--px));
+  padding: 2px 4px;
 }

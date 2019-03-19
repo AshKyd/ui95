@@ -31,8 +31,8 @@ class Radio extends Component {
               <Bezel
                 classNames="in round"
                 style={{
-                  width: "calc(9 * var(--px))",
-                  height: "calc(9 * var(--px))"
+                  width: "9px",
+                  height: "9px"
                 }}
               >
                 <div class="ui95-radio__dot" />

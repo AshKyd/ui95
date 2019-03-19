@@ -21,7 +21,7 @@
 }
 .ui95-divider--rainbow {
   display: block;
-  height: calc(2 * var(--px));
+  height: 2px;
   position: relative;
   background: linear-gradient(
     to right,

@@ -47,11 +47,11 @@ function Editor({
         classNames={layout}
         style={{
           position: "absolute",
-          left: "calc(2 * var(--px))",
-          right: "calc(2 * var(--px))",
-          top: "calc(80 * var(--px))",
-          bottom: "calc(2 * var(--px))",
-          padding: "calc(5 * var(--px))"
+          left: "2px",
+          right: "2px",
+          top: "80px",
+          bottom: "2px",
+          padding: "5px"
         }}
       >
         <HTML html={content} />

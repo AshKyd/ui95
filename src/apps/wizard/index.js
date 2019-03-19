@@ -65,9 +65,9 @@ class Wizard extends Component {
   }
   render({ image, onClose, onFocus, title, width, height }) {
     const buttonStyle = {
-      height: `calc(23 * var(--px))`,
-      width: `calc(70 * var(--px))`,
-      marginLeft: `calc(5 * var(--px))`
+      height: `23px`,
+      width: `70px`,
+      marginLeft: `5px`
     };
     const { content, buttonText, wizardOptions } = this.state.steps[
       this.state.steps.length - 1
