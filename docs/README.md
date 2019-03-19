@@ -11,15 +11,28 @@ old-school interface, maybe in a game or something.
 
 ⚠️ While you should consider this alpha quality and subject to change ⚠️, you can implement the components or the full-on apps in your own projects.
 
-## Using components in your app
+ui95 is set up as follows:
 
-But if you want to implement these components or apps, you can directly require the Preact components into your app.
+<iframe src="https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggVERcbkFbXCJJbnN0YW5jZSBvZiBTaGVsbFwiXSAtLSB3aW5kb3cgbWFuYWdlcyAtLT4gQltcIkFwcHMgKGluc3RhbmNlcyBvZiBXaW5kb3cpXCJdXG5CIC0tIGltcGxlbWVudGluZyAtLT4gQ1t1aTk1IENvbXBvbmVudHNdXG5DIC0tPiBCdXR0b25zXG5DIC0tPiBJY29uc1xuQyAtLT4gRFtvdGhlciBjb21wb25lbnRzXSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19" width="100%" height="450"></iframe>
+
+Each item in the lifecycle can be consumed individually (for instance you can use the components by themselves, implement a single app, or pull in the whole shell).
+
+## Using components or apps in your project
+
+If you want to implement these components or apps, you can directly require the Preact components into your app.
+
+```
+import Button from 'src/components/button';
+export default function() {
+  return <Button>Hello world</Button>
+}
+```
 
 For examples, see the [Storybook](https://ui95.ash.ms/storybook/) components.
 
 <iframe src="/storybook/" width="100%" height="600"></iframe>
 
-## Using the full desktop in your app
+## Using the full shell in your project
 
 To run a full desktop, you can mount the `Shell` component in your Preact app.
 
