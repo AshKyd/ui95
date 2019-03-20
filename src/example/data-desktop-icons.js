@@ -2,7 +2,7 @@ import playlists from "./data-youtube.json";
 export default {
   "My Computer": {
     filename: "My Computer",
-    icon: "default",
+    icon: "mycomputer",
     appProps: {
       app: "Explorer",
       path: "/"
@@ -10,7 +10,7 @@ export default {
   },
   "My Documents": {
     filename: "My Documents",
-    icon: "default",
+    icon: "mydocuments",
     appProps: {
       app: "Explorer",
       path: "/c:/My Documents"
@@ -18,7 +18,7 @@ export default {
   },
   "Media Player": {
     filename: "Media Player",
-    icon: "default",
+    icon: "video",
     appProps: {
       app: "MediaPlayer",
       playlists
