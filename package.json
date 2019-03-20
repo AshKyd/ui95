@@ -7,16 +7,12 @@
     "start": "start-storybook -p 6006",
     "build": "npm run build-example && npm run build-storybook",
     "build-example": "parcel build src/example/index.html --detailed-report --out-dir docs/example/ --public-url /example/",
-    "build-storybook": "build-storybook --output-dir docs/storybook/"
+    "build-storybook": "build-storybook --output-dir docs/storybook/",
+    "watch-docs": "docsify serve docs",
+    "watch-example": "parcel src/example/index.html"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "bem-cn": "^3.0.1",
-    "faker": "^4.1.0",
-    "gray-matter": "^4.0.2",
-    "load-script": "^1.0.0"
-  },
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -28,8 +24,13 @@
     "aphrodite": "^2.3.1",
     "babel-loader": "^8.0.5",
     "babel-preset-preact": "^1.1.0",
+    "bem-cn": "^3.0.1",
+    "docsify-cli": "^4.3.0",
     "domready": "^1.0.8",
+    "faker": "^4.1.0",
+    "gray-matter": "^4.0.2",
     "image-webpack-loader": "^4.6.0",
+    "load-script": "^1.0.0",
     "parcel-bundler": "^1.12.2",
     "parcel-plugin-bundle-visualiser": "^1.2.0",
     "preact": "^8.4.2",

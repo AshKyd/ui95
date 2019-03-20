@@ -4,7 +4,7 @@ export default {
     appProps: {
       app: "Webview",
       title: "Road Blocks",
-      src: "https://roadblocks.ash.ms/"
+      src: "https://roadblocks.ash.ms/game/"
     }
   },
   Winamp: { icon: "default", appProps: { app: "Webamp" } },
