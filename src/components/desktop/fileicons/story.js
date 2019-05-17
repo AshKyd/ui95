@@ -1,6 +1,7 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import FileIcons from "./index.js";
+import FileThumbnail from "../filethumbnail";
 
 storiesOf("Components/Desktop/FileIcons", module)
   .add("icons", () => {
@@ -19,4 +20,16 @@ storiesOf("Components/Desktop/FileIcons", module)
       })
     );
     return <FileIcons items={icons} onClick={e => console.log(e)} />;
+  })
+  .add("Custom icons", () => {
+    const icons = ["(C:)", "My Documents", "Program Files", "Windows"].map(
+      label => ({ label })
+    );
+    return (
+      <FileIcons
+        Icon={FileThumbnail}
+        items={icons}
+        onClick={e => console.log(e)}
+      />
+    );
   });

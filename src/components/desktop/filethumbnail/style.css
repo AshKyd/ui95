@@ -1,0 +1,53 @@
+.ui95-file-thumbnail {
+  display: block;
+  margin: 5px 5px 15px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--black);
+  width: 80px;
+}
+
+.ui95-file-thumbnail__icon {
+  display: block;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-color: var(--grayDark) var(--black) var(--black) var(--grayDark);
+  position: relative;
+}
+.ui95-file-thumbnail__icon::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-color: transparent var(--grayLight) var(--grayLight) transparent;
+}
+
+.ui95-file-thumbnail .ui95-text--label {
+  display: inline-block;
+}
+.ui95-file-thumbnail--selected .ui95-text--label,
+.ui95-file-thumbnail:hover .ui95-text--label,
+.ui95-file-thumbnail:focus .ui95-text--label {
+  background: var(--color-primary);
+  color: var(--color-primary-alt);
+}
+
+.ui95-file-thumbnail--selected .ui95-file-thumbnail__icon,
+.ui95-file-thumbnail:hover .ui95-file-thumbnail__icon,
+.ui95-file-thumbnail:focus .ui95-file-thumbnail__icon {
+  outline: calc(3 * var(--px)) solid var(--color-primary);
+}
+
+.ui95-file-thumbnail--solid-color .ui95-text--label {
+  background: var(--color-primary);
+  color: var(--color-primary-alt);
+}
