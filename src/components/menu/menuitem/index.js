@@ -4,7 +4,7 @@ import Divider from "../../divider";
 import SubMenuItem from "../submenuitem";
 import "./style.css";
 
-export default function({ item, onLaunchApp, onClose }) {
+export default function({ item, onLaunchApp, onClose, zIndex }) {
   if (item === "divider")
     return (
       <div className="ui95-menuitem__divider">
@@ -17,7 +17,8 @@ export default function({ item, onLaunchApp, onClose }) {
       <span className="ui95-menuitem ui95-menuitem--disabled">{item.text}</span>
     );
   }
-  if (item.items) return <SubMenuItem {...{ item, onLaunchApp, onClose }} />;
+  if (item.items)
+    return <SubMenuItem {...{ item, onLaunchApp, onClose, zIndex }} />;
 
   if (item.appProps)
     return (

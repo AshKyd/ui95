@@ -2,10 +2,14 @@ import { h, render, Component } from "preact";
 import Text from "../../text/index.js";
 import "./style.css";
 
-function ToolbarItemText(props) {
-  const { onClick, label } = props;
+function ToolbarItemText({ onClick, label, className }) {
   return (
-    <button class="ui95-toolbar-text" onClick={onClick}>
+    <button
+      class={`ui95-toolbar-text ${
+        className ? `ui95-toolbar-text--${className}` : ""
+      }`}
+      onClick={onClick}
+    >
       <Text>{label}</Text>
     </button>
   );

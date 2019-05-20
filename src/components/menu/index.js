@@ -46,18 +46,30 @@ class Menu extends Component {
       left = rect.left;
       top = rect.top - thisRect.height;
     }
+
     this.el.style.left = `${left}px`;
     this.el.style.top = `${top}px`;
   }
   componentWillUnmount() {
     document.body.removeEventListener("click", this.onBlur);
   }
-  render({ classNames, items = [], onClose, onLaunchApp }) {
+  render({
+    classNames,
+    items = [],
+    onClose,
+    onLaunchApp,
+    zIndex = 1000,
+    style
+  }) {
     return (
-      <div class={`ui95-menu ${classNames || ""}`} ref={el => (this.el = el)}>
+      <div
+        class={`ui95-menu ${classNames || ""}`}
+        ref={el => (this.el = el)}
+        style={{ zIndex, ...style }}
+      >
         <Bezel classNames="out">
           {items.map(item => (
-            <MenuItem item={item} />
+            <MenuItem item={item} zIndex={zIndex} />
           ))}
         </Bezel>
       </div>

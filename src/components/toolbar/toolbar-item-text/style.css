@@ -6,12 +6,12 @@
 }
 
 .ui95-toolbar-text:hover,
-.ui95-toolbar-text.hover {
+.ui95-toolbar-text--hover {
   border-color: var(--white) var(--grayDark) var(--grayDark) var(--white);
 }
 
 .ui95-toolbar-text:active,
-.ui95-toolbar-text.active {
+.ui95-toolbar-text.ui95-toolbar-text--active {
   border-color: var(--grayDark) var(--white) var(--white) var(--grayDark);
 }
 

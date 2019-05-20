@@ -1,3 +1,6 @@
+.ui95-menuitem.ui95-menuitem--submenu {
+  padding-right: calc(var(--px) * 20);
+}
 .ui95-menuitem--submenu .ui95-icon--chevronBlackRight,
 .ui95-menuitem--submenu .ui95-icon--chevronWhiteRight {
   position: absolute;

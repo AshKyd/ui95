@@ -9,7 +9,7 @@ export default class SubMenuItem extends Component {
     this.state = { open: false, canBlur: true };
   }
 
-  render({ item, onLaunchApp, onClose }) {
+  render({ item, onLaunchApp, onClose, zIndex }) {
     return (
       <a
         class="ui95-menuitem ui95-menuitem--submenu"
@@ -31,12 +31,10 @@ export default class SubMenuItem extends Component {
           <Menu
             items={item.items}
             onLaunchApp={onLaunchApp}
-            onClose={() => {
-              console.log("closing menu");
-              this.setState({ open: false });
-            }}
+            onClose={() => this.setState({ open: false })}
             attachTo={this.el}
             isSubmenu={true}
+            zIndex={zIndex + 1}
           />
         )}
       </a>

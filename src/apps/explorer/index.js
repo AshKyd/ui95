@@ -78,14 +78,19 @@ class Explorer extends Component {
         <Toolbar variant="text" items={menuItems} />{" "}
         <Toolbar
           variant="stacked"
-          items={{
-            Back: { icon: "explorer-back", onClick: () => this.goBack() },
-            Forward: {
+          items={[
+            {
+              title: "Back",
+              icon: "explorer-back",
+              onClick: () => this.goBack()
+            },
+            {
+              title: "Forward",
               icon: "explorer-forward",
               onClick: () => this.goForward()
             },
-            Up: { icon: "explorer-up", onClick: () => this.goUp() }
-          }}
+            { title: "Up", icon: "explorer-up", onClick: () => this.goUp() }
+          ]}
         />
         <ScrollableContainer
           style={{
