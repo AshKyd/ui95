@@ -9,10 +9,10 @@ export default class SubMenuItem extends Component {
     this.state = { open: false, canBlur: true };
   }
 
-  render({ item, onLaunchApp, onClose, zIndex }) {
+  render({ item, onLaunchApp, onClose, zIndex, baseClassName, iconSize }) {
     return (
       <a
-        class="ui95-menuitem ui95-menuitem--submenu"
+        class={`${baseClassName} ui95-menuitem--submenu`}
         onMouseEnter={() => this.setState({ open: true })}
         onFocus={() => this.setState({ open: true })}
         ref={el => (this.el = el)}
@@ -21,7 +21,7 @@ export default class SubMenuItem extends Component {
           e.stopPropagation();
         }}
       >
-        {item.icon && <Icon name={item.icon} />}
+        {item.icon && <Icon name={item.icon} size={iconSize} />}
         {item.text}
         <span>
           <Icon size="custom" name="chevronBlackRight" />

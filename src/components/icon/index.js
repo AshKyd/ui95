@@ -19,6 +19,10 @@ const builtIn = {
     default:
       "data:image/gif;base64,R0lGODlhEAAQAMIFAAAAAAAAv4CAgMDAwP///wQz/wQz/wQz/yH5BAEKAAcALAAAAAAQABAAAAM4eLrcJzDKCYe9+AogRvhg+G2dGBAAipID5XIDIc+0zNY4cef0ztuw38z3I/JIrhdgyWw6AY7oIgEAOw=="
   },
+  24: {
+    default:
+      "data:image/gif;base64,R0lGODlhEAAQAMIFAAAAAAAAv4CAgMDAwP///wQz/wQz/wQz/yH5BAEKAAcALAAAAAAQABAAAAM4eLrcJzDKCYe9+AogRvhg+G2dGBAAipID5XIDIc+0zNY4cef0ztuw38z3I/JIrhdgyWw6AY7oIgEAOw=="
+  },
   32: {
     default:
       "data:image/gif;base64,R0lGODlhIAAgAMIFAAAAAAAAv4CAgMDAwP///wQz/wQz/wQz/yH5BAEKAAcALAAAAAAgACAAAAOBeLrc/jDKKKq9OGsLxPhgKI7kIHRDoK5s676n987sB9h2nNI0Ptw/HY8GKBqNupJyaUJtntCmR0CoWq/YLFZq0nq/VS4VTL6Ky2jCOU1es7/utzYu3+rG9Sw9H77z9X5/ZoGCfU6FVnt8inmMdY5yXEyTIjFQl09HmpucnUYToBEJADs="

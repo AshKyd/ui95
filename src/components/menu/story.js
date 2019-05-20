@@ -73,10 +73,10 @@ storiesOf("Components/Menu", module)
     });
     return <Story />;
   })
-  .add("AttachTo left", () => {
+  .add("AttachTo horizontal", () => {
     const Story = makeStory({
       items: items,
-      attachDirection: "left"
+      attachDirection: "horizontal"
     });
     return <Story />;
   })
@@ -84,6 +84,33 @@ storiesOf("Components/Menu", module)
     const Story = makeStory({
       items: items,
       attachDirection: "bottom"
+    });
+    return (
+      <div>
+        <style>{`button{position:absolute;left:0;bottom:0;}`}</style>
+        <Story />
+      </div>
+    );
+  })
+  .add("Start Menu", () => {
+    const Story = makeStory({
+      className: "large",
+      iconSize: 24,
+      attachDirection: "bottom",
+      branding: { text1: "Windows", text2: "ME" },
+      items: [
+        { text: "Windows Update", icon: "default" },
+        "divider",
+        { text: "Programs", icon: "default", items: [{ text: "Test" }] },
+        { text: "Documents", icon: "default" },
+        { text: "Settings", icon: "default" },
+        { text: "Search", icon: "default" },
+        { text: "Help", icon: "default" },
+        { text: "Run", icon: "default" },
+        "divider",
+        { text: "Log Off", icon: "default" },
+        { text: "Shut Down", icon: "default" }
+      ]
     });
     return (
       <div>

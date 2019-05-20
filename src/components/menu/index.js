@@ -2,6 +2,7 @@ import { h, render, Component } from "preact";
 import "./style.css";
 import Bezel from "../bezel/index.js";
 import MenuItem from "./menuitem";
+import Branding from "./branding";
 
 class Menu extends Component {
   componentDidMount() {
@@ -54,22 +55,30 @@ class Menu extends Component {
     document.body.removeEventListener("click", this.onBlur);
   }
   render({
-    classNames,
+    className,
     items = [],
     onClose,
     onLaunchApp,
     zIndex = 1000,
-    style
+    style,
+    iconSize,
+    branding
   }) {
     return (
       <div
-        class={`ui95-menu ${classNames || ""}`}
+        className={`ui95-menu ${branding ? "ui95-menu--with-branding" : ""}`}
         ref={el => (this.el = el)}
         style={{ zIndex, ...style }}
       >
         <Bezel classNames="out">
+          {branding && <Branding {...branding} />}
           {items.map(item => (
-            <MenuItem item={item} zIndex={zIndex} />
+            <MenuItem
+              item={item}
+              zIndex={zIndex}
+              className={className}
+              iconSize={iconSize}
+            />
           ))}
         </Bezel>
       </div>

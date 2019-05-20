@@ -22,6 +22,7 @@ a.ui95-menuitem:focus {
 .ui95-menuitem .ui95-icon {
   position: absolute;
   margin-left: -19px;
+  margin-top: 3px;
 }
 
 .ui95-menuitem__divider {
@@ -30,4 +31,14 @@ a.ui95-menuitem:focus {
 
 .ui95-menuitem--disabled {
   color: var(--grayDark);
+}
+
+/* Large variant */
+.ui95-menuitem.ui95-menuitem--large {
+  line-height: 32px;
+  padding-left: 43px;
+}
+
+.ui95-menuitem.ui95-menuitem--large .ui95-icon {
+  margin-left: -38px;
 }
