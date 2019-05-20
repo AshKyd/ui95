@@ -1,6 +1,5 @@
 .ui95-menuitem {
   line-height: 18px;
-  cursor: pointer;
   display: flex;
   font-family: system;
   font-size: 10px;
@@ -10,11 +9,12 @@
   text-decoration: none;
   position: relative;
   white-space: nowrap;
+  cursor: default;
 }
 
-.ui95-menuitem:hover,
-.ui95-menuitem:active,
-.ui95-menuitem:focus {
+a.ui95-menuitem:hover,
+a.ui95-menuitem:active,
+a.ui95-menuitem:focus {
   background: var(--highlightBackground);
   color: var(--highlightForeground);
 }
@@ -26,4 +26,8 @@
 
 .ui95-menuitem__divider {
   margin: 3px 2px;
+}
+
+.ui95-menuitem--disabled {
+  color: var(--grayDark);
 }

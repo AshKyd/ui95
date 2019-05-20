@@ -4,8 +4,8 @@ import Menu from "./index.js";
 
 const items = [
   { text: "Open" },
-  { text: "Explore" },
-  { text: "Search..." },
+  { text: "Explore", disabled: true },
+  { text: "Search...", disabled: true },
   { text: "Add to archive..." },
   "divider",
   {

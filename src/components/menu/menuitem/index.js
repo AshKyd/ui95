@@ -11,6 +11,12 @@ export default function({ item, onLaunchApp, onClose }) {
         <Divider classNames="horizontal" />
       </div>
     );
+
+  if (item.disabled) {
+    return (
+      <span className="ui95-menuitem ui95-menuitem--disabled">{item.text}</span>
+    );
+  }
   if (item.items) return <SubMenuItem {...{ item, onLaunchApp, onClose }} />;
 
   if (item.appProps)

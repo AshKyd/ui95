@@ -16,6 +16,10 @@ export default class SubMenuItem extends Component {
         onMouseEnter={() => this.setState({ open: true })}
         onFocus={() => this.setState({ open: true })}
         ref={el => (this.el = el)}
+        onClick={e => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
       >
         {item.icon && <Icon name={item.icon} />}
         {item.text}
