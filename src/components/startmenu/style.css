@@ -13,6 +13,7 @@
   padding: 2px;
   min-width: 190px;
   z-index: 100;
+  white-space: nowrap;
 }
 
 .ui95-startmenu--open {

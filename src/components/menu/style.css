@@ -1,5 +1,7 @@
 .ui95-menu {
   position: absolute;
+  top: 0;
+  left: 0;
 }
 .ui95-menu .ui95-bezel {
   display: flex;

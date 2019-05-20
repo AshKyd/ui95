@@ -11,9 +11,6 @@ class StartMenu extends Component {
       items: props.items
     };
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({ items: nextProps.items });
-  }
   render({ text1, text2, isOpen, onClose, onLaunchApp }) {
     const renderableItems = Object.entries(this.state.items).map(
       ([key, value]) => {

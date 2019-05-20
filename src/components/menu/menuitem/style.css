@@ -1,0 +1,29 @@
+.ui95-menuitem {
+  line-height: 18px;
+  cursor: pointer;
+  display: flex;
+  font-family: system;
+  font-size: 10px;
+  padding-left: 23px;
+  padding-right: 10px;
+  color: var(--black);
+  text-decoration: none;
+  position: relative;
+  white-space: nowrap;
+}
+
+.ui95-menuitem:hover,
+.ui95-menuitem:active,
+.ui95-menuitem:focus {
+  background: var(--highlightBackground);
+  color: var(--highlightForeground);
+}
+
+.ui95-menuitem .ui95-icon {
+  position: absolute;
+  margin-left: -19px;
+}
+
+.ui95-menuitem__divider {
+  margin: 3px 2px;
+}

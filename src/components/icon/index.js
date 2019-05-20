@@ -34,19 +34,18 @@ class Icon extends Component {
     if (size === "custom") return undefined;
     return size;
   }
-  render(props) {
-    const name = props.name || "default";
-    const classNames = [
+  render({ name = "default", size = 16, classNames }) {
+    const className = [
       "ui95-icon",
       name,
-      props.size,
-      (props.classNames || "").split(" ")
+      size,
+      (classNames || "").split(" ")
     ].join(" ui95-icon--");
     return h("img", {
-      className: classNames,
-      width: this.getSize(props.size),
-      height: this.getSize(props.size),
-      src: this.getUrl(props.size, name)
+      className,
+      width: this.getSize(size),
+      height: this.getSize(size),
+      src: this.getUrl(size, name)
     });
   }
 }
