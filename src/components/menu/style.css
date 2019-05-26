@@ -19,6 +19,6 @@
   text-decoration: none;
 }
 
-.ui95-menu--with-branding .ui95-bezel {
+.ui95-menu--with-branding > .ui95-bezel {
   padding-left: 22px;
 }

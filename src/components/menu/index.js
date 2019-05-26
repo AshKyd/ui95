@@ -78,6 +78,7 @@ class Menu extends Component {
               zIndex={zIndex}
               className={className}
               iconSize={iconSize}
+              onClick={onClose}
             />
           ))}
         </Bezel>

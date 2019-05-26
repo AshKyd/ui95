@@ -54,7 +54,10 @@ function makeStory(props) {
           </button>
           {this.state.open && (
             <Menu
-              onClose={() => this.setState({ open: false })}
+              onClose={app => {
+                console.log({ app });
+                this.setState({ open: false });
+              }}
               attachTo={this.el}
               {...props}
             />

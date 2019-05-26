@@ -7,7 +7,8 @@
   right: 7px;
   top: calc(50% - calc(var(--px) * 3.5));
 }
-.ui95-menuitem--submenu:not(:hover) > span > .ui95-icon--chevronWhiteRight {
+.ui95-menuitem--submenu:not(:hover) > span > .ui95-icon--chevronWhiteRight,
+.ui95-menuitem--submenu:not(:focus) > span > .ui95-icon--chevronWhiteRight {
   display: none;
 }
 .ui95-menuitem--submenu:hover > span > .ui95-icon--chevronBlackRight {

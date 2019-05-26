@@ -9,7 +9,15 @@ export default class SubMenuItem extends Component {
     this.state = { open: false, canBlur: true };
   }
 
-  render({ item, onLaunchApp, onClose, zIndex, baseClassName, iconSize }) {
+  render({
+    item,
+    onLaunchApp,
+    onClose,
+    zIndex,
+    baseClassName,
+    iconSize,
+    onClick
+  }) {
     return (
       <a
         class={`${baseClassName} ui95-menuitem--submenu`}
@@ -17,6 +25,9 @@ export default class SubMenuItem extends Component {
         onFocus={() => this.setState({ open: true })}
         ref={el => (this.el = el)}
         onClick={e => {
+          console.log("focusing", this.el);
+          this.setState({ open: true });
+          this.el.focus();
           e.preventDefault();
           e.stopPropagation();
         }}
@@ -31,7 +42,7 @@ export default class SubMenuItem extends Component {
           <Menu
             items={item.items}
             onLaunchApp={onLaunchApp}
-            onClose={() => this.setState({ open: false })}
+            onClose={onClick}
             attachTo={this.el}
             isSubmenu={true}
             zIndex={zIndex + 1}

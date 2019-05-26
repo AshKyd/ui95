@@ -39,6 +39,6 @@ a.ui95-menuitem:focus {
   padding-left: 43px;
 }
 
-.ui95-menuitem.ui95-menuitem--large .ui95-icon {
+.ui95-menuitem.ui95-menuitem--large > .ui95-icon {
   margin-left: -38px;
 }

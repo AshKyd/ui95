@@ -10,7 +10,8 @@ export default function({
   onClose,
   zIndex,
   iconSize,
-  className
+  className,
+  onClick
 }) {
   const baseClassName = `ui95-menuitem ${
     className ? `ui95-menuitem--${className}` : ""
@@ -32,26 +33,28 @@ export default function({
   if (item.items)
     return (
       <SubMenuItem
-        {...{ item, onLaunchApp, onClose, zIndex, baseClassName, iconSize }}
+        {...{
+          item,
+          onLaunchApp,
+          onClose,
+          zIndex,
+          baseClassName,
+          iconSize,
+          onClick
+        }}
       />
     );
 
-  if (item.appProps)
-    return (
-      <a
-        class={baseClassName}
-        onMouseUp={e => {
-          e.preventDefault();
-          onClose(onLaunchApp(item.appProps.app, item.appProps));
-        }}
-        href={item.link || "#"}
-      >
-        {item.icon && <Icon name={item.icon} size={iconSize} />}
-        {item.text}
-      </a>
-    );
   return (
-    <a class={baseClassName} href={item.link}>
+    <a
+      class={baseClassName}
+      onMouseUp={e => {
+        if (!item.appProps && item.link) return;
+        e.preventDefault();
+        onClick(item.appProps);
+      }}
+      href={item.link || "#"}
+    >
       {item.icon && <Icon name={item.icon} size={iconSize} />}
       {item.text}
     </a>
