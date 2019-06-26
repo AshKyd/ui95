@@ -58,23 +58,21 @@ class Toolbar extends Component {
   }
   render({ classNames, onClick, onMouseDown, items, children }) {
     const className = "ui95-toolbar";
-    return h(
-      "div",
-      {
-        className: [className, ...(classNames || "").split(" ")].join(
+    return (
+      <div
+        className={[className, ...(classNames || "").split(" ")].join(
           ` ${className}--`
-        ),
-        onClick: onClick,
-        onMouseDown: onMouseDown
-      },
-      [
-        <Divider classNames="draggable" />,
-        <div style="padding-right:var(--px)" />,
-        <Divider classNames="draggable" />,
-        <div style="padding-right:var(--px)" />,
-        children,
-        this.getItems(items)
-      ]
+        )}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+      >
+        <Divider classNames="draggable" />
+        <div style="padding-right:var(--px)" />
+        <Divider classNames="draggable" />
+        <div style="padding-right:var(--px)" />
+        {children}
+        {this.getItems(items)}
+      </div>
     );
   }
 }

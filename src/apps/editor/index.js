@@ -27,21 +27,21 @@ function Editor({
       icon="word"
     >
       <Toolbar
-        items={{
-          File: {},
-          Edit: {},
-          View: {},
-          Insert: {}
-        }}
+        items={[
+          { text: "File", items: [] },
+          { text: "Edit", items: [] },
+          { text: "View", items: [] },
+          { text: "Insert", items: [] }
+        ]}
       />
       <Toolbar
         iconOnly={true}
-        items={{
-          "New document": { icon: "documentNew" },
-          Open: { icon: "open" },
-          Save: { icon: "save" },
-          divider: "divider"
-        }}
+        items={[
+          { text: "New document", icon: "documentNew" },
+          { text: "Open", icon: "open" },
+          { text: "Save", icon: "save" },
+          { divider: true }
+        ]}
       />
       <ScrollableContainer
         classNames={layout}
