@@ -31,6 +31,7 @@ export default class SubMenuItem extends Component {
           e.preventDefault();
           e.stopPropagation();
         }}
+        href="#"
       >
         {item.icon && <Icon name={item.icon} size={iconSize} />}
         {item.text}
