@@ -32,21 +32,27 @@ class Menu extends Component {
 
   attach() {
     const { attachTo, isSubmenu, attachDirection = "horizontal" } = this.props;
+
     const rect = attachTo.getBoundingClientRect();
+    const thisRect = this.el.getBoundingClientRect();
     let left, top;
     if (attachDirection === "horizontal") {
-      left = isSubmenu ? rect.width - 4 : rect.right;
-      top = isSubmenu ? 0 : rect.top;
+      left = isSubmenu ? rect.left + rect.width - 4 : rect.right;
+      top = rect.top - Math.round(thisRect.height / 2);
     }
     if (attachDirection === "top") {
       left = rect.left;
       top = rect.bottom;
     }
     if (attachDirection === "bottom") {
-      const thisRect = this.el.getBoundingClientRect();
       left = rect.left;
       top = rect.top - thisRect.height;
     }
+
+    if (left < 0) left = 0;
+    if (top < 0) top = 0;
+    if (top + thisRect.height > window.innerHeight)
+      top = window.innerHeight - thisRect.height;
 
     this.el.style.left = `${left}px`;
     this.el.style.top = `${top}px`;

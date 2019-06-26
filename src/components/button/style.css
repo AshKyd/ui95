@@ -7,7 +7,6 @@
   border: none;
   border: var(--px) solid black;
   border-color: var(--white) var(--black) var(--black) var(--white);
-  font-family: system;
   font-size: 10px;
   padding: 0 2px;
   justify-content: center;

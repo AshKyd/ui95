@@ -2,15 +2,17 @@ import { h, render, Component } from "preact";
 import { getClasses } from "../../util";
 import "./style.css";
 
-function Button({
-  type,
-  classNames,
-  onClick,
-  onMouseDown,
-  disabled,
-  style,
-  children
-}) {
+function Button(props) {
+  const {
+    type,
+    classNames,
+    onClick,
+    onMouseDown,
+    disabled,
+    style,
+    children,
+    fwdRef
+  } = props;
   return h(
     type || "button",
     {
@@ -18,7 +20,8 @@ function Button({
       onClick,
       onMouseDown,
       disabled,
-      style
+      style,
+      ref: fwdRef
     },
     children
   );

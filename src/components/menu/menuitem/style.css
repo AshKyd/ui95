@@ -22,7 +22,7 @@ a.ui95-menuitem:focus {
 .ui95-menuitem .ui95-icon {
   position: absolute;
   margin-left: -19px;
-  margin-top: 3px;
+  margin-top: 0px;
 }
 
 .ui95-menuitem__divider {

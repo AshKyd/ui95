@@ -96,24 +96,34 @@ storiesOf("Components/Menu", module)
     );
   })
   .add("Start Menu", () => {
+    const items = [
+      { text: "Windows Update", icon: "default" },
+      "divider",
+      {
+        text: "Programs",
+        icon: "default",
+        items: Array.from({ length: 10 }).map((no, i) => ({
+          text: "Test " + i,
+          items: Array.from({ length: 10 }).map((no, i) => ({
+            text: "Test " + i
+          }))
+        }))
+      },
+      { text: "Documents", icon: "default" },
+      { text: "Settings", icon: "default" },
+      { text: "Search", icon: "default" },
+      { text: "Help", icon: "default" },
+      { text: "Run", icon: "default" },
+      "divider",
+      { text: "Log Off", icon: "default" },
+      { text: "Shut Down", icon: "default" }
+    ];
     const Story = makeStory({
       className: "large",
       iconSize: 24,
       attachDirection: "bottom",
       branding: { text1: "Windows", text2: "ME" },
-      items: [
-        { text: "Windows Update", icon: "default" },
-        "divider",
-        { text: "Programs", icon: "default", items: [{ text: "Test" }] },
-        { text: "Documents", icon: "default" },
-        { text: "Settings", icon: "default" },
-        { text: "Search", icon: "default" },
-        { text: "Help", icon: "default" },
-        { text: "Run", icon: "default" },
-        "divider",
-        { text: "Log Off", icon: "default" },
-        { text: "Shut Down", icon: "default" }
-      ]
+      items
     });
     return (
       <div>

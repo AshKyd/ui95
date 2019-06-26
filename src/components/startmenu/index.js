@@ -1,6 +1,62 @@
 import { h, render, Component } from "preact";
 import Menu from "../menu";
-export default function StartMenu(props) {
-  console.log(props);
-  return null;
+import Button from "../button";
+import "./index.css";
+
+export default class StartMenu extends Component {
+  constructor() {
+    super();
+    this.state = {
+      open: false,
+      el: undefined
+    };
+  }
+  render({
+    items = [],
+    branding = { text1: "Windows", text2: "ME" },
+    attachTo
+  }) {
+    const { open, el } = this.state;
+    return (
+      <div className="ui95-startmenu">
+        <Button
+          ref={el => (this.el = el)}
+          onClick={() => this.setState({ open: !open })}
+          fwdRef={newEl => {
+            if (el !== newEl) this.setState({ el: newEl });
+          }}
+          classNames="start-menu"
+        >
+          Start
+        </Button>
+        {open && (
+          <Menu
+            className="large"
+            iconSize={24}
+            attachDirection="bottom"
+            branding={branding}
+            items={items}
+            attachTo={el}
+            onClose={(...args) => {
+              console.log({ args });
+              this.setState({ open: false });
+            }}
+          />
+        )}
+      </div>
+    );
+  }
 }
+
+// <Menu
+//   className="large"
+//   iconSize={24}
+//   attachDirection="bottom"
+//   branding={branding}
+//   items={items}
+//   attachTo={attachTo}
+//   onChange={(...args) => {
+//     this.setState({ open: false });
+//     if(...args.length) this.openWindow(...args);
+//   }}
+// />

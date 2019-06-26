@@ -14,7 +14,7 @@ class Shell extends Component {
     this.state = {
       fs: props.fs,
       windows: [],
-      startMenu: props.startMenu || {},
+      startMenu: props.startMenu || [],
       desktopIcons: props.desktopIcons || {},
       defaultTitle: "",
       raisedWindow: null
@@ -25,7 +25,6 @@ class Shell extends Component {
     this.globalClick = e => {
       // Ignore mouse events in the start menu
       if (e.target && e.target.matches(".ui95-startmenu *")) return;
-      if (this.state.startOpen) this.setState({ startOpen: false });
     };
     document.body.addEventListener("mousedown", this.globalClick);
 
@@ -55,11 +54,6 @@ class Shell extends Component {
       startMenu: nextProps.startMenu,
       desktopIcons: nextProps.desktopIcons
     });
-  }
-  openStart(e) {
-    this.setState({ startOpen: !this.state.startOpen });
-    e.preventDefault();
-    e.stopPropagation();
   }
   getWindowByTitle(title) {
     return this.state.windows.find(
@@ -165,11 +159,12 @@ class Shell extends Component {
     };
   }
   render({ apps }) {
+    const { startMenu, desktopIcons, raisedWindow } = this.state;
     return (
       <Desktop>
         <WindowArea>
           <FileIcons
-            items={this.state.desktopIcons}
+            items={desktopIcons}
             solidColor={true}
             onClick={item => this.openWindow(item.appProps.app, item.appProps)}
           />
@@ -181,28 +176,16 @@ class Shell extends Component {
             );
           })}
         </WindowArea>
-        <StartMenu
-          items={this.state.startMenu}
-          isOpen={this.state.startOpen}
-          onLaunchApp={(...args) => this.openWindow(...args)}
-          onClose={() => this.setState({ startOpen: false })}
-        />
         <Taskbar>
-          <Button
-            classNames={`start bold left ${
-              this.state.startOpen ? "active" : "inactive"
-            }`}
-            onMouseDown={e => this.openStart(e)}
-          >
-            Stort
-          </Button>
+          <StartMenu
+            items={startMenu}
+            onLaunchApp={(...args) => this.openWindow(...args)}
+          />
           {this.state.windows.map(([appName, appProps]) => (
             <Button
               key={appProps.key}
               classNames={`window ${
-                appProps.key === this.state.raisedWindow.key
-                  ? "active"
-                  : "inactive"
+                appProps.key === raisedWindow.key ? "active" : "inactive"
               }`}
               onClick={() => this.raiseWindow(appProps.key)}
             >
