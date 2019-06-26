@@ -25,7 +25,7 @@ export default class StartMenu extends Component {
           fwdRef={newEl => {
             if (el !== newEl) this.setState({ el: newEl });
           }}
-          classNames="start-menu"
+          classNames={["start-menu", open && "active"].join(" ")}
         >
           Start
         </Button>
