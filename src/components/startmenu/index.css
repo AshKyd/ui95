@@ -1,4 +1,5 @@
 .ui95-button--start-menu {
+  image-rendering: crisp-edges;
   image-rendering: pixelated;
   background-image: url("data:image/gif;base64,R0lGODlhEAAQAMIGAAABACcA9foAAAD9AM7Mvfb9AHBLxXBLxSH5BAEKAAcALAAAAAAQABAAAANJeLrcCxCwKBUUgsIxoM0AtnVA91EcWl0bFLTVEZbUaz5zSL6xnAcFl+cRBEGCL1wQwFvyLEsXTwg9OnlJXyEaCTwtkUnYQWYkAAA7");
   background-repeat: no-repeat;

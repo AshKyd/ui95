@@ -5,6 +5,7 @@
 .ui95-menuitem--submenu .ui95-icon--chevronWhiteRight {
   position: absolute;
   right: 7px;
+  margin-top: 0 !important;
   top: calc(50% - calc(var(--px) * 3.5));
 }
 .ui95-menuitem--submenu:not(:hover) > span > .ui95-icon--chevronWhiteRight,

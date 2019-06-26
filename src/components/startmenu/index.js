@@ -14,7 +14,8 @@ export default class StartMenu extends Component {
   render({
     items = [],
     branding = { text1: "Windows", text2: "ME" },
-    attachTo
+    attachTo,
+    onLaunchApp
   }) {
     const { open, el } = this.state;
     return (
@@ -37,9 +38,10 @@ export default class StartMenu extends Component {
             branding={branding}
             items={items}
             attachTo={el}
-            onClose={(...args) => {
-              console.log({ args });
+            onClose={app => {
               this.setState({ open: false });
+              console.log(app);
+              if (app) onLaunchApp(app.app, app);
             }}
           />
         )}

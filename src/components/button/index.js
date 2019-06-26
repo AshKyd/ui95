@@ -7,7 +7,7 @@ function Button(props) {
     ...props,
     ref: props.fwdRef,
     className: getClasses("button", props.classNames),
-    "aria-pressed": props.classNames.includes("active")
+    "aria-pressed": (props.classNames || "").includes("active")
   });
 }
 

@@ -1,5 +1,6 @@
-export default {
-  "Road Blocks": {
+export default [
+  {
+    text: "Road Blocks",
     icon: "default",
     appProps: {
       app: "Webview",
@@ -7,16 +8,14 @@ export default {
       src: "https://roadblocks.ash.ms/game/"
     }
   },
-  Winamp: { icon: "default", appProps: { app: "Webamp" } },
-  Explorer: {
-    icon: "default",
-    appProps: { app: "Explorer" }
-  },
-  Paint: {
+  { text: "Winamp", icon: "default", appProps: { app: "Webamp" } },
+  { text: "Explorer", icon: "default", appProps: { app: "Explorer" } },
+  {
+    text: "Paint",
     icon: "default",
     appProps: { app: "Webview", src: "https://jspaint.app/" }
   },
-  Divider2: "divider",
-  "Log off": { icon: "default" },
-  "Shut Down": { icon: "default" }
-};
+  "divider",
+  { text: "Log off", icon: "default" },
+  { text: "Shut Down", icon: "default" }
+];

@@ -40,7 +40,7 @@ function Editor({
           { text: "New document", icon: "documentNew" },
           { text: "Open", icon: "open" },
           { text: "Save", icon: "save" },
-          { divider: true }
+          "divider"
         ]}
       />
       <ScrollableContainer
