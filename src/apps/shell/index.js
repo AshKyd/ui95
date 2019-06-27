@@ -2,8 +2,6 @@ import Desktop from "../../components/desktop/index.js";
 import Window from "../../components/window/index.js";
 import WindowArea from "../../components/windowarea/index.js";
 import Taskbar from "../../components/taskbar/index.js";
-import Button from "../../components/button/index.js";
-import StartMenu from "../../components/startmenu/index.js";
 import FileIcons from "../../components/desktop/fileicons/index.js";
 import Toolbar from "../../components/toolbar/index.js";
 import { h, render, Component } from "preact";
@@ -15,6 +13,7 @@ class Shell extends Component {
       fs: props.fs,
       windows: [],
       startMenu: props.startMenu || [],
+      trayItems: props.trayItems || [],
       desktopIcons: props.desktopIcons || {},
       defaultTitle: "",
       raisedWindow: null
@@ -43,6 +42,7 @@ class Shell extends Component {
     };
     window.addEventListener("error", this.onerror);
     window.addEventListener("unhandledrejection", this.onerror);
+    window.shell = (...args) => this[args.shift()](...args);
   }
   componentWillUnmount() {
     document.body.removeEventListener("mousedown", this.globalClick);
@@ -145,10 +145,20 @@ class Shell extends Component {
 
     const windowId = this.windowId++;
     props.key = windowId;
-    this.state.windows = [...this.state.windows, [appName, props, children]];
+    this.state.windows = [
+      ...this.state.windows,
+      [appName, props, children, {}]
+    ];
 
     this.raiseWindow(windowId);
     this.setState({});
+  }
+  setAppState(key, newState) {
+    const newWindows = this.state.windows.map(window => {
+      if (window[0] !== key) return window;
+      return [...window.slice(0, 3), newState];
+    });
+    this.setState({ windows: newWindows });
   }
   windowProps(key) {
     return {
@@ -159,7 +169,13 @@ class Shell extends Component {
     };
   }
   render({ apps }) {
-    const { startMenu, desktopIcons, raisedWindow } = this.state;
+    const {
+      startMenu,
+      desktopIcons,
+      raisedWindow,
+      trayItems,
+      windows
+    } = this.state;
     return (
       <Desktop>
         <WindowArea>
@@ -168,31 +184,22 @@ class Shell extends Component {
             solidColor={true}
             onClick={item => this.openWindow(item.appProps.app, item.appProps)}
           />
-          {this.state.windows.map(([appName, appProps, appChildren]) => {
+          {windows.map(([appName, appProps, appChildren, appState]) => {
             return h(
               apps[appName],
-              { ...appProps, ...this.windowProps(appProps.key) },
+              { ...appProps, appState, ...this.windowProps(appProps.key) },
               appChildren
             );
           })}
         </WindowArea>
-        <Taskbar>
-          <StartMenu
-            items={startMenu}
-            onLaunchApp={(...args) => this.openWindow(...args)}
-          />
-          {this.state.windows.map(([appName, appProps]) => (
-            <Button
-              key={appProps.key}
-              classNames={`window ${
-                appProps.key === raisedWindow.key ? "active" : "inactive"
-              }`}
-              onClick={() => this.raiseWindow(appProps.key)}
-            >
-              {appProps.title}
-            </Button>
-          ))}
-        </Taskbar>
+        <Taskbar
+          startMenu={startMenu}
+          windows={windows}
+          trayItems={trayItems}
+          raisedWindow={raisedWindow}
+          raiseWindow={key => this.raiseWindow(key)}
+          onLaunchApp={(...args) => this.openWindow(...args)}
+        />
       </Desktop>
     );
   }

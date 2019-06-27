@@ -11,7 +11,7 @@ import Explorer from "../apps/explorer";
 import Editor from "../apps/editor";
 import MediaPlayer from "../apps/mediaplayer";
 import Alert from "../apps/alert";
-
+import Reader from "../apps/reader";
 import startMenu from "./data-start";
 import desktopIcons from "./data-desktop-icons";
 const site = { title: "Example ui95 app" };
@@ -23,7 +23,8 @@ const apps = {
   Wizard,
   Explorer,
   MediaPlayer,
-  Alert
+  Alert,
+  Reader
 };
 
 class Wrapper extends Component {

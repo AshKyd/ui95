@@ -17,7 +17,9 @@ const builtIn = {
   },
   16: {
     default:
-      "data:image/gif;base64,R0lGODlhEAAQAMIFAAAAAAAAv4CAgMDAwP///wQz/wQz/wQz/yH5BAEKAAcALAAAAAAQABAAAAM4eLrcJzDKCYe9+AogRvhg+G2dGBAAipID5XIDIc+0zNY4cef0ztuw38z3I/JIrhdgyWw6AY7oIgEAOw=="
+      "data:image/gif;base64,R0lGODlhEAAQAMIFAAAAAAAAv4CAgMDAwP///wQz/wQz/wQz/yH5BAEKAAcALAAAAAAQABAAAAM4eLrcJzDKCYe9+AogRvhg+G2dGBAAipID5XIDIc+0zNY4cef0ztuw38z3I/JIrhdgyWw6AY7oIgEAOw==",
+    sound:
+      "data:image/gif;base64,R0lGODlhEAAQAOMDAAABAHd5dnh6d7e4ALe5tvf4A/b59vj697e4ALe4ALe4ALe4ALe4ALe4ALe4ALe4ACH5BAEKAAYALAAAAAAQABAAAARR0MhpAKCYjgBCxkMBEMQ3hUFAHJ7USuExHqx7xuJav8OxFjIA7QUrEIA5IdEQ+sk4uxRng7QMM5bYrPYBhLaepcSbuhrElcGI8BJ01WjsJRMBADs="
   },
   24: {
     default:

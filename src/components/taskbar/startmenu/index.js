@@ -1,6 +1,6 @@
 import { h, render, Component } from "preact";
-import Menu from "../menu";
-import Button from "../button";
+import Menu from "../../menu";
+import Button from "../../button";
 import "./index.css";
 
 export default class StartMenu extends Component {

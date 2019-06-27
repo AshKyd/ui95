@@ -16,7 +16,7 @@ const items = [
   { text: "Shut Down", icon: "default" }
 ];
 
-storiesOf("Components/StartMenu", module).add("basic", () => {
+storiesOf("Components/Taskbar/StartMenu", module).add("basic", () => {
   return (
     <div>
       <style>{`.ui95-button{position:absolute;left:0;bottom:0;}`}</style>

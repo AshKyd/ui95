@@ -13,6 +13,10 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
+        test: /\.less$/,
+        loader: ["style-loader", "css-loader", "less-loader"]
+      },
+      {
         test: /\.(gif|png|jpe?g|svg)$/i,
         use: [
           "file-loader",

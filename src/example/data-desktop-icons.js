@@ -23,5 +23,13 @@ export default {
       app: "MediaPlayer",
       playlists
     }
+  },
+  Reader: {
+    filename: "Reader",
+    icon: "default",
+    appProps: {
+      app: "Reader",
+      content: require("./post.html")
+    }
   }
 };

@@ -1,10 +1,16 @@
-.ui95-bezel--in {
+.ui95-bezel--in,
+.ui95-bezel--in-tab {
   display: block;
   background: var(--white);
   border: var(--px) solid black;
   border-color: var(--black) var(--white) var(--white) var(--black);
   position: relative;
   pointer-events: none;
+}
+
+.ui95-bezel--in-tab {
+  border-color: var(--grayDark) var(--grayLight) var(--grayLight)
+    var(--grayDark);
 }
 .ui95-bezel--disabled {
   background: var(--gray);
@@ -15,7 +21,7 @@
 .ui95-bezel--round:before {
   border-radius: 100%;
 }
-.ui95-bezel--in:before {
+.ui95-bezel--in:before:not {
   content: "";
   position: absolute;
   display: block;
