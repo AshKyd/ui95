@@ -8,7 +8,6 @@ import ErrorHandler from "../apps/error";
 import Webview from "../apps/webview";
 import Wizard from "../apps/wizard";
 import Explorer from "../apps/explorer";
-import Editor from "../apps/editor";
 import MediaPlayer from "../apps/mediaplayer";
 import Alert from "../apps/alert";
 import Reader from "../apps/reader";
@@ -19,7 +18,6 @@ const site = { title: "Example ui95 app" };
 const apps = {
   ErrorHandler,
   Webview,
-  Editor,
   Wizard,
   Explorer,
   MediaPlayer,
