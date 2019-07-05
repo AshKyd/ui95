@@ -50,7 +50,7 @@ class ErrorHandler extends Component {
       >
         <div class="ui95-window-error">
           <div class="ui95-window-error__icon">
-            <Icon name="errorCircle" size="32" />
+            <Icon name="error-circle" size="32" />
           </div>
           <div class="ui95-window-error__text">
             <Text style="margin-bottom:15px;">

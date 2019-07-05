@@ -36,8 +36,8 @@ export default class SubMenuItem extends Component {
         {item.icon && <Icon name={item.icon} size={iconSize} />}
         {item.text}
         <span>
-          <Icon size="custom" name="chevronBlackRight" />
-          <Icon size="custom" name="chevronWhiteRight" />
+          <Icon size="custom" name="chevron-black-right" />
+          <Icon size="custom" name="chevron-white-right" />
         </span>
         {this.state.open && (
           <Menu

@@ -171,7 +171,7 @@ class Window extends Component {
           classNames="titlebar minimize"
           onClick={() => setTimeout(this.toggleState("isMinimized"), 100)}
         >
-          <Icon size="custom" name="windowMinimize" title="Minimize" />
+          <Icon size="custom" name="window-minimize" title="Minimize" />
         </Button>
       ),
       maximize: (
@@ -180,9 +180,9 @@ class Window extends Component {
           onClick={() => setTimeout(this.toggleState("isMaximized"), 100)}
         >
           {this.state.isMaximized ? (
-            <Icon size="custom" name="windowRestore" title="Restore" />
+            <Icon size="custom" name="window-restore" title="Restore" />
           ) : (
-            <Icon size="custom" name="windowMaximize" title="Maximize" />
+            <Icon size="custom" name="window-maximize" title="Maximize" />
           )}
         </Button>
       ),
@@ -191,7 +191,7 @@ class Window extends Component {
           classNames="titlebar close"
           onClick={() => setTimeout(props.onClose, 100)}
         >
-          <Icon size="custom" name="windowClose" title="Close" />
+          <Icon size="custom" name="window-close" title="Close" />
         </Button>
       )
     };
