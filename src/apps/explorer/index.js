@@ -80,16 +80,16 @@ class Explorer extends Component {
           variant="stacked"
           items={[
             {
-              title: "Back",
+              text: "Back",
               icon: "explorer-back",
               onClick: () => this.goBack()
             },
             {
-              title: "Forward",
+              text: "Forward",
               icon: "explorer-forward",
               onClick: () => this.goForward()
             },
-            { title: "Up", icon: "explorer-up", onClick: () => this.goUp() }
+            { text: "Up", icon: "explorer-up", onClick: () => this.goUp() }
           ]}
         />
         <ScrollableContainer

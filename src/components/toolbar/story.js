@@ -5,21 +5,21 @@ import Toolbar from "./index.js";
 storiesOf("Components/Toolbar", module)
   .add("Text style (default)", () => (
     <Toolbar
-      items={{
-        File: {},
-        Edit: {},
-        View: {},
-        Insert: {}
-      }}
+      items={[
+        { text: "File" },
+        { text: "Edit" },
+        { text: "View" },
+        { text: "Insert" }
+      ]}
     />
   ))
   .add("Stacked icons", () => (
     <Toolbar
       variant="stacked"
-      items={{
-        Back: { icon: "explorer-back" },
-        Forward: { icon: "explorer-forward" },
-        Up: { icon: "explorer-up" }
-      }}
+      items={[
+        { text: "Back", icon: "explorer-back" },
+        { text: "Forward", icon: "explorer-forward" },
+        { text: "Up", icon: "explorer-up" }
+      ]}
     />
   ));
