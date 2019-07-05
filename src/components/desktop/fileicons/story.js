@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import FileIcons from "./index.js";
+import FileIcons from ".";
 import FileThumbnail from "../filethumbnail";
 
 storiesOf("Components/Desktop/FileIcons", module)

@@ -32,7 +32,7 @@ class Toolbar extends Component {
           }}
         >
           <ToolbarItem
-            label={item.text}
+            text={item.text}
             icon={item.icon}
             className={isActive && "active"}
             onClick={() => {

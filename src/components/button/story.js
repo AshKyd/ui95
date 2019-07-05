@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Button from "./index.js";
+import Button from ".";
 import Icon from "../icon/index.js";
 
 storiesOf("Components/Button", module)

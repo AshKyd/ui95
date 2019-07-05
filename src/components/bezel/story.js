@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Bezel from "./index.js";
+import Bezel from ".";
 
 storiesOf("Components/Bezel", module)
   .add("Recessed", () => <Bezel classNames="in">A recessed area</Bezel>)

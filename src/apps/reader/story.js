@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Reader from "./index.js";
+import Reader from ".";
 
 storiesOf("App/Reader", module).add("With content", () => (
   <Reader

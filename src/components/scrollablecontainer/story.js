@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import ScrollableContainer from "./index.js";
+import ScrollableContainer from ".";
 
 storiesOf("Components/ScrollableContainer", module).add("Pop out", () => (
   <ScrollableContainer

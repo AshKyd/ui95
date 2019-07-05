@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Toolbar from "./index.js";
+import Toolbar from ".";
 
 storiesOf("Components/Toolbar", module)
   .add("Text style (default)", () => (

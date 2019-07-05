@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import TabDialog from "./index.js";
+import TabDialog from ".";
 
 const noop = () => {};
 

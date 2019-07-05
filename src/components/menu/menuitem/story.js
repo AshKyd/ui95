@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import MenuItem from "./index.js";
+import MenuItem from ".";
 
 storiesOf("Components/Menu/MenuItem", module)
   .add("divider", () => <MenuItem item="divider" />)

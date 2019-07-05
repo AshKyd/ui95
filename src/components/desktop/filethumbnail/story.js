@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import FileIcon from "./index.js";
+import FileIcon from ".";
 
 storiesOf("Components/Desktop/FileThumbnail", module)
   .add("C Drive", () => <FileIcon size="16" icon="default" label=" (C:)" />)

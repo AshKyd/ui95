@@ -1,6 +1,6 @@
 import { h, Component } from "preact";
 import { storiesOf } from "@storybook/react";
-import Menu from "./index.js";
+import Menu from ".";
 
 const items = [
   { text: "Open" },

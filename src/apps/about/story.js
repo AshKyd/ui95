@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Alert from "./index.js";
+import Alert from ".";
 
 const noop = () => {};
 

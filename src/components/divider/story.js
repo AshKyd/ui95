@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Divider from "./index.js";
+import Divider from ".";
 import Icon from "../icon/index.js";
 
 storiesOf("Components/Divider", module)

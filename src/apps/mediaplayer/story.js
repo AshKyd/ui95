@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import playlists from "./example.json";
-import MediaPlayer from "./index.js";
+import MediaPlayer from ".";
 import Guide from "./guide/index.js";
 import StatusBar from "./statusbar/index.js";
 import Player from "./player/index.js";

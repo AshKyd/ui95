@@ -44,6 +44,7 @@
     "preact": "^8.4.2",
     "preact-compat": "^3.19.0",
     "preact-compat-enzyme": "^0.2.5",
-    "preact-test-utils": "^0.1.4"
+    "preact-test-utils": "^0.1.4",
+    "social-share-links": "^1.0.0"
   }
 }

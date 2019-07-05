@@ -2,7 +2,7 @@ import { h, render, Component } from "preact";
 import Text from "../../text/index.js";
 import "./style.css";
 
-function ToolbarItemText({ onClick, label, className }) {
+function ToolbarItemText({ onClick, text, className }) {
   return (
     <button
       class={`ui95-toolbar-text ${
@@ -10,7 +10,7 @@ function ToolbarItemText({ onClick, label, className }) {
       }`}
       onClick={onClick}
     >
-      <Text>{label}</Text>
+      <Text>{text}</Text>
     </button>
   );
 }

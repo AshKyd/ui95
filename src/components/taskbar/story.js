@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Taskbar from "./index.js";
+import Taskbar from ".";
 import Button from "../button/index.js";
 import Icon from "../icon/index.js";
 

@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Radio from "./index.js";
+import Radio from ".";
 const values = {
   "I would like to find out more": {
     app: "Blog",

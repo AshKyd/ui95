@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Wizard from "./index.js";
+import Wizard from ".";
 
 function generateStep() {
   return {

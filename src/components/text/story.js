@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Text from "./index.js";
+import Text from ".";
 
 storiesOf("Components/Text", module).add("Text", () => (
   <Text>

@@ -1,6 +1,6 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import Input from "./index.js";
+import Input from ".";
 
 storiesOf("Components/Input", module)
   .add("Empty", () => <Input width="100px" value="" />)

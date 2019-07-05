@@ -4,11 +4,17 @@ import Text from "../../text/index.js";
 import "./style.css";
 
 function ToolbarItemStacked(props) {
-  const { onClick, icon, label } = props;
+  const { onClick, icon, text } = props;
+  if (!icon)
+    return (
+      <span class="ui95-toolbar-stacked ui95-toolbar-stacked--text">
+        <Text>{text}</Text>
+      </span>
+    );
   return (
     <button class="ui95-toolbar-stacked" onClick={onClick}>
       <Icon size={24} name={icon} />
-      <Text>{label}</Text>
+      <Text>{text}</Text>
     </button>
   );
 }

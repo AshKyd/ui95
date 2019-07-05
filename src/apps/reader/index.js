@@ -2,6 +2,7 @@ import { h, render, Component } from "preact";
 import Window from "../../components/window";
 import ScrollableContainer from "../../components/scrollablecontainer";
 import HTML from "../../components/html";
+import Share from "../../components/toolbar/share";
 import "./reader.less";
 
 function Reader({
@@ -27,6 +28,7 @@ function Reader({
       onFocus={onFocus}
     >
       <div className="ui95__reader">
+        <Share />
         <ScrollableContainer
           style={{
             position: "absolute",
