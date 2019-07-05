@@ -19,6 +19,17 @@
         margin: 0;
         height: 100vh;
       }
+      body,
+      html {
+        /* Allows content to fill the viewport and go beyond the bottom */
+        height: 100%;
+
+        /* Allows you to scroll below the viewport; default value is visible */
+        overflow-y: scroll;
+
+        /* To smooth any scrolling behavior */
+        -webkit-overflow-scrolling: touch;
+      }
       :root {
         --gray: #cbcbcb;
         --grayLight: #e5e5e5;
