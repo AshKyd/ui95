@@ -165,10 +165,15 @@ class Window extends Component {
   render(props) {
     const className = "ui95-window";
 
+    function stopPropagation(e) {
+      e.stopPropagation();
+    }
+
     const buttonComponents = {
       minimize: (
         <Button
           classNames="titlebar minimize"
+          onTouchStart={stopPropagation}
           onClick={() => setTimeout(this.toggleState("isMinimized"), 100)}
         >
           <Icon size="custom" name="window-minimize" title="Minimize" />
@@ -177,6 +182,7 @@ class Window extends Component {
       maximize: (
         <Button
           classNames="titlebar maximize"
+          onTouchStart={stopPropagation}
           onClick={() => setTimeout(this.toggleState("isMaximized"), 100)}
         >
           {this.state.isMaximized ? (
@@ -189,6 +195,7 @@ class Window extends Component {
       close: (
         <Button
           classNames="titlebar close"
+          onTouchStart={stopPropagation}
           onClick={() => setTimeout(props.onClose, 100)}
         >
           <Icon size="custom" name="window-close" title="Close" />
