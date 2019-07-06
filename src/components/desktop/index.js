@@ -17,8 +17,6 @@ class Desktop {
     window.removeEventListener("resize", this.updateFullscreen);
   }
   updateFullscreen() {
-    console.log(this);
-    console.log("resize", Date.now());
     this.el.style.height = window.innerHeight + "px";
     this.el.style.width = window.innerWidth + "px";
   }
