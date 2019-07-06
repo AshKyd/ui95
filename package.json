@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "icons95": "^1.1.0",
+    "lodash": "^4.17.11",
     "preact": "^8.4.2",
     "preact-compat": "^3.19.0",
     "preact-compat-enzyme": "^0.2.5",
