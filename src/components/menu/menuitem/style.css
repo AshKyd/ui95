@@ -22,6 +22,10 @@ a.ui95-menuitem:focus {
 .ui95-menuitem .ui95-icon {
   position: absolute;
   margin-left: -19px;
+  margin-top: 1px;
+}
+
+.ui95-menuitem--large > .ui95-icon {
   margin-top: 3px;
 }
 

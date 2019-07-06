@@ -1,9 +1,10 @@
-import Desktop from "../../components/desktop/index.js";
-import Window from "../../components/window/index.js";
-import WindowArea from "../../components/windowarea/index.js";
-import Taskbar from "../../components/taskbar/index.js";
-import FileIcons from "../../components/desktop/fileicons/index.js";
-import Toolbar from "../../components/toolbar/index.js";
+import Desktop from "../../components/desktop";
+import Window from "../../components/window";
+import WindowArea from "../../components/windowarea";
+import Taskbar from "../../components/taskbar";
+import FileIcons from "../../components/desktop/fileicons";
+import Toolbar from "../../components/toolbar";
+import Menu from "../../components/menu";
 import { h, render, Component } from "preact";
 
 class Shell extends Component {
@@ -16,7 +17,8 @@ class Shell extends Component {
       trayItems: props.trayItems || [],
       desktopIcons: props.desktopIcons || {},
       defaultTitle: "",
-      raisedWindow: null
+      raisedWindow: null,
+      contextMenu: null
     };
     this.windowId = 100;
   }
@@ -168,7 +170,6 @@ class Shell extends Component {
     if (!app) throw new Error(`${appName} could not be executed.`);
     if (app.prototype.getInitialState) {
       Object.assign(windowProps, app.prototype.getInitialState(appProps));
-      console.log("windowProps", windowProps);
     }
 
     // Raise existing window
@@ -185,6 +186,9 @@ class Shell extends Component {
 
     this.raiseWindow(windowId);
     this.setState({});
+  }
+  openContextMenu(contextMenu) {
+    this.setState({ contextMenu });
   }
   windowProps(windowProps) {
     const key = windowProps.key;
@@ -206,7 +210,8 @@ class Shell extends Component {
       desktopIcons,
       raisedWindow,
       trayItems,
-      windows
+      windows,
+      contextMenu
     } = this.state;
     return (
       <Desktop fullscreen={fullscreen}>
@@ -234,7 +239,20 @@ class Shell extends Component {
           raiseWindow={key => this.raiseWindow(key)}
           minimizeWindow={key => this.minimizeWindow(key)}
           onLaunchApp={(...args) => this.openWindow(...args)}
+          shell={this}
         />
+        {contextMenu && (
+          <Menu
+            deferAction
+            onClose={() => {
+              // Insert a delay to avoid immediately selecting the first item
+              // on mouse up
+              if (Date.now() < contextMenu.minEndTime) return;
+              this.setState({ contextMenu: null });
+            }}
+            {...contextMenu}
+          />
+        )}
       </Desktop>
     );
   }

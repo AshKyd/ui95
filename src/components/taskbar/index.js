@@ -12,7 +12,8 @@ function Taskbar({
   raisedWindow,
   raiseWindow,
   minimizeWindow,
-  onLaunchApp
+  onLaunchApp,
+  shell
 }) {
   return (
     <div className="ui95-taskbar">
@@ -21,6 +22,12 @@ function Taskbar({
         {windows.map(({ appName, appProps, windowProps }) => {
           const isRaisedWindow =
             raisedWindow && windowProps.key === raisedWindow.key;
+          function minimize() {
+            minimizeWindow(windowProps.key);
+          }
+          function restore() {
+            raiseWindow(windowProps.key);
+          }
           return (
             <Button
               key={appProps.key}
@@ -29,10 +36,37 @@ function Taskbar({
               }`}
               onClick={() => {
                 if (windowProps.isMinimized || !isRaisedWindow) {
-                  raiseWindow(windowProps.key);
+                  restore();
                 } else {
-                  minimizeWindow(windowProps.key);
+                  minimize();
                 }
+              }}
+              onContextMenu={e => {
+                e.preventDefault();
+                e.stopPropagation();
+                shell &&
+                  shell.openContextMenu({
+                    x: e.clientX,
+                    y: e.clientY,
+                    items: [
+                      {
+                        text: "Restore",
+                        disabled: !windowProps.isMinimized,
+                        onClick: restore
+                      },
+                      { text: "Maximize", disabled: true },
+                      {
+                        text: "Minimize",
+                        disabled: windowProps.isMinimized,
+                        onClick: minimize
+                      },
+                      "divider",
+                      {
+                        text: "Close",
+                        onClick: () => shell.closeWindow(windowProps.key)
+                      }
+                    ]
+                  });
               }}
             >
               <Icon

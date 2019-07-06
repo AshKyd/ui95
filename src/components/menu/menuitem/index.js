@@ -45,14 +45,19 @@ export default function({
       />
     );
 
+  function click(e) {
+    if (item.onClick) return item.onClick();
+    if (!item.appProps && item.link) return;
+    e.preventDefault();
+    onClick(item.appProps);
+  }
+
   return (
     <a
       class={baseClassName}
-      onMouseUp={e => {
-        if (!item.appProps && item.link) return;
-        e.preventDefault();
-        onClick(item.appProps);
-      }}
+      onMouseUp={click}
+      onTouchEnd={click}
+      onKeyPress={click}
       href={item.link || "#"}
     >
       {item.icon && <Icon name={item.icon} size={iconSize} />}

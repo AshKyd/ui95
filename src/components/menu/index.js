@@ -3,6 +3,7 @@ import "./style.css";
 import Bezel from "../bezel/index.js";
 import MenuItem from "./menuitem";
 import Branding from "./branding";
+import classNames from "classnames";
 
 class Menu extends Component {
   componentDidMount() {
@@ -10,7 +11,9 @@ class Menu extends Component {
       onClose,
       attachTo,
       attachDirection = "horizontal",
-      isSubmenu
+      isSubmenu,
+      x,
+      y
     } = this.props;
     // Close the menu when we blur
     this.onBlur = this.onBlur.bind(this);
@@ -24,6 +27,9 @@ class Menu extends Component {
     if (attachTo) {
       this.attach();
     }
+    if (x && y) {
+      this.attachToCoord(x, y);
+    }
   }
 
   onBlur(e) {
@@ -33,29 +39,33 @@ class Menu extends Component {
   attach() {
     const { attachTo, isSubmenu, attachDirection = "horizontal" } = this.props;
 
-    const rect = attachTo.getBoundingClientRect();
+    const destRect = attachTo.getBoundingClientRect();
     const thisRect = this.el.getBoundingClientRect();
     let left, top;
+    let x, y;
     if (attachDirection === "horizontal") {
-      left = isSubmenu ? rect.left + rect.width - 4 : rect.right;
-      top = rect.top - Math.round(thisRect.height / 2);
+      x = isSubmenu ? destRect.left + destRect.width - 4 : destRect.right;
+      y = destRect.top - Math.round(thisRect.height / 2);
     }
     if (attachDirection === "top") {
-      left = rect.left;
-      top = rect.bottom;
+      x = destRect.left;
+      y = destRect.bottom;
     }
     if (attachDirection === "bottom") {
-      left = rect.left;
-      top = rect.top - thisRect.height;
+      x = destRect.left;
+      y = destRect.top - thisRect.height;
     }
+    this.attachToCoord(x, y);
+  }
+  attachToCoord(x, y) {
+    const thisRect = this.el.getBoundingClientRect();
+    if (x < 0) left = 0;
+    if (y < 0) top = 0;
+    if (y + thisRect.height > window.innerHeight)
+      y = window.innerHeight - thisRect.height;
 
-    if (left < 0) left = 0;
-    if (top < 0) top = 0;
-    if (top + thisRect.height > window.innerHeight)
-      top = window.innerHeight - thisRect.height;
-
-    this.el.style.left = `${left}px`;
-    this.el.style.top = `${top}px`;
+    this.el.style.left = `${x}px`;
+    this.el.style.top = `${y}px`;
   }
   componentWillUnmount() {
     document.body.removeEventListener("click", this.onBlur);
@@ -67,12 +77,18 @@ class Menu extends Component {
     onLaunchApp,
     zIndex = 1000,
     style,
-    iconSize,
-    branding
+    iconSize = 16,
+    branding,
+    deferAction
   }) {
+    console.log("rendering items", items);
     return (
       <div
-        className={`ui95-menu ${branding ? "ui95-menu--with-branding" : ""}`}
+        className={classNames(
+          "ui95-menu",
+          branding && "ui95-menu--with-branding",
+          deferAction && "ui95-menu--defer-action"
+        )}
         ref={el => (this.el = el)}
         style={{ zIndex, ...style }}
       >
