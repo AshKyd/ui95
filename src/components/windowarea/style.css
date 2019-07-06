@@ -1,5 +1,5 @@
 .ui95-windowarea {
   position: relative;
-  height: calc(100vh - 24px);
+  height: calc(100% - 24px);
   overflow: hidden;
 }

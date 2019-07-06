@@ -2,13 +2,10 @@ body {
   font-face: sans-serif;
 }
 .ui95-desktop {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
+  position: relative;
   background: var(--color-primary);
   color: var(--color-primary-alt);
   padding: 0;
   margin: 0;
-  height: 100vh;
+  overflow: hidden;
 }

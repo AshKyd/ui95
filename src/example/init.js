@@ -83,12 +83,12 @@ class Wrapper extends Component {
         apps={apps}
         ref={shell => (this.shell = shell)}
         site={site}
+        fullscreen
       />
     );
   }
 }
 
 domready(() => {
-  document.body.style = "overflow: hidden;";
   render(<Wrapper />, document.body);
 });

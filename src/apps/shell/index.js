@@ -168,7 +168,7 @@ class Shell extends Component {
       onLaunchApp: (...args) => this.openWindow(...args)
     };
   }
-  render({ apps }) {
+  render({ apps, fullscreen }) {
     const {
       startMenu,
       desktopIcons,
@@ -177,7 +177,7 @@ class Shell extends Component {
       windows
     } = this.state;
     return (
-      <Desktop>
+      <Desktop fullscreen={fullscreen}>
         <WindowArea>
           <FileIcons
             items={desktopIcons}
