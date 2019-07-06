@@ -20,7 +20,14 @@ export default function WindowButtons({
       onTouchStart={onMove}
     >
       <Text type="h1" className="ui95-window-titlebar__heading">
-        {icon && <Icon size="16" name={icon} classNames="application" />}
+        {icon && (
+          <Icon
+            size="16"
+            name={icon}
+            classNames="application"
+            onDblClick={onClose}
+          />
+        )}
         {title}
       </Text>
       <Buttons

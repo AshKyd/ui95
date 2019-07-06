@@ -23,6 +23,7 @@ class Icon extends Component {
     ].join(" ui95-icon--");
     return h("img", {
       className,
+      ...this.props,
       width: this.getSize(size),
       height: this.getSize(size),
       src: this.getUrl(size, name)
