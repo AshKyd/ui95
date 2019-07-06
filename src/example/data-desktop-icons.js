@@ -72,7 +72,8 @@ export default {
     filename: "Webamp",
     icon: "default",
     appProps: {
-      app: "Webamp"
+      app: "Webamp",
+      icon: "sound"
     }
   },
   Wizard: (function() {

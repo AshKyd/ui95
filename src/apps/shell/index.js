@@ -168,6 +168,7 @@ class Shell extends Component {
     if (!app) throw new Error(`${appName} could not be executed.`);
     if (app.prototype.getInitialState) {
       Object.assign(windowProps, app.prototype.getInitialState(appProps));
+      console.log("windowProps", windowProps);
     }
 
     // Raise existing window

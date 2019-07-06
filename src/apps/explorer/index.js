@@ -132,4 +132,8 @@ class Explorer extends Component {
   }
 }
 
+Explorer.prototype.getInitialState = function() {
+  return { icon: "explorer" };
+};
+
 export default Explorer;

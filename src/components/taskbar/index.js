@@ -14,7 +14,6 @@ function Taskbar({
   minimizeWindow,
   onLaunchApp
 }) {
-  console.log({ raisedWindow });
   return (
     <div className="ui95-taskbar">
       <StartMenu items={startMenu} onLaunchApp={onLaunchApp} />
@@ -36,7 +35,10 @@ function Taskbar({
                 }
               }}
             >
-              <Icon size="16" />
+              <Icon
+                size="16"
+                name={appProps.icon || windowProps.icon || "default"}
+              />
               {appProps.title}
             </Button>
           );
