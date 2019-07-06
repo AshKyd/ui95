@@ -1,75 +1,74 @@
 import { h, render, Component } from "preact";
+import Buttons from "./Buttons";
+import TitleBar from "./TitleBar";
+import Icon from "../icon";
+import Text from "../text";
+import classNames from "classnames";
 import "./style.css";
-import Button from "../button/index.js";
-import Icon from "../icon/index.js";
-import iconMinimize from "./icon-minimize.gif";
+
+/**
+ * Given a width and a height, ensure it fits sensibly on the screen.
+ * @param  {Number} width  Window width
+ * @param  {Number} height Window height
+ * @return {Object}        A {width, height} object
+ */
+function conformDimsToScreen({
+  width = 800,
+  height = 600,
+  minWidth = 0,
+  minHeight = 0
+}) {
+  const newWidth = Math.max(
+    minWidth,
+    Math.min(width || 800, window.innerWidth - 50)
+  );
+  const newHeight = Math.max(
+    minHeight,
+    Math.min(height || 600, window.innerHeight - 50)
+  );
+  return {
+    width: width === "auto" ? "auto" : newWidth,
+    height: height === "auto" ? "auto" : newHeight,
+    minWidth,
+    minHeight
+  };
+}
 
 class Window extends Component {
   constructor(props) {
-    if (!props.onFocus) throw new Error("Window needs onFocus handler");
-    if (!props.onClose) throw new Error("Window needs onClose handler");
-    super();
-
-    this.props = props;
-    this.state = {
-      x: 0,
-      y: 0,
-      hasResized: false,
-      minWidth: props.minWidth || 0,
-      minHeight: props.minHeight || 0
-    };
-    this.state = {
-      ...this.conformDimsToScreen(props.width, props.height),
-      ...this.state
-    };
-  }
-  conformDimsToScreen(width, height) {
-    const newWidth = Math.max(
-      this.state.minWidth,
-      Math.min(width || 800, window.innerWidth - 50)
-    );
-    const newHeight = Math.max(
-      this.state.minHeight,
-      Math.min(height || 600, window.innerHeight - 50)
-    );
-    return {
-      width: width === "auto" ? "auto" : newWidth,
-      height: height === "auto" ? "auto" : newHeight
-    };
+    super(props);
+    Object.assign(this, conformDimsToScreen(props));
+    this.x = 0;
+    this.y = 0;
   }
   componentDidMount() {
     this.onFocus = e => this.props.onFocus();
-    this.ref.addEventListener("mousedown", this.onFocus);
+    this.el.addEventListener("mousedown", this.onFocus);
+    this.el.addEventListener("touchStart", this.onFocus);
+    this.updateWindowDims();
+  }
+  componentDidUpdate(previousProps) {
+    if (
+      previousProps.width !== this.props.width ||
+      previousProps.height !== this.props.height
+    ) {
+      Object.assign(this, conformDimsToScreen(this.props));
+    }
+    this.updateWindowDims();
+  }
+  componentWillReceiveProps({ width, height }) {
+    this.width = width;
+    this.height = height;
   }
   componentWillUnmount() {
-    this.ref.removeEventListener("mousedown", this.onFocus);
+    this.el.removeEventListener("mousedown", this.onFocus);
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.conformDimsToScreen(
-        nextProps.width || this.state.width,
-        nextProps.height || this.state.height
-      ),
-      isMinimized:
-        typeof nextProps.isMinimized === "boolean"
-          ? nextProps.isMinimized
-          : this.state.isMinimized
-    });
-  }
-  toggleState(propName) {
-    this.setState({ [propName]: !this.state[propName] });
-  }
-  /**
-   * Handle window movement
-   */
   mouseDownMoveWindow(e) {
-    // Don't override button actions
-    if (e.target.tagName === "BUTTON") return;
-
+    e.stopPropagation();
     e.preventDefault();
     if (this.state.isMaximized) return;
     let coordsPrev;
-    this.setState({ moving: true });
+    this.moving = true;
     const onMove = e => {
       const { clientX, clientY } = e.touches ? e.touches[0] : e;
       if (!coordsPrev) {
@@ -78,10 +77,10 @@ class Window extends Component {
       }
       const [x, y] = coordsPrev;
       const [diffX, diffY] = [clientX - x, clientY - y];
-      this.setState(prev => ({
-        x: prev.x + diffX,
-        y: prev.y + diffY
-      }));
+      this.x += diffX;
+      this.y += diffY;
+      this.updateWindowDims();
+
       coordsPrev = [clientX, clientY];
       e.preventDefault();
     };
@@ -92,33 +91,30 @@ class Window extends Component {
         passive: false
       });
       document.body.removeEventListener("touchend", onDone, { passive: false });
-      this.setState({ moving: false });
+      this.moving = false;
     };
     document.body.addEventListener("mousemove", onMove);
     document.body.addEventListener("mouseup", onDone);
     document.body.addEventListener("touchmove", onMove, { passive: false });
     document.body.addEventListener("touchend", onDone, { passive: false });
   }
-  isResizeable() {
-    return this.props.resizeable !== false;
-  }
-
-  /**
-   * Handle window resize
-   */
   mouseDownResizeWindow(e, direction) {
+    const { isMaximized } = this.state;
+    const { isResizeable } = this.props;
+
     e.preventDefault();
-    if (this.state.isMaximized) return;
-    if (!this.isResizeable()) return;
+    e.stopPropagation();
+
+    if (isMaximized) return;
+    if (isResizeable === false) return;
 
     let applyWidth = ["corner", "left", "right"].includes(direction);
     let applyHeight = ["corner", "top", "bottom"].includes(direction);
     let widthOperator = direction === "left" ? -1 : +1;
     let heightOperator = direction === "top" ? -1 : +1;
 
-    e.preventDefault();
     let coordsPrev;
-    this.setState({ resizing: true });
+    this.moving = true;
     const onMove = e => {
       const { clientX, clientY } = e.touches ? e.touches[0] : e;
       if (!coordsPrev) {
@@ -129,22 +125,17 @@ class Window extends Component {
       const [diffX, diffY] = [clientX - coordsPrev[0], clientY - coordsPrev[1]];
 
       const width = applyWidth
-        ? Math.max(
-            this.state.minWidth,
-            this.state.width + diffX * widthOperator
-          )
-        : this.state.width;
+        ? Math.max(this.minWidth, this.width + diffX * widthOperator)
+        : this.width;
       const height = applyHeight
-        ? Math.max(
-            this.state.minHeight,
-            this.state.height + diffY * heightOperator
-          )
-        : this.state.height;
+        ? Math.max(this.minHeight, this.height + diffY * heightOperator)
+        : this.height;
 
-      const x = direction === "left" ? this.state.x + diffX : this.state.x;
-      const y = direction === "top" ? this.state.y + diffY : this.state.y;
+      const x = direction === "left" ? this.x + diffX : this.x;
+      const y = direction === "top" ? this.y + diffY : this.y;
 
-      this.setState(prev => ({ width, height, x, y }));
+      Object.assign(this, { width, height, x, y });
+      this.updateWindowDims();
       coordsPrev = [clientX, clientY];
       e.preventDefault();
     };
@@ -155,98 +146,70 @@ class Window extends Component {
         passive: false
       });
       document.body.removeEventListener("touchend", onDone, { passive: false });
-      this.setState({ moving: false });
+      this.moving = false;
     };
     document.body.addEventListener("mousemove", onMove);
     document.body.addEventListener("mouseup", onDone);
     document.body.addEventListener("touchmove", onMove, { passive: false });
     document.body.addEventListener("touchend", onDone, { passive: false });
   }
+
+  /**
+   * Update the dimensions & position of our element.
+   * Don't use (p)React for this, because it's slower to do a vdom render
+   */
+  updateWindowDims() {
+    if (!this.el) return;
+    this.el.style.transform = `translate(${this.x}px, ${this.y}px)`;
+    this.el.style.width = this.width + "px";
+    this.el.style.height = this.height + "px";
+  }
+
   render(props) {
-    const className = "ui95-window";
+    const { isMaximized, width, height, isMoving } = this.state;
+    const {
+      isFocused,
+      isMinimized,
+      zIndex,
+      children,
+      isResizeable,
+      icon,
+      title,
+      buttons,
+      onClose,
+      onMinimize
+    } = props;
 
-    function stopPropagation(e) {
-      e.stopPropagation();
-    }
+    // We're minimized, we don't need to render.
+    if (isMinimized) return null;
 
-    const buttonComponents = {
-      minimize: (
-        <Button
-          classNames="titlebar minimize"
-          onTouchStart={stopPropagation}
-          onClick={() => setTimeout(this.toggleState("isMinimized"), 100)}
-        >
-          <Icon size="custom" name="window-minimize" title="Minimize" />
-        </Button>
-      ),
-      maximize: (
-        <Button
-          classNames="titlebar maximize"
-          onTouchStart={stopPropagation}
-          onClick={() => setTimeout(this.toggleState("isMaximized"), 100)}
-        >
-          {this.state.isMaximized ? (
-            <Icon size="custom" name="window-restore" title="Restore" />
-          ) : (
-            <Icon size="custom" name="window-maximize" title="Maximize" />
-          )}
-        </Button>
-      ),
-      close: (
-        <Button
-          classNames="titlebar close"
-          onTouchStart={stopPropagation}
-          onClick={() => setTimeout(props.onClose, 100)}
-        >
-          <Icon size="custom" name="window-close" title="Close" />
-        </Button>
-      )
-    };
+    const windowClasses = classNames(
+      "ui95-window",
+      isMaximized && "ui95-window--maximized",
+      isFocused && "ui95-window--focused",
+      (" " + props.classNames || "").split(" ").join(" ui95-window--")
+    );
 
-    const buttons = (props.buttons || "minimize maximize close")
-      .split(" ")
-      .map(key => buttonComponents[key]);
-
-    return h(
-      props.type || "div",
-      {
-        className: [
-          className,
-          this.state.isMaximized && "maximized",
-          this.state.isMinimized && "minimized",
-          this.state.isFocused && "focused",
-          ...(props.classNames || "").split(" ")
-        ]
-          .filter(Boolean)
-          .join(` ${className}--`),
-        style: {
-          width: this.state.width,
-          height: this.state.height,
-          transform: `translate(${this.state.x}px, ${this.state.y}px)`,
-          zIndex: this.props.zIndex
-        },
-        ref: e => (this.ref = e)
-      },
-      [
-        <h2
-          class="ui95-window__titlebar"
-          onMouseDown={e => this.mouseDownMoveWindow(e)}
-          onTouchStart={e => this.mouseDownMoveWindow(e)}
-        >
-          {props.icon && (
-            <Icon size="16" name={props.icon} classNames="application" />
-          )}
-          {props.title || "Untitled window "}
-          <div class="ui95-window__titlebar-icons">{buttons}</div>
-        </h2>,
-        <div
-          class="ui95-window__content"
-          style={{
-            "pointer-events": this.state.moving ? "none" : "unset"
-          }}
-        >
-          {props.children}
-          {this.isResizeable() &&
+    return (
+      <article
+        class={windowClasses}
+        style={{ width, height, zIndex }}
+        ref={el => (this.el = el)}
+      >
+        <div>
+          <TitleBar
+            buttons={buttons}
+            onMove={e => this.mouseDownMoveWindow(e)}
+            onClose={onClose}
+            onMinimize={onMinimize}
+            icon={icon}
+            title={title}
+            isMaximized={isMaximized}
+            toggleState={propName =>
+              this.setState({ [propName]: !this.state[propName] })
+            }
+          />
+          {isResizeable !== false &&
             ["left", "right", "top", "bottom", "corner"].map(position => (
               <div
                 class={`ui95-window__resize-${position}`}
@@ -255,7 +218,15 @@ class Window extends Component {
               />
             ))}
         </div>
-      ]
+        <div
+          class="ui95-window__content"
+          style={{
+            "pointer-events": isMoving ? "none" : "unset"
+          }}
+        >
+          {children}
+        </div>
+      </article>
     );
   }
 }

@@ -6,5 +6,5 @@ import Taskbar from "../../components/taskbar/index.js";
 import Button from "../../components/button/index.js";
 
 storiesOf("App/Error", module).add("Window style", () => (
-  <Window onFocus={() => {}} onClose={() => {}} error={new Error("an error")} />
+  <Window wmProps={{}} error={new Error("an error")} />
 ));

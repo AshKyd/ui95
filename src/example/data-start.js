@@ -1,21 +1,37 @@
 export default [
   {
-    text: "Road Blocks",
-    icon: "default",
-    appProps: {
-      app: "Webview",
-      title: "Road Blocks",
-      src: "https://roadblocks.ash.ms/game/"
-    }
+    text: "Programs",
+    icon: "programs",
+    items: [
+      {
+        text: "Road Blocks",
+        icon: "default",
+        appProps: {
+          app: "Webview",
+          title: "Road Blocks",
+          src: "https://roadblocks.ash.ms/game/"
+        }
+      },
+      { text: "Winamp", icon: "sound", appProps: { app: "Webamp" } },
+      { text: "Explorer", icon: "explorer", appProps: { app: "Explorer" } },
+      {
+        text: "Paint",
+        icon: "paint",
+        appProps: {
+          title: "Paint",
+          app: "Webview",
+          src: "https://jspaint.app/"
+        }
+      }
+    ]
   },
-  { text: "Winamp", icon: "default", appProps: { app: "Webamp" } },
-  { text: "Explorer", icon: "default", appProps: { app: "Explorer" } },
-  {
-    text: "Paint",
-    icon: "default",
-    appProps: { app: "Webview", src: "https://jspaint.app/" }
-  },
+  { text: "Documents", icon: "documents" },
+  { text: "Settings", icon: "settings" },
+  { text: "Search", icon: "search" },
+  { text: "Help", icon: "help" },
+  { text: "Run", icon: "run" },
+
   "divider",
-  { text: "Log off", icon: "default" },
-  { text: "Shut Down", icon: "default" }
+  { text: "Log off", icon: "log-off" },
+  { text: "Shut Down", icon: "shutdown" }
 ];

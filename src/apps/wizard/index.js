@@ -1,5 +1,4 @@
 import { h, render, Component } from "preact";
-import "./style.css";
 import Window from "../../components/window/index.js";
 import Radio from "../../components/forms/radio/index.js";
 import Button from "../../components/button/index.js";
@@ -7,6 +6,7 @@ import Bezel from "../../components/bezel/index.js";
 import Text from "../../components/text/index.js";
 import Img from "../../components/img/index.js";
 import Divider from "../../components/divider/index.js";
+import "./style.css";
 
 class Wizard extends Component {
   constructor(props) {
@@ -63,7 +63,8 @@ class Wizard extends Component {
       });
     }
   }
-  render({ image, onClose, onFocus, title, width, height }) {
+  render({ image, title, width, height, wmProps = {} }) {
+    const onClose = wmProps.onClose;
     const buttonStyle = {
       height: `23px`,
       width: `70px`,
@@ -75,15 +76,11 @@ class Wizard extends Component {
     return (
       <Window
         title={title}
-        zIndex={this.state.zIndex}
         classNames="wizard pad"
-        isMinimized={this.state.isMinimized}
-        onClose={onClose}
-        onFocus={onFocus}
         width={width || 450}
         height={height || 380}
         minHeight={height || 380}
-        icon="ash"
+        {...wmProps}
       >
         <div class="ui95-window--wizard__row">
           <Bezel classNames="in image">

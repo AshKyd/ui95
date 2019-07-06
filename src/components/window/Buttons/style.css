@@ -1,0 +1,19 @@
+.ui95__window-buttons {
+  display: flex;
+  margin: 2px 2px 0 4px;
+}
+.ui95__window-buttons .ui95-button {
+  width: 16px;
+  height: 14px;
+  display: inline-block;
+}
+.ui95__window-buttons .ui95-icon {
+  width: 12px;
+  height: 10px;
+  position: absolute;
+  left: var(--px);
+  top: var(--px);
+}
+.ui95__window-buttons .ui95-button--close {
+  margin-left: 2px;
+}

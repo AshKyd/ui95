@@ -35,7 +35,6 @@ class MediaPlayer extends Component {
   }
   componentWillReceiveProps({ zIndex, videoId, playlists }, nextContext) {
     this.setState(() => ({
-      zIndex,
       videoId,
       playlists,
       playlist: playlists && playlists[0]
@@ -93,7 +92,6 @@ class MediaPlayer extends Component {
     const {
       appLoaded,
       title,
-      zIndex,
       mode,
       playingTitle,
       seconds,
@@ -102,12 +100,10 @@ class MediaPlayer extends Component {
     return (
       <Window
         title={title + " - Media Player"}
-        zIndex={zIndex}
         classNames="mediaplayer"
         minWidth={320}
         minHeight={480}
-        onClose={props.onClose}
-        onFocus={props.onFocus}
+        {...props.wmProps}
       >
         {!appLoaded && <div class="ui95-mediaplayer__container" />}
         {appLoaded && (

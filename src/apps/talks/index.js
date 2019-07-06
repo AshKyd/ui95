@@ -5,14 +5,7 @@ import TabBox from "../../components/tabbox/index.js";
 import Text from "../../components/text/index.js";
 import Button from "../../components/button/index.js";
 
-function TalksViewer({
-  zIndex,
-  onClose,
-  onFocus,
-  onOkay,
-  overview = {},
-  talk
-}) {
+function TalksViewer({ wmProps = {}, onOkay, overview = {}, talk }) {
   const { title } = this.state;
 
   // These props are undefined because the parsePage function doesn't expose them.
@@ -24,16 +17,16 @@ function TalksViewer({
     Social: []
   };
 
+  const onClose = wmProps.onClose;
+
   return (
     <Window
       title={title}
-      zIndex={zIndex}
-      onClose={onClose}
-      onFocus={onFocus}
       width={410}
       height="auto"
       classNames="talksviewer"
       minWidth={320}
+      {...wmProps}
     >
       {overview && (
         <div style={{ padding: "8px 7px" }}>

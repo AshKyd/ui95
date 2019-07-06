@@ -3,16 +3,33 @@ import Window from "../../components/window/index.js";
 
 class Webamp extends Component {
   componentDidMount() {
+    this.loadAmp();
+  }
+  componentDidUpdate() {}
+  loadAmp() {
     import("webamp").then(WebAmp => {
-      const webamp = new (WebAmp || WebAmp.default)({
+      this.webamp = new (WebAmp || WebAmp.default)({
         initialTracks: []
       });
-      webamp.onClose(this.props.onClose);
-      webamp.renderWhenReady(this.container);
+      this.webamp.onClose(this.props.wmProps.onClose);
+      this.webamp.onMinimize(this.props.wmProps.onMinimize);
+      this.webamp.renderWhenReady(this.el);
     });
   }
-  render({ url, onClose, onFocus, zIndex }) {
-    return <div ref={e => (this.container = e)} style={{ zIndex }} />;
+  render({ url, onClose, onFocus, zIndex, wmProps }) {
+    return (
+      <div
+        id="webamp-container"
+        ref={el => (this.el = el)}
+        style={{
+          zIndex,
+          ...(wmProps.isMinimized && {
+            opacity: 0,
+            pointerEvents: "none"
+          })
+        }}
+      />
+    );
   }
 }
 

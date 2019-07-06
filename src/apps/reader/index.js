@@ -5,27 +5,16 @@ import HTML from "../../components/html";
 import Share from "../../components/toolbar/share";
 import "./reader.less";
 
-function Reader({
-  title,
-  src,
-  onClose,
-  onFocus,
-  isMinimized,
-  zIndex,
-  content
-}) {
+function Reader({ content, wmProps }) {
   // Lazy split pages by <hr>. Potentially buggy. Be careful.
-  const pages = content.split("<hr>");
+  const pages = (content || "").split("<hr>");
   return (
     <Window
-      title={title}
-      zIndex={zIndex}
-      classNames="webview"
+      icon="wordpad"
+      className="reader"
       width={800}
       height={600}
-      isMinimized={isMinimized}
-      onClose={onClose}
-      onFocus={onFocus}
+      {...wmProps}
     >
       <div className="ui95__reader">
         <Share />
@@ -51,5 +40,12 @@ function Reader({
     </Window>
   );
 }
+
+Reader.prototype.getInitialState = function() {
+  return {
+    title: "Reader",
+    icon: "wordpad"
+  };
+};
 
 export default Reader;

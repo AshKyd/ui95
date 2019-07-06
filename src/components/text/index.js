@@ -6,9 +6,10 @@ function Text(props) {
   return h(
     props.type || "p",
     {
-      className: [className, ...(props.classNames || "").split(" ")].join(
-        ` ${className}--`
-      ),
+      className: [
+        className,
+        ...(props.classNames || props.className || "").split(" ")
+      ].join(` ${className}--`),
       style: `${props.style || ""} font-size: calc(${props.size ||
         10} * var(--px));`,
       dangerouslySetInnerHTML: props.html && { __html: props.html }

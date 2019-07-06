@@ -10,29 +10,27 @@ function Alert({
   title,
   text,
   html,
-  buttons = [{ text: "Ok", onClick: onClose }],
-  onClose,
-  onFocus,
+  buttons,
   icon,
-  zIndex,
   width,
-  height
+  height,
+  wmProps = {}
 }) {
-  const normalizedButtons = buttons.map(({ text, onClick = onClose }) => ({
-    text,
-    onClick
-  }));
+  const normalizedButtons = (buttons || [{ text: "Ok" }]).map(
+    ({ text, onClick = wmProps.onClose }) => ({
+      text,
+      onClick
+    })
+  );
   return (
     <Window
       title={title}
-      zIndex={zIndex}
-      onClose={onClose}
-      onFocus={onFocus}
       width={width || 250}
       height="auto"
-      resizeable={false}
+      isResizeable={false}
       classNames="alert"
       buttons="close"
+      {...wmProps}
     >
       <div class="ui95-window-alert">
         <div class="ui95-window-alert__content">

@@ -7,9 +7,18 @@ class FileIcons extends Component {
     this.props.onSelect && this.props.onSelect(item);
     this.setState({ selected: item.key });
   }
-  render({ items, onClick, solidColor, Icon = FileIcon }) {
+  render({
+    items,
+    onClick,
+    solidColor,
+    Icon = FileIcon,
+    direction = "row",
+    mode = "explorer"
+  }) {
     return (
-      <ul class="ui95-file-icons">
+      <ul
+        class={`ui95-file-icons ui95-file-icons--${direction}  ui95-file-icons--${mode}`}
+      >
         {Object.entries(items || {}).map(([filename, item], index) => (
           <li class="ui95-file-icons__item">
             {" "}

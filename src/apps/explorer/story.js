@@ -9,5 +9,5 @@ import { Filesystem, File } from "../../lib/filesystem/index.js";
 const fs = new Filesystem();
 
 storiesOf("App/Explorer", module).add("No configuration", () => (
-  <Explorer fs={fs} path="/" onFocus={() => {}} onClose={() => {}} />
+  <Explorer wmProps={{ fs }} path="/" onFocus={() => {}} onClose={() => {}} />
 ));

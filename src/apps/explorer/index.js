@@ -10,13 +10,12 @@ import FileIcons from "../../components/desktop/fileicons/index.js";
 import menuItems from "./menuItems.js";
 
 class Explorer extends Component {
-  constructor({ title, zIndex, path, fs }) {
+  constructor({ title, path, wmProps = {} }) {
     super();
     this.state = {
       title,
-      zIndex,
       path,
-      folder: fs.getFolder(path)
+      folder: wmProps.fs.getFolder(path)
     };
     this.history = {
       past: [],
@@ -53,7 +52,7 @@ class Explorer extends Component {
     this.setState({ folder: previousFolder, file: previousFolder });
   }
   navigateTo(path) {
-    const fs = this.props.fs;
+    const fs = this.props.wmProps.fs;
     const folder = fs.getFolder(path);
     this.history.past.push(this.state.folder);
     this.history.future = [];
@@ -62,18 +61,16 @@ class Explorer extends Component {
   setFile(file) {
     this.setState({ file });
   }
-  render(props) {
+  render({ wmProps }) {
     const { file, folder } = this.state;
-    const fs = this.props.fs;
+    const fs = wmProps.fs;
     const files = fs.getFiles(folder.fullPath());
     return (
       <Window
         title={this.state.title}
-        zIndex={this.state.zIndex}
         classNames="explorer"
-        onClose={props.onClose}
-        onFocus={props.onFocus}
         icon="explorer"
+        {...wmProps}
       >
         <Toolbar variant="text" items={menuItems} />{" "}
         <Toolbar

@@ -5,18 +5,17 @@ import TabBox from "../../components/tabbox/index.js";
 import Text from "../../components/text/index.js";
 import Button from "../../components/button/index.js";
 
-function TabDialog({ title, tabs, zIndex, onClose, onFocus, onOkay }) {
+function TabDialog({ title, tabs, onOkay, wmProps = {} }) {
+  const onClose = wmProps.onClose;
   return (
     <Window
       title={title}
-      zIndex={zIndex}
-      onClose={onClose}
-      onFocus={onFocus}
       width={410}
       height="auto"
-      resizeable={false}
+      isResizeable={false}
       classNames="tabdialog"
       buttons="close"
+      {...wmProps}
     >
       <div style={{ padding: "8px 7px" }}>
         <TabBox tabs={tabs} />

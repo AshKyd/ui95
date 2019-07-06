@@ -11,25 +11,36 @@ function Taskbar({
   trayItems = [],
   raisedWindow,
   raiseWindow,
+  minimizeWindow,
   onLaunchApp
 }) {
-  console.log(windows);
+  console.log({ raisedWindow });
   return (
     <div className="ui95-taskbar">
       <StartMenu items={startMenu} onLaunchApp={onLaunchApp} />
       <div className="ui95-taskbar__windows">
-        {windows.map(([appName, appProps]) => (
-          <Button
-            key={appProps.key}
-            classNames={`ui95-taskbar__window ${
-              appProps.key === raisedWindow.key ? "active" : "inactive"
-            }`}
-            onClick={() => raiseWindow(appProps.key)}
-          >
-            <Icon size="16" />
-            {appProps.title}
-          </Button>
-        ))}
+        {windows.map(({ appName, appProps, windowProps }) => {
+          const isRaisedWindow =
+            raisedWindow && windowProps.key === raisedWindow.key;
+          return (
+            <Button
+              key={appProps.key}
+              classNames={`ui95-taskbar__window ${
+                isRaisedWindow ? "active" : "inactive"
+              }`}
+              onClick={() => {
+                if (windowProps.isMinimized || !isRaisedWindow) {
+                  raiseWindow(windowProps.key);
+                } else {
+                  minimizeWindow(windowProps.key);
+                }
+              }}
+            >
+              <Icon size="16" />
+              {appProps.title}
+            </Button>
+          );
+        })}
       </div>
       <Tray items={trayItems} />
     </div>

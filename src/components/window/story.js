@@ -6,13 +6,5 @@ import Taskbar from "../taskbar/index.js";
 import Button from "../button/index.js";
 
 storiesOf("Components/Window", module)
-  .add("Without icon", () => (
-    <Window onFocus={() => {}} onClose={() => {}}>
-      Hello window
-    </Window>
-  ))
-  .add("With icon", () => (
-    <Window onFocus={() => {}} onClose={() => {}} icon="default">
-      Hello window
-    </Window>
-  ));
+  .add("Without icon", () => <Window>Hello window</Window>)
+  .add("With icon", () => <Window icon="preact">Hello window</Window>);

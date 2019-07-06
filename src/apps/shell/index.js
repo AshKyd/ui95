@@ -57,7 +57,7 @@ class Shell extends Component {
   }
   getWindowByTitle(title) {
     return this.state.windows.find(
-      ([windowId, props]) => props.title === title
+      ({ windowProps }) => windowProps.title === title
     );
   }
   raiseWindow(windowId) {
@@ -66,20 +66,21 @@ class Shell extends Component {
 
     // Make a copy of the windows and sort them so we can set the zIndex
     const sortedWindows = [...windows];
-    sortedWindows.sort((a, b) => a[1].zIndex > b[1].zIndex);
+    sortedWindows.sort((a, b) => a.windowProps.zIndex > b.windowProps.zIndex);
 
     let raisedWindow;
-    sortedWindows.forEach(([appName, appProps, appChildren], i) => {
-      // FIXME: setting state directly
-      appProps.zIndex = i;
+    sortedWindows.forEach(
+      ({ appName, appProps, appChildren, windowProps }, i) => {
+        windowProps.zIndex = i;
 
-      // This is the raised window
-      if (appProps.key === windowId) {
-        appProps.zIndex = windows.length;
-        appProps.isMinimized = false;
-        raisedWindow = appProps;
+        // This is the raised window
+        if (windowProps.key === windowId) {
+          windowProps.zIndex = windows.length;
+          windowProps.isMinimized = false;
+          raisedWindow = windowProps;
+        }
       }
-    });
+    );
     const after = JSON.stringify(this.state.windows);
 
     // Fake vdom diff because Preact is going slightly wild
@@ -91,12 +92,37 @@ class Shell extends Component {
   closeWindow(windowId) {
     const windows = this.state.windows;
     const newState = windows.filter(
-      ([appName, appProps]) => appProps.key !== windowId
+      ({ windowProps }) => windowProps.key !== windowId
     );
     this.setState({ windows: newState });
     this.syncWindowHistory();
   }
+  minimizeWindow(windowId) {
+    const windows = this.state.windows;
+    let raisedWindow = this.state.raisedWindow;
+
+    // Minimize the given window.
+    const newState = windows.map(window => {
+      const { windowProps } = window;
+      if (windowProps.key === windowId) {
+        windowProps.isMinimized = true;
+      }
+      return window;
+    });
+
+    // Raise the next highest window
+    if (raisedWindow && raisedWindow.key === windowId) {
+      raisedWindow = [...windows]
+        .map(({ windowProps }) => windowProps)
+        .filter(({ isMinimized }) => !isMinimized)
+        .sort((a, b) => a.zIndex - b.zIndex)
+        .pop();
+    }
+    this.setState({ windows: newState, raisedWindow });
+    this.syncWindowHistory();
+  }
   syncWindowHistory() {
+    return;
     const { windows, raisedWindow } = this.state;
     const { onUrlChange = () => {}, site = {} } = this.props;
 
@@ -130,42 +156,47 @@ class Shell extends Component {
    * @param  {[type]} children     Any children elements to pass to the app.
    * @param  {Object} [options={}] Send updateHistory=false to suppress history for this window
    */
-  openWindow(appName, props = {}, children, options = {}) {
+  openWindow(appName, appProps = {}, children, options = {}) {
     const { updateHistory = true } = options;
     const { apps } = this.props;
-    props.title = props.title || appName;
+    const windowProps = {
+      title: (appProps.title = appProps.title || appName)
+    };
 
-    const existingWindow = this.getWindowByTitle(props.title);
-    if (existingWindow) {
-      existingWindow[1].isMinimized = false;
-      return this.setState({});
+    // get initial props from the app
+    const app = apps[appName];
+    if (!app) throw new Error(`${appName} could not be executed.`);
+    if (app.prototype.getInitialState) {
+      Object.assign(windowProps, app.prototype.getInitialState(appProps));
     }
 
-    if (!apps[appName]) throw new Error(`${appName} could not be executed.`);
+    // Raise existing window
+    const existingWindow = this.getWindowByTitle(windowProps.title);
+    if (existingWindow) {
+      existingWindow.windowProps.isMinimized = false;
+      return this.setState;
+    }
 
     const windowId = this.windowId++;
-    props.key = windowId;
-    this.state.windows = [
-      ...this.state.windows,
-      [appName, props, children, {}]
-    ];
+    windowProps.key = windowId;
+    const newWindow = { appName, appProps, children, windowProps };
+    this.state.windows = [...this.state.windows, newWindow];
 
     this.raiseWindow(windowId);
     this.setState({});
   }
-  setAppState(key, newState) {
-    const newWindows = this.state.windows.map(window => {
-      if (window[0] !== key) return window;
-      return [...window.slice(0, 3), newState];
-    });
-    this.setState({ windows: newWindows });
-  }
-  windowProps(key) {
+  windowProps(windowProps) {
+    const key = windowProps.key;
     return {
-      fs: this.state.fs,
-      onClose: () => this.closeWindow(key),
-      onFocus: () => this.raiseWindow(key),
-      onLaunchApp: (...args) => this.openWindow(...args)
+      wmProps: {
+        fs: this.state.fs,
+        onClose: () => this.closeWindow(key),
+        onMinimize: () => this.minimizeWindow(key),
+        onFocus: () => this.raiseWindow(key),
+        onLaunchApp: (...args) => this.openWindow(...args),
+        shell: this,
+        ...windowProps
+      }
     };
   }
   render({ apps, fullscreen }) {
@@ -180,14 +211,16 @@ class Shell extends Component {
       <Desktop fullscreen={fullscreen}>
         <WindowArea>
           <FileIcons
+            direction="column"
+            mode="desktop"
             items={desktopIcons}
             solidColor={true}
             onClick={item => this.openWindow(item.appProps.app, item.appProps)}
           />
-          {windows.map(([appName, appProps, appChildren, appState]) => {
+          {windows.map(({ appName, appProps, appChildren, windowProps }) => {
             return h(
               apps[appName],
-              { ...appProps, appState, ...this.windowProps(appProps.key) },
+              { ...appProps, ...this.windowProps(windowProps) },
               appChildren
             );
           })}
@@ -198,6 +231,7 @@ class Shell extends Component {
           trayItems={trayItems}
           raisedWindow={raisedWindow}
           raiseWindow={key => this.raiseWindow(key)}
+          minimizeWindow={key => this.minimizeWindow(key)}
           onLaunchApp={(...args) => this.openWindow(...args)}
         />
       </Desktop>
