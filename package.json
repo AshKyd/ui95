@@ -6,7 +6,7 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "build": "npm run build-example && npm run build-storybook",
-    "build-example": "parcel build src/example/index.html --detailed-report --out-dir docs/example/ --public-url /example/",
+    "build-example": "parcel build src/example/index.html --detailed-report --out-dir docs/example/ --public-url /example/ --no-source-maps",
     "build-storybook": "build-storybook --output-dir docs/storybook/",
     "watch-docs": "docsify serve docs",
     "watch-example": "parcel src/example/index.html"
