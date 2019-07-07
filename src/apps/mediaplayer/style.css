@@ -1,11 +1,5 @@
 .ui95-mediaplayer__container {
-  --top: 20px;
-  --margins: 2px;
-  position: absolute;
-  left: var(--margins);
-  width: calc(100% - calc(2 * var(--margins)));
-  height: calc(calc(100% - var(--top)) - var(--margins));
-  top: var(--top);
+  flex: 1;
   background: no-repeat url("./assets/ui-top-left.png") left top,
     no-repeat url("./assets/ui-top-right.png") right top,
     no-repeat url("./assets/ui-bottom-left.png") left bottom,

@@ -90,15 +90,7 @@ class Explorer extends Component {
             { text: "Up", icon: "explorer-up", onClick: () => this.goUp() }
           ]}
         />
-        <ScrollableContainer
-          style={{
-            position: "absolute",
-            left: "2px",
-            right: "2px",
-            top: "100px",
-            bottom: "2px"
-          }}
-        >
+        <ScrollableContainer>
           <div class="ui95-explorer-columns__left">
             <Icon size={32} name={file ? file.icon : folder.icon} />
             <Text style={{ fontWeight: "bold" }}>

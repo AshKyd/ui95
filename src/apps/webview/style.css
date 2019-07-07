@@ -1,8 +1,6 @@
 .ui95-webview {
-  position: absolute;
-  left: 2px;
-  top: 19px;
+  margin: 2px;
   width: calc(100% - 4px);
-  height: calc(100% - 21px);
   border: none;
+  flex: 1;
 }

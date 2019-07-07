@@ -124,32 +124,14 @@ class Shell extends Component {
     this.syncWindowHistory();
   }
   syncWindowHistory() {
-    return;
-    const { windows, raisedWindow } = this.state;
-    const { onUrlChange = () => {}, site = {} } = this.props;
+    const { syncWindowHistory } = this.props;
+    const { raisedWindow, windows } = this.state;
+    if (!syncWindowHistory) return;
 
-    function title(newTitle) {
-      if (!newTitle) return site.title;
-      return [newTitle, site.title].join(" ~ ");
-    }
-
-    function blank(newTitle) {
-      const renderedTitle = title(newTitle);
-      // window.history.replaceState({}, renderedTitle, "/");
-      document.title = renderedTitle;
-      onUrlChange("/");
-    }
-
-    // No windows, just revert to the homepage
-    if (!windows.length) return blank();
-
-    // No permalink, but still got a title. Give it a try
-    if (!raisedWindow.permalink) return blank(raisedWindow.title);
-
-    // window.history.replaceState({}, raisedWindow.title, raisedWindow.permalink);
-    document.title = title(raisedWindow.title);
-    console.log("setting new title", raisedWindow.title);
-    onUrlChange(raisedWindow.permalink);
+    if (!raisedWindow) return syncWindowHistory();
+    return syncWindowHistory(
+      windows.find(window => window.windowProps.key === raisedWindow.key)
+    );
   }
   /**
    * Open a new window

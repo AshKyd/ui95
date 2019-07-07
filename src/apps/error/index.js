@@ -33,7 +33,7 @@ class ErrorHandler extends Component {
           classNames="error"
           width={400}
           isResizeable={false}
-          height={errorShown ? 270 : 125}
+          height="auto"
           minHeight={125}
           buttons="close"
           {...wmProps}

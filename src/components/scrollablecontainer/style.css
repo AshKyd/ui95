@@ -1,6 +1,7 @@
 .ui95-scrollable-container {
   position: relative;
   will-change: scroll-position;
+  flex: 1;
 }
 .ui95-bezel--scrollable-container {
   position: absolute;

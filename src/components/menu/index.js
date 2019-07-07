@@ -81,7 +81,6 @@ class Menu extends Component {
     branding,
     deferAction
   }) {
-    console.log("rendering items", items);
     return (
       <div
         className={classNames(

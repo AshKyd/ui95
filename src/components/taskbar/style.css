@@ -48,3 +48,9 @@
   display: flex;
   align-items: stretch;
 }
+
+@media (pointer: coarse) {
+  .ui95-taskbar {
+    height: calc(22px * var(--touch-scale));
+  }
+}

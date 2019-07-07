@@ -67,8 +67,8 @@ class Window extends Component {
     e.stopPropagation();
     e.preventDefault();
     if (this.state.isMaximized) return;
+    this.setState({ moving: true });
     let coordsPrev;
-    this.moving = true;
     const onMove = e => {
       const { clientX, clientY } = e.touches ? e.touches[0] : e;
       if (!coordsPrev) {
@@ -85,13 +85,13 @@ class Window extends Component {
       e.preventDefault();
     };
     const onDone = () => {
+      this.setState({ moving: false });
       document.body.removeEventListener("mousemove", onMove);
       document.body.removeEventListener("mouseup", onDone);
       document.body.removeEventListener("touchmove", onMove, {
         passive: false
       });
       document.body.removeEventListener("touchend", onDone, { passive: false });
-      this.moving = false;
     };
     document.body.addEventListener("mousemove", onMove);
     document.body.addEventListener("mouseup", onDone);
@@ -107,6 +107,7 @@ class Window extends Component {
 
     if (isMaximized) return;
     if (isResizeable === false) return;
+    this.setState({ moving: true });
 
     let applyWidth = ["corner", "left", "right"].includes(direction);
     let applyHeight = ["corner", "top", "bottom"].includes(direction);
@@ -114,7 +115,6 @@ class Window extends Component {
     let heightOperator = direction === "top" ? -1 : +1;
 
     let coordsPrev;
-    this.moving = true;
     const onMove = e => {
       const { clientX, clientY } = e.touches ? e.touches[0] : e;
       if (!coordsPrev) {
@@ -140,13 +140,13 @@ class Window extends Component {
       e.preventDefault();
     };
     const onDone = () => {
+      this.setState({ moving: false });
       document.body.removeEventListener("mousemove", onMove);
       document.body.removeEventListener("mouseup", onDone);
       document.body.removeEventListener("touchmove", onMove, {
         passive: false
       });
       document.body.removeEventListener("touchend", onDone, { passive: false });
-      this.moving = false;
     };
     document.body.addEventListener("mousemove", onMove);
     document.body.addEventListener("mouseup", onDone);
@@ -185,7 +185,9 @@ class Window extends Component {
       isMinimized && "ui95-window--minimized",
       isMaximized && "ui95-window--maximized",
       isFocused && "ui95-window--focused",
-      (" " + props.classNames || "").split(" ").join(" ui95-window--")
+      (" " + (props.classNames || props.className || ""))
+        .split(" ")
+        .join(" ui95-window--")
     );
 
     return (

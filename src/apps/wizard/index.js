@@ -24,12 +24,6 @@ class Wizard extends Component {
       ]
     };
   }
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState(() => ({
-      zIndex: nextProps.zIndex,
-      isMinimized: nextProps.isMinimized
-    }));
-  }
   prepareAction(action, selected) {
     this.setState({ action, selected });
   }
@@ -46,7 +40,7 @@ class Wizard extends Component {
     const action = this.state.action;
     console.log("perform action", action);
 
-    if (!action) return this.props.onClose();
+    if (!action) return this.props.wmProps.onClose();
 
     if (action.mode === "update") {
       return this.setState({
@@ -78,7 +72,7 @@ class Wizard extends Component {
         title={title}
         classNames="wizard pad"
         width={width || 450}
-        height={height || 380}
+        height="auto"
         minHeight={height || 380}
         {...wmProps}
       >

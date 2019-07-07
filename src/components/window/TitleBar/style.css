@@ -32,3 +32,9 @@
   top: 3px;
   display: flex;
 }
+
+@media (pointer: coarse) {
+  .ui95-window-titlebar {
+    line-height: calc(18px * 1.7);
+  }
+}

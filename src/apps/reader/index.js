@@ -16,27 +16,16 @@ function Reader({ content, wmProps }) {
       height={600}
       {...wmProps}
     >
-      <div className="ui95__reader">
-        <Share />
-        <ScrollableContainer
-          style={{
-            position: "absolute",
-            left: "2px",
-            right: "2px",
-            top: "80px",
-            bottom: "2px",
-            padding: "5px"
-          }}
-        >
-          <article className="ui95__reader-wrap">
-            {pages.map((page, i) => (
-              <div key={i} className="ui95__reader-page">
-                <HTML html={page} />
-              </div>
-            ))}
-          </article>
-        </ScrollableContainer>
-      </div>
+      <Share />
+      <ScrollableContainer>
+        <article className="ui95__reader-wrap">
+          {pages.map((page, i) => (
+            <div key={i} className="ui95__reader-page">
+              <HTML html={page} />
+            </div>
+          ))}
+        </article>
+      </ScrollableContainer>
     </Window>
   );
 }

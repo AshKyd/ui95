@@ -8,7 +8,9 @@
   display: flex;
   flex-direction: column;
 }
-.ui95-window--pad .ui95-window__content {
+.ui95-window__content {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   position: relative;
 }

@@ -46,3 +46,12 @@ a.ui95-menuitem:focus {
 .ui95-menuitem.ui95-menuitem--large > .ui95-icon {
   margin-left: -38px;
 }
+
+@media (pointer: coarse) {
+  .ui95-menuitem {
+    line-height: calc(18px * var(--touch-scale));
+  }
+  .ui95-menuitem .ui95-icon {
+    margin-top: 6px;
+  }
+}

@@ -1,6 +1,7 @@
 .ui95-window-error {
   display: flex;
   margin-top: 8px;
+  padding-bottom: 8px;
 }
 .ui95-window-error__icon {
   width: 55px;
@@ -18,4 +19,8 @@
   width: 75px;
   height: 24px;
   margin-bottom: 6px;
+}
+
+.ui95-window--error .ui95-window__content {
+  padding-bottom: 8px;
 }
