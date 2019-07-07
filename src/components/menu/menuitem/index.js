@@ -1,6 +1,7 @@
 import { h, render, Component } from "preact";
 import Icon from "../../icon";
 import Divider from "../../divider";
+import Text from "../../text";
 import SubMenuItem from "../submenuitem";
 import "./style.css";
 
@@ -16,17 +17,12 @@ export default function({
   const baseClassName = `ui95-menuitem ${
     className ? `ui95-menuitem--${className}` : ""
   }`;
-  if (item === "divider")
-    return (
-      <div className={``}>
-        <Divider classNames="horizontal" />
-      </div>
-    );
+  if (item === "divider") return <Divider classNames="horizontal" />;
 
   if (item.disabled) {
     return (
       <span className={`${baseClassName} ui95-menuitem--disabled`}>
-        {item.text}
+        <Text>{item.text}</Text>
       </span>
     );
   }
@@ -61,7 +57,7 @@ export default function({
       href={item.link || "#"}
     >
       {item.icon && <Icon name={item.icon} size={iconSize} />}
-      {item.text}
+      <Text>{item.text}</Text>
     </a>
   );
 }

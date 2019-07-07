@@ -5,10 +5,10 @@ import Bezel from "../../bezel/index.js";
 import Text from "../../text/index.js";
 let radioId = Math.round(Math.random() * 1e6);
 class Radio extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      id: radioId++
+      id: props.id || radioId++
     };
   }
   id() {
@@ -24,7 +24,7 @@ class Radio extends Component {
                 name={this.id()}
                 id={`${this.id()}__${i}`}
                 type="radio"
-                value=""
+                value={value}
                 checked={selected === i}
                 onChange={e => onChange(value, i)}
               />

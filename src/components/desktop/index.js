@@ -20,7 +20,6 @@ class Desktop {
     this.el.style.height = window.innerHeight + "px";
     this.el.style.width = window.innerWidth + "px";
   }
-
   render({ children }) {
     return (
       <div className="ui95-desktop" ref={el => (this.el = el)}>

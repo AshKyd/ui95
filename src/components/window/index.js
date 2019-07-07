@@ -26,6 +26,7 @@ function conformDimsToScreen({
     minHeight,
     Math.min(height || 600, window.innerHeight - 50)
   );
+
   return {
     width: width === "auto" ? "auto" : newWidth,
     height: height === "auto" ? "auto" : newHeight,
@@ -40,6 +41,14 @@ class Window extends Component {
     Object.assign(this, conformDimsToScreen(props));
     this.x = 0;
     this.y = 0;
+
+    if (props.center) {
+      console.log(this.x, this.y);
+      this.x =
+        window.innerWidth / 2 - (this.width === "auto" ? 0 : this.width) / 2;
+      this.y =
+        window.innerHeight / 2 - (this.height === "auto" ? 0 : this.height) / 2;
+    }
   }
   componentDidMount() {
     this.onFocus = e => this.props.onFocus();

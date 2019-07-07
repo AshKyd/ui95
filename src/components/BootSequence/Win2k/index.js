@@ -1,7 +1,7 @@
 import { h, render } from "preact";
 import "./style.css";
 
-function BootSequence({ branding = "", copyright = "", progress = "28" }) {
+function BootSequenceWin2k({ branding = "", copyright = "", progress = "28" }) {
   return (
     <div class="ui95-boot-sequence">
       <h1 class="ui95-boot-sequence__branding">{branding}</h1>
@@ -21,4 +21,4 @@ function BootSequence({ branding = "", copyright = "", progress = "28" }) {
   );
 }
 
-export default BootSequence;
+export default BootSequenceWin2k;

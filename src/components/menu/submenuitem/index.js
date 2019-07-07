@@ -1,6 +1,7 @@
 import { h, render, Component } from "preact";
 import Icon from "../../icon";
 import Menu from "../";
+import Text from "../../text";
 import "./style.css";
 
 export default class SubMenuItem extends Component {
@@ -34,7 +35,7 @@ export default class SubMenuItem extends Component {
         href="#"
       >
         {item.icon && <Icon name={item.icon} size={iconSize} />}
-        {item.text || "Untitled"}
+        <Text>{item.text || "Untitled"}</Text>
         <span>
           <Icon size="custom" name="chevron-black-right" />
           <Icon size="custom" name="chevron-white-right" />

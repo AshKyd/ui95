@@ -1,4 +1,5 @@
 .ui95-boot-sequence {
+  font-family: sans-serif;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -19,6 +20,7 @@
     var(--grayLight) calc(100% - 65px),
     var(--grayLight)
   );
+  z-index: 1000;
 }
 @media (min-width: 800px) {
   .ui95-boot-sequence {

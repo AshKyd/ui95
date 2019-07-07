@@ -1,10 +1,10 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import Explorer from ".";
-import WindowArea from "../../components/windowarea/index.js";
-import Taskbar from "../../components/taskbar/index.js";
-import Button from "../../components/button/index.js";
-import { Filesystem, File } from "../../lib/filesystem/index.js";
+import WindowArea from "../../components/desktop/windowarea";
+import Taskbar from "../../components/taskbar";
+import Button from "../../components/button";
+import { Filesystem, File } from "../../lib/filesystem";
 
 const fs = new Filesystem();
 

@@ -6,9 +6,10 @@ function Divider(props) {
   return h(
     "div",
     {
-      className: [className, ...(props.classNames || "").split(" ")].join(
-        ` ${className}--`
-      ),
+      className: [
+        className,
+        ...(props.classNames || props.className || "").split(" ")
+      ].join(` ${className}--`),
       style: props.style
     },
     props.children

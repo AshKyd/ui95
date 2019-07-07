@@ -1,0 +1,35 @@
+.ui95-boot-sequence-blinken-prompt {
+  padding: 10px;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  background: black;
+  color: black;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+}
+.ui95-boot-sequence-blinken-prompt::after {
+  color: lightgray;
+  content: "▋";
+  animation: infinite 1s ui95-boot-sequence-blinken-prompt;
+}
+
+@keyframes ui95-boot-sequence-blinken-prompt {
+  from {
+    opacity: 0;
+  }
+  35% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

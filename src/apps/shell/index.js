@@ -1,6 +1,6 @@
 import Desktop from "../../components/desktop";
 import Window from "../../components/window";
-import WindowArea from "../../components/windowarea";
+import WindowArea from "../../components/desktop/windowarea";
 import Taskbar from "../../components/taskbar";
 import FileIcons from "../../components/desktop/fileicons";
 import Toolbar from "../../components/toolbar";
@@ -196,7 +196,7 @@ class Shell extends Component {
     } = this.state;
     return (
       <Desktop fullscreen={fullscreen}>
-        <WindowArea>
+        <WindowArea shell={this}>
           <FileIcons
             direction="column"
             mode="desktop"

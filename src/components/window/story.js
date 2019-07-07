@@ -1,9 +1,9 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import Window from ".";
-import WindowArea from "../windowarea/index.js";
-import Taskbar from "../taskbar/index.js";
-import Button from "../button/index.js";
+import WindowArea from "../desktop/windowarea";
+import Taskbar from "../taskbar";
+import Button from "../button";
 
 storiesOf("Components/Window", module)
   .add("Without icon", () => <Window>Hello window</Window>)
