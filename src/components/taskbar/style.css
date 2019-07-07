@@ -9,6 +9,7 @@
     white 2px,
     var(--gray) 2px
   );
+  color: var(--black);
   position: absolute;
   left: 0;
   right: 0;

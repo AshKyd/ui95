@@ -198,7 +198,6 @@ class Shell extends Component {
         onClose: () => this.closeWindow(key),
         onMinimize: () => this.minimizeWindow(key),
         onFocus: () => this.raiseWindow(key),
-        onLaunchApp: (...args) => this.openWindow(...args),
         shell: this,
         ...windowProps
       }

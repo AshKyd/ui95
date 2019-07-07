@@ -29,8 +29,9 @@ class Explorer extends Component {
     }));
   }
   openItem(item) {
+    const { wmProps } = this.props;
     if (item.appProps) {
-      return this.props.onLaunchApp(item.appProps.app, item.appProps);
+      return wmProps.shell.openWindow(item.appProps.app, item.appProps);
     }
     if (item.permalink) window.location = item.permalink;
     const path = [item.path, item.filename].join("/");
@@ -102,7 +103,9 @@ class Explorer extends Component {
             <Icon size={32} name={file ? file.icon : folder.icon} />
             <Text style={{ fontWeight: "bold" }}>
               <h2 class="ui95-explorer-columns__folder-name">
-                {file ? file.label || file.filename : folder.filename}
+                {file
+                  ? file.label || file.filename
+                  : folder.filename || folder.label}
               </h2>
             </Text>
             <Divider

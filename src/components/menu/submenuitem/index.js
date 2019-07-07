@@ -34,7 +34,7 @@ export default class SubMenuItem extends Component {
         href="#"
       >
         {item.icon && <Icon name={item.icon} size={iconSize} />}
-        {item.text}
+        {item.text || "Untitled"}
         <span>
           <Icon size="custom" name="chevron-black-right" />
           <Icon size="custom" name="chevron-white-right" />

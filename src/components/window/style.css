@@ -24,6 +24,10 @@
   bottom: calc(-2 * var(--px));
   transform: none !important;
 }
+.ui95-window--minimized {
+  opacity: 0;
+  pointer-events: none;
+}
 .ui95-window--focused {
   z-index: 50;
 }

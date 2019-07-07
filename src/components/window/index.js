@@ -180,11 +180,9 @@ class Window extends Component {
       onMinimize
     } = props;
 
-    // We're minimized, we don't need to render.
-    if (isMinimized) return null;
-
     const windowClasses = classNames(
       "ui95-window",
+      isMinimized && "ui95-window--minimized",
       isMaximized && "ui95-window--maximized",
       isFocused && "ui95-window--focused",
       (" " + props.classNames || "").split(" ").join(" ui95-window--")
@@ -195,6 +193,7 @@ class Window extends Component {
         class={windowClasses}
         style={{ width, height, zIndex }}
         ref={el => (this.el = el)}
+        ariaHidden={!!isMinimized}
       >
         <div>
           <TitleBar

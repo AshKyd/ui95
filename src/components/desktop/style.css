@@ -2,7 +2,9 @@ body {
   font-face: sans-serif;
 }
 .ui95-desktop {
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 0;
   background: var(--color-primary);
   color: var(--color-primary-alt);
   padding: 0;

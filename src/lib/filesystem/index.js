@@ -8,14 +8,15 @@ const types = {
 };
 
 class File {
-  constructor(path, extras) {
-    const split = path.split("/");
+  constructor(path, extras = {}) {
+    const split = path && path.split("/");
     this.filename = split.pop();
     this.path = "/" + split.join("/");
     this.extension = this.filename.includes(".")
       ? this.filename.split(".").pop()
       : null;
     this.description = types[this.extension];
+    this.label = extras.label;
     this.setIcon();
     Object.assign(this, extras);
   }
@@ -40,10 +41,6 @@ class Filesystem {
   constructor({ files } = {}) {
     this.files = files || [];
   }
-  setupMocks() {
-    import("./mocks.js").then(mocks => {});
-  }
-  loadMocks() {}
   getObjectType(filename) {
     if (filename.includes(":")) return "drive";
     if (!filename.includes(".")) return "folder";
@@ -53,13 +50,13 @@ class Filesystem {
     return ("/" + path.replace(/^\/*/, "").replace(/\/$/, "")).toLowerCase();
   }
   getFolder(requestedPath) {
-    const path = this.conformPath(requestedPath);
-    if (path === "")
-      return new File("", {
-        filename: "My Computer",
+    if (requestedPath === "/")
+      return new File("/", {
+        label: "My Computer",
         description: "Select an item to view its description.",
-        path
+        icon: "mycomputer"
       });
+    const path = this.conformPath(requestedPath);
     const folder = this.files.find(
       file =>
         file.path.toLowerCase() + "/" + file.filename.toLowerCase() === path
@@ -71,7 +68,6 @@ class Filesystem {
   }
   getFiles(requestedPath) {
     const path = this.conformPath(requestedPath);
-
     const files = this.files.filter(file => file.path.toLowerCase() === path);
     return files;
   }
