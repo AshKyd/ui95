@@ -1,0 +1,110 @@
+.ui95-boot-sequence {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  background: white;
+  color: black;
+  width: 100%;
+  height: 100vh;
+  font-size: 12px;
+  background: linear-gradient(
+    to bottom,
+    white,
+    white calc(100% - 65px),
+    var(--grayLight) calc(100% - 65px),
+    var(--grayLight)
+  );
+}
+@media (min-width: 800px) {
+  .ui95-boot-sequence {
+    width: 50%;
+    height: 50vh;
+    transform-origin: left top;
+    transform: scale(2);
+  }
+}
+.ui95-boot-sequence * {
+  margin: 0;
+  padding: 0;
+}
+.ui95-boot-sequence__branding {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vw;
+  font-weight: normal;
+}
+.ui95-boot-sequence__footer {
+  display: flex;
+  width: 260px;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.ui95-boot-sequence__label {
+  margin-left: 10px;
+}
+.ui95-boot-sequence__copyright {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.ui95-boot-sequence__loader {
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  width: 160px;
+  height: 10px;
+  margin-left: 7px;
+}
+
+.ui95-boot-sequence__loader::-webkit-progress-bar,
+.ui95-boot-sequence__loader::-webkit-progress-bar {
+  background: transparent;
+  border: 1px solid black;
+  border-color: var(--grayDark) var(--white) var(--white) var(--grayDark);
+}
+.ui95-boot-sequence__loader::-webkit-progress-value,
+.ui95-boot-sequence__loader::-webkit-progress-value {
+  background: repeating-linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-primary) 8px,
+    transparent 8px,
+    transparent 9px
+  );
+}
+
+.ui95-boot-sequence::after {
+  position: absolute;
+  content: "";
+  bottom: 65px;
+  height: 10px;
+  width: 200%;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--highlightBackground),
+    var(--highlightBackground2) 25%,
+    var(--highlightBackground) 50%,
+    var(--highlightBackground2) 75%,
+    var(--highlightBackground)
+  );
+  animation: infinite linear 4s ui95-boot-sequence;
+}
+
+@keyframes ui95-boot-sequence {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
