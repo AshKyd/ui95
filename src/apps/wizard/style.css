@@ -5,6 +5,9 @@
 .ui95-window--wizard__content {
   margin: 10px;
 }
+.ui95-window--wizard__content p {
+  margin-top: 0;
+}
 
 .ui95-window--wizard__buttons {
   display: flex;

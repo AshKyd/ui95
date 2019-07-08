@@ -9,7 +9,7 @@ storiesOf("App/Reader", module).add("With content", () => (
     content={`
 <header class="entry-header">
     <h1 class="entry-title">
-        <a href="2019-02-19/vue-react-lifecycle-method-comparison/" rel="permalink">Vue &amp; React lifecycle method comparison</a>
+        <a href="#" rel="permalink">Vue &amp; React lifecycle method comparison</a>
     </h1>
     
     <div class="entry-meta">
@@ -23,6 +23,8 @@ storiesOf("App/Reader", module).add("With content", () => (
 </header>      
       
 <div class="article-entry entry-content" itemprop="articleBody">
+
+<p><a href="/foo">Example internal link</a></p>
 <p>This was going to be a longer post but I thought this was interesting enough to post now.</p>
 <p><a href="https://reactjs.org/docs/react-component.html#the-component-lifecycle">React</a> and <a href="https://vuejs.org/v2/guide/instance.html#Lifecycle-Diagram">Vue</a> both have fairly well defined lifecycle events which we can use to successfully navigate the mysteries of the virtual DOM.</p>
 <p>So without further ado, let’s get down to the React vs Vue lifecycle events smackdown!</p>

@@ -4,7 +4,7 @@ function Image(props) {
   return (
     <img
       src={props.src}
-      className={props.className}
+      class={props.class}
       style="image-rendering: optimizeSpeed;"
     />
   );

@@ -1,0 +1,90 @@
+.ui95-network-icon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  img {
+    position: relative;
+    z-index: 2;
+    width: 16px;
+    height: 16px;
+  }
+
+  &__in,
+  &__out {
+    width: 5px;
+    height: 4px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  &__in {
+    top: 2px;
+    left: 2px;
+    background: blue;
+  }
+  &__out {
+    top: 8px;
+    left: 8px;
+    background: #347e80;
+  }
+
+  body.loading &__in {
+    animation: infinite 1.5s ui95-network-icon-in;
+  }
+  body.loading &__out {
+    animation: infinite 2.5s ui95-network-icon-out;
+  }
+}
+
+.flashy(@name; @color) {
+  @keyframes @name {
+    from {
+      background: black;
+    }
+    25% {
+      background: black;
+    }
+    25% {
+      background: @color;
+    }
+    38% {
+      background: @color;
+    }
+    38% {
+      background: black;
+    }
+
+    50% {
+      background: black;
+    }
+    50% {
+      background: @color;
+    }
+    70% {
+      background: @color;
+    }
+    70% {
+      background: black;
+    }
+
+    80% {
+      background: black;
+    }
+    80% {
+      background: @color;
+    }
+    90% {
+      background: @color;
+    }
+    100% {
+      background: black;
+    }
+
+    to {
+      background: black;
+    }
+  }
+}
+
+.flashy(ui95-network-icon-out, blue);
+.flashy(ui95-network-icon-in, #347e80);

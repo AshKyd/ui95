@@ -38,7 +38,6 @@ class Wizard extends Component {
   }
   performAction() {
     const action = this.state.action;
-    console.log("perform action", action);
 
     if (!action) return this.props.wmProps.onClose();
 

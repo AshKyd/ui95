@@ -1,3 +1,4 @@
+import defaultsDeep from "lodash/defaultsDeep";
 import Desktop from "../../components/desktop";
 import Window from "../../components/window";
 import WindowArea from "../../components/desktop/windowarea";
@@ -103,24 +104,19 @@ class Shell extends Component {
     const windows = this.state.windows;
     let raisedWindow = this.state.raisedWindow;
 
-    // Minimize the given window.
-    const newState = windows.map(window => {
-      const { windowProps } = window;
-      if (windowProps.key === windowId) {
-        windowProps.isMinimized = true;
-      }
-      return window;
-    });
-
     // Raise the next highest window
     if (raisedWindow && raisedWindow.key === windowId) {
       raisedWindow = [...windows]
         .map(({ windowProps }) => windowProps)
         .filter(({ isMinimized }) => !isMinimized)
+        .filter(({ key }) => key !== windowId)
         .sort((a, b) => a.zIndex - b.zIndex)
         .pop();
     }
-    this.setState({ windows: newState, raisedWindow });
+    this.setState(
+      () => ({ raisedWindow }),
+      () => this.setAppState(windowId, { windowProps: { isMinimized: true } })
+    );
     this.syncWindowHistory();
   }
   syncWindowHistory() {
@@ -141,6 +137,7 @@ class Shell extends Component {
    * @param  {Object} [options={}] Send updateHistory=false to suppress history for this window
    */
   openWindow(appName, appProps = {}, children, options = {}) {
+    console.log("opening", appName);
     const { updateHistory = true } = options;
     const { apps } = this.props;
     const windowProps = {
@@ -154,16 +151,17 @@ class Shell extends Component {
       Object.assign(windowProps, app.prototype.getInitialState(appProps));
     }
 
-    // Raise existing window
-    const existingWindow = this.getWindowByTitle(windowProps.title);
-    if (existingWindow) {
-      existingWindow.windowProps.isMinimized = false;
-      return this.setState;
-    }
+    // // Raise existing window
+    // const existingWindow = this.getWindowByTitle(windowProps.title);
+    // if (existingWindow) {
+    //   console.log("existing window exists", existingWindow);
+    //   return this.raiseWindow(existingWindow.windowProps.key);
+    // }
 
     const windowId = this.windowId++;
     windowProps.key = windowId;
     const newWindow = { appName, appProps, children, windowProps };
+
     this.state.windows = [...this.state.windows, newWindow];
 
     this.raiseWindow(windowId);
@@ -171,6 +169,14 @@ class Shell extends Component {
   }
   openContextMenu(contextMenu) {
     this.setState({ contextMenu });
+  }
+  setAppState(windowId, newProps) {
+    const { windows } = this.state;
+    const newWindows = windows.map(window => {
+      if (window.windowProps.key !== windowId) return window;
+      return defaultsDeep({}, newProps, window);
+    });
+    this.setState({ windows: newWindows });
   }
   windowProps(windowProps) {
     const key = windowProps.key;
@@ -180,6 +186,7 @@ class Shell extends Component {
         onClose: () => this.closeWindow(key),
         onMinimize: () => this.minimizeWindow(key),
         onFocus: () => this.raiseWindow(key),
+        setAppState: newState => this.setAppState(key, newState),
         shell: this,
         ...windowProps
       }
@@ -205,11 +212,8 @@ class Shell extends Component {
             onClick={item => this.openWindow(item.appProps.app, item.appProps)}
           />
           {windows.map(({ appName, appProps, appChildren, windowProps }) => {
-            return h(
-              apps[appName],
-              { ...appProps, ...this.windowProps(windowProps) },
-              appChildren
-            );
+            const App = apps[appName];
+            return <App {...appProps} {...this.windowProps(windowProps)} />;
           })}
         </WindowArea>
         <Taskbar

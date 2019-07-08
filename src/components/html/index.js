@@ -1,24 +1,16 @@
 import { h, render, Component } from "preact";
 
 class HTML extends Component {
-  constructor({ html }) {
-    super();
-    this.state = { html };
-  }
-  shouldComponentUpdate() {
-    if (this.dirty) {
-      this.dirty = false;
-      return true;
-    }
-    return false;
-  }
-  componentWillReceiveProps(html) {
-    if (html === this.state.html) return;
-    this.dirty = true;
-    this.setState({ html });
+  shouldComponentUpdate(previousState) {
+    console.log({
+      previousLength: previousState.html && previousState.html.length,
+      current: this.props.html && this.props.html.length
+    });
+    return previousState.html !== this.props.html;
   }
   render(props) {
     const className = "ui95-html";
+    console.log("html render");
     return h(props.type || "div", {
       className: [className, ...(props.classNames || "").split(" ")].join(
         ` ${className}--`

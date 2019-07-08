@@ -18,6 +18,17 @@ import startMenu from "./data-start";
 import desktopIcons from "./data-desktop-icons";
 const site = { title: "Example ui95 app" };
 
+function Loader(props) {
+  console.log(props);
+  return (
+    <Alert
+      {...props}
+      title="Placeholder"
+      text="This is where you'd make your own component to load this resource from the server & launch the relevant app."
+    />
+  );
+}
+
 const apps = {
   ErrorHandler,
   Webview,
@@ -28,7 +39,8 @@ const apps = {
   Reader,
   TabDialog,
   Talks,
-  Webamp
+  Webamp,
+  Loader
 };
 
 class Wrapper extends Component {

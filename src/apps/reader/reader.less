@@ -207,4 +207,18 @@
       font-size: 0.8em;
     }
   }
+
+  nav.article-nav {
+    display: flex;
+    text-align: right;
+    padding: 1em 0;
+    border-top: 1px solid black;
+    & > * {
+      flex: 1;
+      border: none;
+    }
+    & > :first-child {
+      text-align: left;
+    }
+  }
 }

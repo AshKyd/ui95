@@ -8,13 +8,13 @@ class Icon extends Component {
   getUrl(size, name) {
     if (builtIn[size] && builtIn[size][name])
       return "data:image/gif;base64," + builtIn[size][name];
-    return `/icons/${size}/${name}.gif`;
+    return `${window.iconsDir || "/icons/"}/${size}/${name}.gif`;
   }
   getSize(size) {
     if (size === "custom") return undefined;
     return size;
   }
-  render({ name = "default", size = 16, classNames }) {
+  render({ name = "default", size = 16, classNames, url }) {
     const className = [
       "ui95-icon",
       name,
@@ -26,7 +26,7 @@ class Icon extends Component {
       ...this.props,
       width: this.getSize(size),
       height: this.getSize(size),
-      src: this.getUrl(size, name)
+      src: url || this.getUrl(size, name)
     });
   }
 }

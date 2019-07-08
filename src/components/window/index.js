@@ -43,7 +43,6 @@ class Window extends Component {
     this.y = 0;
 
     if (props.center) {
-      console.log(this.x, this.y);
       this.x =
         window.innerWidth / 2 - (this.width === "auto" ? 0 : this.width) / 2;
       this.y =
@@ -54,15 +53,6 @@ class Window extends Component {
     this.onFocus = e => this.props.onFocus();
     this.el.addEventListener("mousedown", this.onFocus);
     this.el.addEventListener("touchStart", this.onFocus);
-    this.updateWindowDims();
-  }
-  componentDidUpdate(previousProps) {
-    if (
-      previousProps.width !== this.props.width ||
-      previousProps.height !== this.props.height
-    ) {
-      Object.assign(this, conformDimsToScreen(this.props));
-    }
     this.updateWindowDims();
   }
   componentWillReceiveProps({ width, height }) {

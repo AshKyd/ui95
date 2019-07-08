@@ -5,5 +5,11 @@
 }
 
 .ui95-tray__time {
-  margin: 0 5px 0 10px;
+  margin: 0 5px 0 3px;
+}
+
+.ui95-tray__icon {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
 }
