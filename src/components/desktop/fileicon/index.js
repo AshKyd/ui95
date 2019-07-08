@@ -10,6 +10,7 @@ class FileIcon extends Component {
       classNames = "",
       filename,
       icon,
+      appProps,
       key,
       label,
       onClick,
@@ -34,7 +35,7 @@ class FileIcon extends Component {
           e.stopPropagation();
           onClick(props);
         }}
-        href="#"
+        href={(appProps && appProps.permalink) || "#"}
         key={key}
       >
         <div class="ui95-file-icon__icon">

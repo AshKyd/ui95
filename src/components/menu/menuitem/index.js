@@ -42,6 +42,7 @@ export default function({
     );
 
   function click(e) {
+    if (item.link) return window.open(item.link);
     if (item.onClick) return item.onClick();
     if (!item.appProps && item.link) return;
     e.preventDefault();
@@ -55,6 +56,7 @@ export default function({
       onTouchEnd={click}
       onKeyPress={click}
       href={item.link || "#"}
+      target="_blank"
     >
       {item.icon && <Icon name={item.icon} size={iconSize} />}
       <Text>{item.text}</Text>

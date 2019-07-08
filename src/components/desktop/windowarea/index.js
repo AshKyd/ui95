@@ -3,6 +3,7 @@ import "./style.css";
 
 function WindowArea(props) {
   function contextMenu(e) {
+    if (!e.target.className.includes("ui95-windowarea")) return;
     e.preventDefault();
     props.shell.openContextMenu({
       x: e.clientX,
