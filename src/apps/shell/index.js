@@ -137,7 +137,6 @@ class Shell extends Component {
    * @param  {Object} [options={}] Send updateHistory=false to suppress history for this window
    */
   openWindow(appName, appProps = {}, children, options = {}) {
-    console.log("opening", appName);
     const { updateHistory = true } = options;
     const { apps } = this.props;
     const windowProps = {
@@ -176,7 +175,10 @@ class Shell extends Component {
       if (window.windowProps.key !== windowId) return window;
       return defaultsDeep({}, newProps, window);
     });
-    this.setState({ windows: newWindows });
+    this.setState({ windows: newWindows }, () => {
+      if (newProps.appProps && newProps.appProps.permalink)
+        this.syncWindowHistory();
+    });
   }
   windowProps(windowProps) {
     const key = windowProps.key;

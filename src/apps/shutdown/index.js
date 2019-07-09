@@ -43,6 +43,7 @@ class Shutdown extends Component {
     if (stage === "dialog")
       return (
         <ShutdownDialog
+          wmProps={wmProps}
           onChange={stage => {
             if (!stage) wmProps.onClose();
             this.setState({ stage });
