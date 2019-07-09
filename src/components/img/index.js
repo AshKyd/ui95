@@ -5,7 +5,7 @@ function Image(props) {
     <img
       src={props.src}
       class={props.class}
-      style="image-rendering: optimizeSpeed;"
+      style="image-rendering: crisp-edges; image-rendering:pixelated;"
     />
   );
 }

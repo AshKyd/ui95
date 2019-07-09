@@ -7,9 +7,7 @@ import StatusBar from "./statusbar/index.js";
 import Player from "./player/index.js";
 
 storiesOf("App/Media Player", module)
-  .add("Media player", () => (
-    <MediaPlayer playlists={playlists} onFocus={() => {}} onClose={() => {}} />
-  ))
+  .add("Media player", () => <MediaPlayer playlists={playlists} />)
   .add("Guide", () => <Guide playlist={playlists[0]} playItems={console.log} />)
   .add("Status bar", () => (
     <StatusBar item={playlists[0].videos[0]} currentTime={71} />

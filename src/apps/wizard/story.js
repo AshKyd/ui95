@@ -22,8 +22,8 @@ storiesOf("App/Wizard", module).add("Wizard style", () => (
     title="Wizard post"
     image="http://placekitten.com/100/300"
     wizardOptions={wizardOptions}
-    onFocus={() => {}}
-    onClose={() => {}}
+    
+    
     content={faker.lorem.paragraph() + "<br><br>"}
   >
     Test

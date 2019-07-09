@@ -16,7 +16,7 @@ class Webamp extends Component {
       this.webamp.renderWhenReady(this.el);
     });
   }
-  render({ url, onClose, onFocus, zIndex, wmProps }) {
+  render({ wmProps }) {
     return (
       <div
         id="webamp-container"

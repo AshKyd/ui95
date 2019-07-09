@@ -84,7 +84,7 @@ npm run start
 
 Apps are a weird case in React because they require bidirectional data flow. This could be handled a multitude of ways but I wanted to keep them componentised and standalone rather than bringing onboard something heavy like Redux.
 
-Apps are responsible for maintaining their position when dragged or resized, as well as communicating events such as minimize, close and focus back to the shell. Apps also receive focus & minimized state from the shell.
+Apps are responsible for maintaining their position when dragged or resized, as well as communicating events such as minimize, close and focus back to the shell. Apps also receive a wmProps object containing window state and shell APIs which must be passed to the window itself, but can also be accessed directly.
 
 The simplest implementation of an app can be found in the functional webview component:
 
@@ -92,17 +92,14 @@ The simplest implementation of an app can be found in the functional webview com
 import { h, render, Component } from "preact";
 import Window from "../../components/window/index.js";
 
-function Webview({ title, src, onClose, onFocus, isMinimized, zIndex }) {
+function Webview({ title, src, wmProps }) {
   return (
     <Window
       title={title}
-      zIndex={zIndex}
       classNames="webview"
       width={800}
       height={600}
-      isMinimized={isMinimized}
-      onClose={onClose}
-      onFocus={onFocus}
+      wmProps={wmProps}
     >
       <iframe class="ui95-webview" src={src} />
     </Window>
