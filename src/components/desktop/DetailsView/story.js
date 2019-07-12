@@ -2,6 +2,7 @@ import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import DetailsView from ".";
 import FileThumbnail from "../filethumbnail";
+
 let i = 0;
 storiesOf("Components/Desktop/DetailsView", module)
   .add("icons", () => {
@@ -9,7 +10,7 @@ storiesOf("Components/Desktop/DetailsView", module)
       label => ({
         label,
         size: i++ + "mb",
-        date: Date.now()
+        date: new Date(Date.now() - Math.random() * 1e10)
       })
     );
     return (
@@ -26,7 +27,7 @@ storiesOf("Components/Desktop/DetailsView", module)
         label,
         selected: true,
         size: i++ + "mb",
-        date: Date.now()
+        date: new Date(Date.now() - Math.random() * 1e10)
       })
     );
     return (
@@ -39,7 +40,11 @@ storiesOf("Components/Desktop/DetailsView", module)
   })
   .add("Custom icons", () => {
     const icons = ["(C:)", "My Documents", "Program Files", "Windows"].map(
-      label => ({ label, size: i++ + "mb", date: Date.now() })
+      label => ({
+        label,
+        size: i++ + "mb",
+        date: new Date(Date.now() - Math.random() * 1e10)
+      })
     );
     return (
       <DetailsView

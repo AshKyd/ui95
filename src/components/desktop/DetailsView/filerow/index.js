@@ -2,7 +2,19 @@ import { h, render, Component } from "preact";
 import { getClasses } from "../../../../util";
 import Icon from "../../../icon/index.js";
 import Text from "../../../text/index.js";
+import { formatRelative } from "date-fns";
 import "./style.less";
+
+function formatColumn(value) {
+  if (!value) return "";
+  if (value instanceof Date) {
+    // Chop up the ECMA-262 date to look a little nicer
+    return String(value)
+      .replace(/:\d\d\s.*/, "")
+      .slice(4);
+  }
+  return value;
+}
 
 class FileRow extends Component {
   render(props) {
@@ -55,7 +67,7 @@ class FileRow extends Component {
         </td>
         {columns.map(column => (
           <Text type="td" classNames="label" key={column}>
-            {props[column]}
+            {formatColumn(props[column])}
           </Text>
         ))}
       </tr>
