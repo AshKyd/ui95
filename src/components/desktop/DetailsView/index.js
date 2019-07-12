@@ -3,6 +3,7 @@ import FileRow from "./filerow";
 import "./style.less";
 import Button from "../../button";
 import classNames from "classnames";
+import memoize from "lodash/memoize";
 
 function initCap(str) {
   const chars = str.split("");
@@ -10,24 +11,37 @@ function initCap(str) {
   return chars.join("");
 }
 
-function sort(items = {}, sortKey, sortDirection) {
-  return Object.entries(items).sort(([keya, a], [keyb, b]) => {
-    const propA = a[sortKey];
-    const propB = b[sortKey];
+function parseSortType(value) {
+  const num = parseInt(value, 10);
+  if (!isNaN(num)) return num;
 
-    console.log({ propA, propB });
+  return value;
+}
+
+function sort(items = [], sortKey, sortDirection) {
+  return Object.entries(items).sort(([keya, a], [keyb, b]) => {
+    let propA = parseSortType(a[sortKey]);
+    let propB = parseSortType(b[sortKey]);
+
     if (propA === propB) return 0;
     const direction = sortDirection ? 1 : -1;
     return propA > propB ? direction : 0 - direction;
   });
 }
+const sortMemoized = memoize(sort, (items, sortKey, sortDirection) => {
+  if (!items) return "null";
+  return [items[0].path, sortKey, sortDirection].join();
+});
 
 class FileIcons extends Component {
-  constructor({ items }) {
+  constructor({
+    items,
+    defaultSort: [sortKey = "label", sortDirection = false]
+  }) {
     super();
     this.state = {
-      sortKey: "label",
-      sortDirection: true
+      sortKey,
+      sortDirection
     };
   }
   selectItem(item) {
@@ -36,7 +50,7 @@ class FileIcons extends Component {
   }
   render({
     items,
-    columns,
+    columns = [],
     onClick,
     solidColor,
     direction = "row",
@@ -52,7 +66,7 @@ class FileIcons extends Component {
     };
     return (
       <div class={`ui95-file-icons-details`}>
-        <table>
+        <table className="ui95-file-icons-details__table">
           <thead>
             <tr>
               <th colspan="2" className="ui95-file-icons-details__head">
@@ -66,7 +80,7 @@ class FileIcons extends Component {
             </tr>
           </thead>
           <tbody>
-            {sort(items, sortKey, sortDirection).map(
+            {sortMemoized(items, sortKey, sortDirection).map(
               ([filename, item], index) => (
                 <FileRow
                   {...item}

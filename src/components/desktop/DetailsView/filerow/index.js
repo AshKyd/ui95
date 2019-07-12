@@ -20,6 +20,7 @@ class FileRow extends Component {
   render(props) {
     const {
       classNames = "",
+      path,
       filename,
       icon,
       key,
@@ -51,7 +52,7 @@ class FileRow extends Component {
         className={classNamesString}
         onMouseEnter={() => onSelect(props)}
         onClick={performClick}
-        key={key}
+        key={path + filename}
       >
         <td className="ui95-file-row__label-icon">
           <Icon size="16" name={icon} />

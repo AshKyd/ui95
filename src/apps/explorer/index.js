@@ -1,13 +1,14 @@
 import { h, render, Component } from "preact";
 import "./style.css";
-import Window from "../../components/window/index.js";
-import Toolbar from "../../components/toolbar/index.js";
-import Divider from "../../components/divider/index.js";
-import ScrollableContainer from "../../components/scrollablecontainer/index.js";
-import Text from "../../components/text/index.js";
-import Icon from "../../components/icon/index.js";
-import FileIcons from "../../components/desktop/fileicons/index.js";
-import menuItems from "./menuItems.js";
+import Window from "../../components/window";
+import Toolbar from "../../components/toolbar";
+import Divider from "../../components/divider";
+import ScrollableContainer from "../../components/scrollablecontainer";
+import Text from "../../components/text";
+import Icon from "../../components/icon";
+import FileIcons from "../../components/desktop/fileicons";
+import DetailsView from "../../components/desktop/DetailsView";
+import menuItems from "./menuItems";
 
 class Explorer extends Component {
   constructor({ title, path, wmProps = {} }) {
@@ -66,6 +67,8 @@ class Explorer extends Component {
     const { file, folder } = this.state;
     const fs = wmProps.fs;
     const files = fs.getFiles(folder.fullPath());
+    const { layout, columns } = folder;
+    const FileComponent = layout === "details" ? DetailsView : FileIcons;
     return (
       <Window
         title={this.state.title}
@@ -114,11 +117,13 @@ class Explorer extends Component {
             </Text>
           </div>
           <div class="ui95-explorer-columns__right">
-            <FileIcons
+            <FileComponent
               items={files}
               onSelect={file => this.setFile(file)}
               onClick={file => this.openItem(file)}
               onUnselect={() => this.setState({ file: null })}
+              columns={folder.columns}
+              defaultSort={folder.defaultSort}
             />
           </div>
         </ScrollableContainer>

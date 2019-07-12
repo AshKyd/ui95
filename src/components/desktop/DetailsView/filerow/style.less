@@ -3,58 +3,47 @@
   cursor: pointer;
   a {
     color: black;
+    display: block;
     text-decoration: none;
     outline: none;
     position: relative;
-    div {
-      position: relative;
-    }
-    &:focus div:after {
-      content: "";
-      position: absolute;
-      display: block;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border: 1px dotted black;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px 0 2px;
+    margin-left: -3px;
+    @media (pointer: coarse) {
+      height: calc(15px * var(--touch-scale));
     }
   }
   & > * {
     padding: 0 4px;
-    height: 19px;
     align-items: middle;
-
-    @media (pointer: coarse) {
-      height: calc(19px * var(--touch-scale));
-    }
   }
 
   &__label-icon {
     padding-right: 0;
+    width: 16px;
     .ui95-icon {
-      margin-bottom: -2px;
+      margin-bottom: -3px;
     }
   }
 
   &--selected,
   &:hover,
   &:focus {
-    & > *,
     a {
       background: var(--color-primary);
       color: var(--color-primary-alt);
+      outline: 1px dotted var(--black);
     }
   }
 
   &--solid-color {
-    & > *,
     a {
       background: var(--color-primary);
       color: var(--color-primary-alt);
+      outline: 1px dotted var(--black);
     }
   }
 }

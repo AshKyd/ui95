@@ -1,10 +1,6 @@
 .ui95-file-icons-details {
   display: flex;
   align-items: flex-start;
-
-  table {
-    border-collapse: collapse;
-  }
   &__head,
   &__decorative {
     position: relative;
@@ -20,8 +16,13 @@
       }
     }
   }
+  &__table {
+    flex: 1;
+    border-collapse: collapse;
+  }
   &__decorative {
     flex: 1;
     pointer-events: none;
+    max-width: 33%;
   }
 }

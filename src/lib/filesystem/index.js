@@ -18,6 +18,7 @@ class File {
     this.description = types[this.extension];
     this.label = extras.label;
     this.setIcon();
+    console.log(extras);
     Object.assign(this, extras);
   }
   setIcon() {
@@ -57,10 +58,15 @@ class Filesystem {
         icon: "mycomputer"
       });
     const path = this.conformPath(requestedPath);
-    const folder = this.files.find(
-      file =>
-        file.path.toLowerCase() + "/" + file.filename.toLowerCase() === path
-    );
+    console.log("finding folder", path);
+    const folder = this.files.find(file => {
+      const thisPath =
+        (file.path === "/" ? "" : file.path.toLowerCase()) +
+        "/" +
+        file.filename.toLowerCase();
+      console.log(thisPath, path);
+      return thisPath === path;
+    });
 
     if (folder) return folder;
 
