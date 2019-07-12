@@ -68,6 +68,20 @@ class Reader extends Component {
           });
         });
     });
+
+    // Make hash links work. This doesn't work, not sure why yet
+    // this.el.querySelectorAll('a[href^="#"]').forEach(link => {
+    //   link.addEventListener("click", e => {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //     const target =
+    //       document.querySelector(e.target.hash) ||
+    //       document.querySelector(`[name="${e.target.hash.slice(1)}"]`);
+    //     console.log({ target });
+    //     if (!target) return;
+    //     this.scrollable.scrollTop = target.offsetTop;
+    //   });
+    // });
   }
   render({ content, wmProps }) {
     // Lazy split pages by <hr>. Potentially buggy. Be careful.
@@ -81,7 +95,7 @@ class Reader extends Component {
         {...wmProps}
       >
         <Share />
-        <ScrollableContainer>
+        <ScrollableContainer ref={el => (this.scrollable = el)}>
           <article className="ui95__reader-wrap" ref={el => (this.el = el)}>
             {pages.map((page, i) => (
               <div key={i} className="ui95__reader-page">
