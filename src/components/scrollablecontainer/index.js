@@ -8,7 +8,7 @@ function ScrollableContainer(props) {
     ` ${className}--`
   );
   return (
-    <div className={classNames} style={props.style}>
+    <div className={classNames} style={props.style} ref={props.ref}>
       <Bezel classNames="in scrollable-container" style={props.bezelStyle} />
       <div class="ui95-scrollable-container__scrollable">{props.children}</div>
     </div>

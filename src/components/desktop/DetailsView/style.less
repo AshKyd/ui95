@@ -1,0 +1,27 @@
+.ui95-file-icons-details {
+  display: flex;
+  align-items: flex-start;
+
+  table {
+    border-collapse: collapse;
+  }
+  &__head,
+  &__decorative {
+    position: relative;
+    padding: 0;
+    .ui95-button {
+      width: 100%;
+      justify-content: flex-start;
+      height: 17px;
+      padding-left: 4px;
+
+      @media (pointer: coarse) {
+        height: calc(17px * var(--touch-scale));
+      }
+    }
+  }
+  &__decorative {
+    flex: 1;
+    pointer-events: none;
+  }
+}

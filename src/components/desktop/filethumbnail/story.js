@@ -1,14 +1,16 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
-import FileIcon from ".";
+import FileThumbnail from ".";
 
 storiesOf("Components/Desktop/FileThumbnail", module)
-  .add("C Drive", () => <FileIcon size="16" icon="default" label=" (C:)" />)
+  .add("C Drive", () => (
+    <FileThumbnail size="16" icon="default" label=" (C:)" />
+  ))
   .add("C Drive selected", () => (
-    <FileIcon size="16" icon="default" selected={true} label=" (C:)" />
+    <FileThumbnail size="16" icon="default" selected={true} label=" (C:)" />
   ))
   .add("Long file name", () => (
-    <FileIcon
+    <FileThumbnail
       size="16"
       icon="default"
       label="Maritime Museum of Denmark + catching a boat to Sweden"
@@ -16,7 +18,7 @@ storiesOf("Components/Desktop/FileThumbnail", module)
   ))
 
   .add("With image", () => (
-    <FileIcon
+    <FileThumbnail
       size="16"
       icon="default"
       image={require("./kitten.jpg")}
@@ -26,7 +28,7 @@ storiesOf("Components/Desktop/FileThumbnail", module)
   ))
 
   .add("With 4X3 image", () => (
-    <FileIcon
+    <FileThumbnail
       size="16"
       icon="default"
       image={require("./kitten-4x3.jpg")}

@@ -4,7 +4,7 @@ import Icon from "../../icon/index.js";
 import Text from "../../text/index.js";
 import "./style.css";
 
-class FileIcon extends Component {
+class FileThumbnail extends Component {
   render(props) {
     const {
       classNames = "",
@@ -54,4 +54,4 @@ class FileIcon extends Component {
   }
 }
 
-export default FileIcon;
+export default FileThumbnail;

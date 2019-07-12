@@ -12,4 +12,5 @@ storiesOf("Components/Button", module)
       Start
     </Button>
   ))
-  .add("Block style", () => <Button type="div">Start</Button>);
+  .add("Block style", () => <Button type="div">Start</Button>)
+  .add("Active style", () => <Button className="active">Start</Button>);
