@@ -27,7 +27,8 @@ class Icon extends Component {
       ...this.props,
       width: this.getSize(size),
       height: this.getSize(size),
-      src: url || this.getUrl(size, name)
+      src: url || this.getUrl(size, name),
+      alt: this.props.alt || ""
     });
   }
 }

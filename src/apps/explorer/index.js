@@ -66,7 +66,7 @@ class Explorer extends Component {
   syncTitle() {
     const { folder } = this.state;
     this.props.wmProps.setAppState({
-      appProps: { title: folder.label || folder.filename }
+      appProps: { title: folder.label || folder.filename, icon: "explorer" }
     });
   }
   setFile(file) {
