@@ -28,6 +28,10 @@ fs.files.push(
   );
 });
 
-storiesOf("App/Explorer", module).add("No configuration", () => (
-  <Explorer wmProps={{ fs }} path="/" />
-));
+storiesOf("App/Explorer", module)
+  .add("No configuration", () => (
+    <Explorer wmProps={{ fs, setAppState: () => {} }} path="/" />
+  ))
+  .add("Small window", () => (
+    <Explorer wmProps={{ fs, setAppState: () => {}, width: 400 }} path="/" />
+  ));

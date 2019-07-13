@@ -1,8 +1,9 @@
 import { h, render, Component } from "preact";
-import "./style.css";
+import "./style.less";
 import Window from "../../components/window";
 import Toolbar from "../../components/toolbar";
 import Divider from "../../components/divider";
+import ContainerQuery from "../../components/ContainerQuery";
 import ScrollableContainer from "../../components/scrollablecontainer";
 import Text from "../../components/text";
 import Icon from "../../components/icon";
@@ -14,7 +15,6 @@ class Explorer extends Component {
   constructor({ title, path, wmProps = {} }) {
     super();
     this.state = {
-      title,
       path,
       folder: wmProps.fs.getFolder(path)
     };
@@ -23,20 +23,20 @@ class Explorer extends Component {
       future: []
     };
   }
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setState(() => ({
-      title: nextProps.title,
-      zIndex: nextProps.zIndex
-    }));
+  componentDidMount() {
+    this.syncTitle();
   }
   openItem(item) {
     const { wmProps } = this.props;
-    if (item.appProps) {
+    if (item.appProps && item.appProps.app !== "Explorer") {
       return wmProps.shell.openWindow(item.appProps.app, item.appProps);
     }
+    if (item.path && item.filename) {
+      const path = [item.path, item.filename].join("/");
+      return this.navigateTo(path);
+    }
     if (item.permalink) window.location = item.permalink;
-    const path = [item.path, item.filename].join("/");
-    this.navigateTo(path);
+    console.error("nothing to do with this file");
   }
   goUp() {
     this.navigateTo(this.state.folder.path);
@@ -60,21 +60,32 @@ class Explorer extends Component {
     this.history.future = [];
     this.setState({ folder });
   }
+  setState(props) {
+    super.setState(props, () => this.syncTitle());
+  }
+  syncTitle() {
+    const { folder } = this.state;
+    this.props.wmProps.setAppState({
+      appProps: { title: folder.label || folder.filename }
+    });
+  }
   setFile(file) {
     this.setState({ file });
   }
-  render({ wmProps }) {
+  render(props) {
+    const { title, wmProps } = props;
     const { file, folder } = this.state;
     const fs = wmProps.fs;
     const files = fs.getFiles(folder.fullPath());
-    const { layout, columns } = folder;
+    const selectedItem = file || folder;
+    const { layout, columns, defaultSort } = folder;
     const FileComponent = layout === "details" ? DetailsView : FileIcons;
     return (
       <Window
-        title={this.state.title}
         classNames="explorer"
         icon="explorer"
         {...wmProps}
+        title={title || "Explorer"}
       >
         <Toolbar variant="text" items={menuItems} />{" "}
         <Toolbar
@@ -94,38 +105,45 @@ class Explorer extends Component {
           ]}
         />
         <ScrollableContainer>
-          <div class="ui95-explorer-columns__left">
-            <Icon size={32} name={file ? file.icon : folder.icon} />
-            <Text style={{ fontWeight: "bold" }}>
-              <h2 class="ui95-explorer-columns__folder-name">
-                {file
-                  ? file.label || file.filename
-                  : folder.filename || folder.label}
-              </h2>
-            </Text>
-            <Divider
-              classNames="rainbow"
-              style={{
-                marginTop: "5px",
-                marginBottom: "15px"
-              }}
-            />
-            <Text>
-              {file
-                ? file.description || file.type
-                : "Select an item to view its description."}
-            </Text>
-          </div>
-          <div class="ui95-explorer-columns__right">
-            <FileComponent
-              items={files}
-              onSelect={file => this.setFile(file)}
-              onClick={file => this.openItem(file)}
-              onUnselect={() => this.setState({ file: null })}
-              columns={folder.columns}
-              defaultSort={folder.defaultSort}
-            />
-          </div>
+          <ContainerQuery
+            className="ui95-explorer-columns"
+            resizeClassNames={({ width }) =>
+              width < 400 && "ui95-explorer-columns__mobile"
+            }
+          >
+            <div class="ui95-explorer-columns__left">
+              <div class="ui95-explorer-columns__left-head">
+                <Icon size={32} name={file ? file.icon : folder.icon} />
+                <Text style={{ fontWeight: "bold" }}>
+                  <h2 class="ui95-explorer-columns__folder-name">
+                    {selectedItem.label || selectedItem.filename}
+                  </h2>
+                </Text>
+              </div>
+              <Divider
+                classNames="rainbow"
+                style={{
+                  marginTop: "5px",
+                  marginBottom: "15px"
+                }}
+              />
+              <Text>
+                {selectedItem.description ||
+                  selectedItem.type ||
+                  "Select an item to view its description."}
+              </Text>
+            </div>
+            <div class="ui95-explorer-columns__right">
+              <FileComponent
+                items={files}
+                onSelect={file => this.setFile(file)}
+                onClick={file => this.openItem(file)}
+                onUnselect={() => this.setState({ file: null })}
+                columns={columns}
+                defaultSort={defaultSort}
+              />
+            </div>
+          </ContainerQuery>
         </ScrollableContainer>
       </Window>
     );

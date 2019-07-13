@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     padding: 0 6px 0 2px;
-    margin-left: -3px;
+    margin-left: -2px;
     @media (pointer: coarse) {
       height: calc(15px * var(--touch-scale));
     }
@@ -19,6 +19,8 @@
   & > * {
     padding: 0 4px;
     align-items: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__label-icon {

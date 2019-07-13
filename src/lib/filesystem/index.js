@@ -2,7 +2,7 @@ const types = {
   com: "MS-DOS Application",
   sys: "System File",
   bat: "MS-DOS Batch File",
-  txt: "Text Document",
+  txt: "Blog Post",
   folder: "File Folder",
   drive: "Local Disk"
 };
@@ -18,7 +18,6 @@ class File {
     this.description = types[this.extension];
     this.label = extras.label;
     this.setIcon();
-    console.log(extras);
     Object.assign(this, extras);
   }
   setIcon() {
@@ -28,7 +27,7 @@ class File {
     if (this.filename.match(/:$/)) return (this.icon = "drive");
     if (this.extension === null) return (this.icon = "folder");
     if (["txt", "doc", "ini", "cfg"].includes(this.extension))
-      return (this.icon = "text");
+      return (this.icon = "wordpad");
     if (["exe", "bat"].includes(this.extension)) return (this.icon = "default");
     if (["avi"].includes(this.extension)) return (this.icon = "video");
     return (this.icon = "document");
@@ -58,13 +57,11 @@ class Filesystem {
         icon: "mycomputer"
       });
     const path = this.conformPath(requestedPath);
-    console.log("finding folder", path);
     const folder = this.files.find(file => {
       const thisPath =
         (file.path === "/" ? "" : file.path.toLowerCase()) +
         "/" +
         file.filename.toLowerCase();
-      console.log(thisPath, path);
       return thisPath === path;
     });
 

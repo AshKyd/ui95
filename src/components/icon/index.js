@@ -4,6 +4,7 @@ import "./style.css";
 import builtIn from "icons95";
 
 builtIn[24].default = builtIn[16].default;
+
 class Icon extends Component {
   getUrl(size, name) {
     if (builtIn[size] && builtIn[size][name])

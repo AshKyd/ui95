@@ -42,7 +42,7 @@ class FileIcon extends Component {
           <Icon size="32" name={icon} classNames="file-icon" />
         </div>
         <Text type="div" classNames="label">
-          {label}
+          {label || filename}
         </Text>
       </a>
     );

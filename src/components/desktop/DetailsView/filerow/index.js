@@ -2,7 +2,6 @@ import { h, render, Component } from "preact";
 import { getClasses } from "../../../../util";
 import Icon from "../../../icon/index.js";
 import Text from "../../../text/index.js";
-import { formatRelative } from "date-fns";
 import "./style.less";
 
 function formatColumn(value) {
@@ -63,7 +62,7 @@ class FileRow extends Component {
             onClick={performClick}
             class="ui95-file-row__label"
           >
-            <Text type="div">{label}</Text>
+            <Text type="div">{label || filename}</Text>
           </a>
         </td>
         {columns.map(column => (

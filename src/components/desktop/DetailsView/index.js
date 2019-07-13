@@ -14,7 +14,6 @@ function initCap(str) {
 function parseSortType(value) {
   const num = parseInt(value, 10);
   if (!isNaN(num)) return num;
-
   return value;
 }
 
@@ -29,14 +28,14 @@ function sort(items = [], sortKey, sortDirection) {
   });
 }
 const sortMemoized = memoize(sort, (items, sortKey, sortDirection) => {
-  if (!items) return "null";
+  if (!items || !items.length) return "null";
   return [items[0].path, sortKey, sortDirection].join();
 });
 
 class FileIcons extends Component {
   constructor({
     items,
-    defaultSort: [sortKey = "label", sortDirection = false]
+    defaultSort: [sortKey = "label", sortDirection = false] = []
   }) {
     super();
     this.state = {
@@ -49,7 +48,7 @@ class FileIcons extends Component {
     this.setState({ selected: item.key });
   }
   render({
-    items,
+    items = [],
     columns = [],
     onClick,
     solidColor,
