@@ -1,8 +1,12 @@
 import { h, render, Component } from "preact";
 import "./style.css";
-import Window from "../../components/window/index.js";
-import ScrollableContainer from "../../components/scrollablecontainer/index.js";
-import Text from "../../components/text/index.js";
+import Window from "../../components/window";
+import ScrollableContainer from "../../components/scrollablecontainer";
+import Text from "../../components/text";
+import Guide from "./guide";
+import StatusBar from "./statusbar";
+import Button from "./button";
+import Player from "./player";
 
 function initCap(string) {
   const a = string.split("");
@@ -21,17 +25,11 @@ class MediaPlayer extends Component {
       playlist: playlists[0],
       title: playlists.length ? playlists[0].title : "",
       position: 0,
-      appLoaded: false,
       seconds: 0,
       playingTitle: null,
       playState: 1,
       videoId
     };
-
-    import("./lazyComponents").then(components => {
-      this.components = components;
-      this.setState({ appLoaded: true });
-    });
   }
   componentWillReceiveProps({ zIndex, videoId, playlists }, nextContext) {
     this.setState(() => ({
@@ -59,7 +57,6 @@ class MediaPlayer extends Component {
     });
   }
   renderViewPlaylist() {
-    const { Guide } = this.components;
     if (!this.state.playlist) return undefined;
     return (
       <Guide
@@ -69,7 +66,6 @@ class MediaPlayer extends Component {
     );
   }
   renderCurrentlyPlaying() {
-    const { Player } = this.components;
     const { playlistId, videoId, playState } = this.state;
     return (
       <Player
@@ -87,16 +83,7 @@ class MediaPlayer extends Component {
     );
   }
   render(props) {
-    const { Button, StatusBar } = this.components || {};
-
-    const {
-      appLoaded,
-      title,
-      mode,
-      playingTitle,
-      seconds,
-      playState
-    } = this.state;
+    const { title, mode, playingTitle, seconds, playState } = this.state;
     return (
       <Window
         title={title + " - Media Player"}
@@ -105,12 +92,11 @@ class MediaPlayer extends Component {
         minHeight={480}
         {...props.wmProps}
       >
-        {!appLoaded && <div class="ui95-mediaplayer__container" />}
-        {appLoaded && (
-          <div class="ui95-mediaplayer__container">
-            <ul class="ui95-mediaplayer__sidebar">
-              {this.state.playlists.map((playlist, i) =>
-                Button({
+        <div class="ui95-mediaplayer__container">
+          <ul class="ui95-mediaplayer__sidebar">
+            {this.state.playlists.map((playlist, i) => (
+              <li>
+                {Button({
                   i,
                   title: playlist.title,
                   active:
@@ -120,45 +106,43 @@ class MediaPlayer extends Component {
                     this.openPlaylist(playlist);
                     e.preventDefault();
                   }
-                })
-              )}
-            </ul>
-            <ScrollableContainer
-              style={{
-                position: "absolute",
-                left: "98px",
-                right: "19px",
-                top: "42px",
-                bottom: "83px"
-              }}
-            >
-              {this[mode]()}
-            </ScrollableContainer>
-            <StatusBar
-              title={
-                playingTitle && [initCap(playState), playingTitle].join(": ")
-              }
-              seconds={seconds}
-            />
-            <button
-              onClick={() =>
-                this.player &&
-                (playState === "play"
-                  ? this.player.play()
-                  : this.player.pause())
-              }
-              class="ui95-mediaplayer__play"
-            >
-              <img src={require("./assets/play.png")} alt="Play/Pause" />
-            </button>
-            <button
-              onClick={() => this.setState({ mode: "renderViewPlaylist" })}
-              class="ui95-mediaplayer__stop"
-            >
-              <img src={require("./assets/stop.png")} alt="Stop" />
-            </button>
-          </div>
-        )}
+                })}
+              </li>
+            ))}
+          </ul>
+          <ScrollableContainer
+            style={{
+              position: "absolute",
+              left: "98px",
+              right: "19px",
+              top: "42px",
+              bottom: "83px"
+            }}
+          >
+            {this[mode]()}
+          </ScrollableContainer>
+          <StatusBar
+            title={
+              playingTitle && [initCap(playState), playingTitle].join(": ")
+            }
+            seconds={seconds}
+          />
+          <button
+            onClick={() =>
+              this.player &&
+              (playState === "play" ? this.player.play() : this.player.pause())
+            }
+            class="ui95-mediaplayer__play"
+          >
+            <img src={require("./assets/play.png")} alt="Play/Pause" />
+          </button>
+          <button
+            onClick={() => this.setState({ mode: "renderViewPlaylist" })}
+            class="ui95-mediaplayer__stop"
+          >
+            <img src={require("./assets/stop.png")} alt="Stop" />
+          </button>
+        </div>
       </Window>
     );
   }
