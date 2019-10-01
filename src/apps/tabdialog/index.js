@@ -5,7 +5,7 @@ import TabBox from "../../components/tabbox/index.js";
 import Text from "../../components/text/index.js";
 import Button from "../../components/button/index.js";
 
-function TabDialog({ title, tabs, onOkay, wmProps = {} }) {
+function TabDialog({ title, tabs, onOkay, onApply, wmProps = {} }) {
   const onClose = wmProps.onClose;
   return (
     <Window
@@ -29,6 +29,14 @@ function TabDialog({ title, tabs, onOkay, wmProps = {} }) {
           <Button classNames="tabdialog-util" onClick={() => onClose()}>
             Cancel
           </Button>
+          {onApply && (
+            <Button
+              classNames="tabdialog-util"
+              onClick={() => onApply && onApply()}
+            >
+              Apply
+            </Button>
+          )}
         </div>
       </div>
     </Window>

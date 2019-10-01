@@ -66,7 +66,7 @@ class Window extends Component {
     e.stopPropagation();
     e.preventDefault();
     if (this.state.isMaximized) return;
-    this.setState({ moving: true });
+    this.setState({ isMoving: true });
     let coordsPrev;
     const onMove = e => {
       const { clientX, clientY } = e.touches ? e.touches[0] : e;
@@ -84,7 +84,7 @@ class Window extends Component {
       e.preventDefault();
     };
     const onDone = () => {
-      this.setState({ moving: false });
+      this.setState({ isMoving: false });
       document.body.removeEventListener("mousemove", onMove);
       document.body.removeEventListener("mouseup", onDone);
       document.body.removeEventListener("touchmove", onMove, {
@@ -106,7 +106,7 @@ class Window extends Component {
 
     if (isMaximized) return;
     if (isResizeable === false) return;
-    this.setState({ moving: true });
+    this.setState({ isMoing: true });
 
     let applyWidth = ["corner", "left", "right"].includes(direction);
     let applyHeight = ["corner", "top", "bottom"].includes(direction);
@@ -139,7 +139,7 @@ class Window extends Component {
       e.preventDefault();
     };
     const onDone = () => {
-      this.setState({ moving: false });
+      this.setState({ isMoving: false });
       document.body.removeEventListener("mousemove", onMove);
       document.body.removeEventListener("mouseup", onDone);
       document.body.removeEventListener("touchmove", onMove, {
@@ -178,7 +178,7 @@ class Window extends Component {
       onClose,
       onMinimize
     } = props;
-
+    
     const windowClasses = classNames(
       "ui95-window",
       isMinimized && "ui95-window--minimized",
@@ -221,6 +221,7 @@ class Window extends Component {
         <div
           class="ui95-window__content"
           style={{
+            // Disable pointer events so the app contents don't steal our handlers
             "pointer-events": isMoving ? "none" : "unset"
           }}
         >

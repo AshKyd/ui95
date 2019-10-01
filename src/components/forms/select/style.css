@@ -1,14 +1,14 @@
-.ui95-bezel--input {
+.ui95-bezel--select {
   display: block;
   background: var(--white);
   border: var(--px) solid black;
   border-color: var(--black) var(--white) var(--white) var(--black);
   position: relative;
 }
-.ui95-bezel--input--disabled {
+.ui95-bezel--select--disabled {
   background: var(--gray);
 }
-.ui95-bezel--input:before {
+.ui95-bezel--select:before {
   content: "";
   position: absolute;
   display: block;
@@ -22,7 +22,7 @@
   pointer-events: none;
 }
 
-.ui95-bezel--input > * {
+.ui95-bezel--select select {
   border: none;
   background: transparent;
   font-family: sans-serif;
@@ -36,8 +36,20 @@
   height: 100%;
   box-sizing: border-box;
 }
+.ui95-bezel--select button {
+  pointer-events: none;
+  position: absolute;
+  right: 1px;
+  top: 2px;
+  height: calc(100% - 4px);
+  width: 16px;
+}
+.ui95-bezel--select button .ui95-icon {
+  transform: rotate(90deg);
+  transform-origin: center;
+}
 
-.ui95-bezel--input--disabled > * {
+.ui95-bezel--select--disabled > * {
   color: var(--greyDark);
   text-shadow: 1px 1px 0 var(--white);
 }

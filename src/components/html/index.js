@@ -6,7 +6,6 @@ class HTML extends Component {
   }
   render(props) {
     const className = "ui95-html";
-    console.log("html render");
     return h(props.type || "div", {
       className: [className, ...(props.classNames || "").split(" ")].join(
         ` ${className}--`

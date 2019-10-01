@@ -32,7 +32,7 @@ const sortMemoized = memoize(sort, (items, sortKey, sortDirection) => {
   return [items[0].path, sortKey, sortDirection].join();
 });
 
-class FileIcons extends Component {
+class DetailsView extends Component {
   constructor({
     items,
     defaultSort: [sortKey = "label", sortDirection = false] = []
@@ -53,7 +53,8 @@ class FileIcons extends Component {
     onClick,
     solidColor,
     direction = "row",
-    mode = "explorer"
+    mode = "explorer",
+    header = true
   }) {
     const { sortKey, sortDirection } = this.state;
     const onSort = newSortKey => {
@@ -66,18 +67,20 @@ class FileIcons extends Component {
     return (
       <div class={`ui95-file-icons-details`}>
         <table className="ui95-file-icons-details__table">
-          <thead>
-            <tr>
-              <th colspan="2" className="ui95-file-icons-details__head">
-                <Button onClick={onSort("label")}>Name</Button>
-              </th>
-              {columns.map(column => (
-                <th className="ui95-file-icons-details__head" key={column}>
-                  <Button onClick={onSort(column)}>{initCap(column)}</Button>
+          {header && (
+            <thead>
+              <tr>
+                <th colspan="2" className="ui95-file-icons-details__head">
+                  <Button onClick={onSort("label")}>Name</Button>
                 </th>
-              ))}
-            </tr>
-          </thead>
+                {columns.map(column => (
+                  <th className="ui95-file-icons-details__head" key={column}>
+                    <Button onClick={onSort(column)}>{initCap(column)}</Button>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+          )}
           <tbody>
             {sortMemoized(items, sortKey, sortDirection).map(
               ([filename, item], index) => (
@@ -92,12 +95,17 @@ class FileIcons extends Component {
             )}
           </tbody>
         </table>
-        <div className="ui95-file-icons-details__decorative" aria-hidden="true">
-          <Button />
-        </div>
+        {header && (
+          <div
+            className="ui95-file-icons-details__decorative"
+            aria-hidden="true"
+          >
+            <Button />
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default FileIcons;
+export default DetailsView;

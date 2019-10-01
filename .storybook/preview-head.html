@@ -1,11 +1,4 @@
 <style type="text/css">
-  body {
-    background: #009193;
-    padding: 0;
-    margin: 0;
-    height: 100vh;
-    font-family: sans-serif;
-  }
   :root {
     --color-primary: #0700aa;
     --color-primary-alt: white;
@@ -19,5 +12,18 @@
     --highlightForeground: #fff;
     --px: 1px;
     --touch-scale: 1.7;
+    --background-repeat: repeat;
+    --background-size: auto;
+    --background-image: ;
+  }
+  body {
+    background: #009193;
+    background-image: var(--background-image);
+    background-repeat: var(--background-repeat);
+    background-size: var(--background-size);
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    font-family: sans-serif;
   }
 </style>

@@ -1,0 +1,19 @@
+.ui95-display-preview {
+  position: relative;
+  margin: 0 auto;
+  svg {
+    width: 114px;
+    height: 110px;
+  }
+  &__preview {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: calc(94px * 4);
+    height: calc(68px * 4);
+    background: var(--color-primary);
+    transform-origin: left top;
+    transform: scale(0.25);
+    background-position: center;
+  }
+}

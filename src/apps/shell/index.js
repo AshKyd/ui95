@@ -173,7 +173,7 @@ class Shell extends Component {
     const { windows } = this.state;
     const newWindows = windows.map(window => {
       if (window.windowProps.key !== windowId) return window;
-      return defaultsDeep({}, newProps, window);
+      return defaultsDeep({}, {windowProps: { title: newProps.appProps.title }}, newProps, window);
     });
     this.setState({ windows: newWindows }, () => {
       if (newProps.appProps && newProps.appProps.permalink)
