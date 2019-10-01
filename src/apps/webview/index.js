@@ -11,7 +11,7 @@ function Webview({ title, src, wmProps }) {
       height={600}
       {...wmProps}
     >
-      <iframe class="ui95-webview" src={src} />
+      <iframe class="ui95-webview" src={src} allowfullscreen />
     </Window>
   );
 }
