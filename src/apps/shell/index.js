@@ -231,11 +231,12 @@ class Shell extends Component {
         {contextMenu && (
           <Menu
             deferAction
-            onClose={() => {
+            onClose={(appProps) => {
               // Insert a delay to avoid immediately selecting the first item
               // on mouse up
               if (Date.now() < contextMenu.minEndTime) return;
               this.setState({ contextMenu: null });
+              if(appProps) this.openWindow(appProps.app, appProps);
             }}
             {...contextMenu}
           />

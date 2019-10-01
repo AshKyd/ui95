@@ -26,7 +26,7 @@ function WindowArea(props) {
             { text: "Bitmap image", disabled: true, icon: "paint" }
           ]
         },
-        { text: "Properties", disabled: true }
+        { text: "Properties", appProps: {app: 'DisplayProperties'} }
       ]
     });
   }

@@ -6,7 +6,7 @@ import TabBackground from "./TabBackground";
 const styles = {
   Center: { backgroundRepeat: "no-repeat", backgroundSize: "auto" },
   Tile: { backgroundRepeat: "repeat", backgroundSize: "auto" },
-  Stretch: { backgroundRepeat: "no-repeast", backgroundSize: "100% 100%" }
+  Stretch: { backgroundRepeat: "no-repeat", backgroundSize: "100% 100%" }
 };
 
 export default class DisplayProperties extends Component {
@@ -32,7 +32,6 @@ export default class DisplayProperties extends Component {
   }
   setBackground() {
     const { background } = this.state;
-    console.log(background);
     const style = styles[background.style];
     const props = {
       "--background-repeat": style.backgroundRepeat,

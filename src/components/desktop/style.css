@@ -5,7 +5,11 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  background: var(--color-primary);
+  background-color: var(--color-primary);
+  background-image: var(--background-image);
+  background-repeat: var(--background-repeat);
+  background-size: var(--background-size);
+  background-position: center;
   color: var(--color-primary-alt);
   padding: 0;
   margin: 0;
