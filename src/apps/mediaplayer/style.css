@@ -22,6 +22,7 @@
 }
 .ui95-mediaplayer__sidebar li {
   position: relative;
+  list-style: none;
 }
 .ui95-mediaplayer__sidebar-img {
   width: 90px;
