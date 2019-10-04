@@ -20,6 +20,10 @@
 }
 .ui95-text--ui95-window-titlebar__heading {
   flex: 1;
+  width: calc(100% - 5em);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .ui95-window-titlebar .ui95-icon--application {
   margin-bottom: calc(-4 * var(--px));
