@@ -18,7 +18,8 @@ class Desktop {
   }
   updateFullscreen() {
     this.el.style.height = window.innerHeight + "px";
-    this.el.style.width = window.innerWidth + "px";
+    this.el.style.width = '100%';
+    this.el.style.overflow = 'hidden';
   }
   render({ children }) {
     return (

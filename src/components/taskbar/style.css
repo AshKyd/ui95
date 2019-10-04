@@ -10,7 +10,7 @@
     var(--gray) 2px
   );
   color: var(--black);
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
