@@ -55,6 +55,10 @@ class Window extends Component {
       this.y =
         window.innerHeight / 2 - (this.height === "auto" ? 0 : this.height) / 2;
     }
+
+    this.state = {
+      isMaximized: window.innerWidth < 400 ? true : false
+    };
   }
   componentDidMount() {
     this.onFocus = e => this.props.onFocus();
