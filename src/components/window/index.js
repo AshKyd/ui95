@@ -39,6 +39,7 @@ class Window extends Component {
   constructor(props) {
     super(props);
     Object.assign(this, conformDimsToScreen(props));
+    
     if(props.shell){
       const offset = window.innerWidth < 400 ? 30 : Math.min(50, props.shell.state.windows.length * 30);
       this.x = offset;
@@ -59,8 +60,9 @@ class Window extends Component {
     this.updateWindowDims();
   }
   componentWillReceiveProps({ width, height }) {
-    this.width = width;
-    this.height = height;
+    if(width || height){
+      Object.assign(this, conformDimsToScreen({...this.props, width, height}));
+    }
   }
   componentWillUnmount() {
     this.el.removeEventListener("mousedown", this.onFocus);
@@ -125,7 +127,7 @@ class Window extends Component {
       }
 
       const [diffX, diffY] = [clientX - coordsPrev[0], clientY - coordsPrev[1]];
-
+      
       const width = applyWidth
         ? Math.max(this.minWidth, this.width + diffX * widthOperator)
         : this.width;
@@ -168,7 +170,8 @@ class Window extends Component {
   }
 
   render(props) {
-    const { isMaximized, width, height, isMoving } = this.state;
+    const { isMaximized, isMoving } = this.state;
+    const {width, height} = this;
     const {
       isFocused,
       isMinimized,
