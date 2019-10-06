@@ -113,6 +113,7 @@ class Shell extends Component {
         .sort((a, b) => a.zIndex - b.zIndex)
         .pop();
     }
+    
     this.setState(
       () => ({ raisedWindow }),
       () => this.setAppState(windowId, { windowProps: { isMinimized: true } })
@@ -171,12 +172,13 @@ class Shell extends Component {
   }
   setAppState(windowId, newProps) {
     const { windows } = this.state;
+    const appProps = newProps.appProps || {};
     const newWindows = windows.map(window => {
       if (window.windowProps.key !== windowId) return window;
-      return defaultsDeep({}, {windowProps: { title: newProps.appProps.title }}, newProps, window);
+      return defaultsDeep({}, {windowProps: { title: appProps.title }}, newProps, window);
     });
     this.setState({ windows: newWindows }, () => {
-      if (newProps.appProps && newProps.appProps.permalink)
+      if (appProps.permalink)
         this.syncWindowHistory();
     });
   }
