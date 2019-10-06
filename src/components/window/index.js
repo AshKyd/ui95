@@ -39,13 +39,16 @@ class Window extends Component {
   constructor(props) {
     super(props);
     Object.assign(this, conformDimsToScreen(props));
-    
-    if(props.shell){
-      const offset = window.innerWidth < 400 ? 30 : Math.min(50, props.shell.state.windows.length * 30);
+
+    if (props.shell) {
+      const offset =
+        window.innerWidth < 400
+          ? 30
+          : Math.min(50, props.shell.state.windows.length * 30);
       this.x = offset;
       this.y = offset;
     }
-    
+
     if (props.center) {
       this.x =
         window.innerWidth / 2 - (this.width === "auto" ? 0 : this.width) / 2;
@@ -60,8 +63,11 @@ class Window extends Component {
     this.updateWindowDims();
   }
   componentWillReceiveProps({ width, height }) {
-    if(width || height){
-      Object.assign(this, conformDimsToScreen({...this.props, width, height}));
+    if (width || height) {
+      Object.assign(
+        this,
+        conformDimsToScreen({ ...this.props, width, height })
+      );
     }
   }
   componentWillUnmount() {
@@ -127,7 +133,7 @@ class Window extends Component {
       }
 
       const [diffX, diffY] = [clientX - coordsPrev[0], clientY - coordsPrev[1]];
-      
+
       const width = applyWidth
         ? Math.max(this.minWidth, this.width + diffX * widthOperator)
         : this.width;
@@ -171,7 +177,7 @@ class Window extends Component {
 
   render(props) {
     const { isMaximized, isMoving } = this.state;
-    const {width, height} = this;
+    const { width, height } = this;
     const {
       isFocused,
       isMinimized,
@@ -184,7 +190,7 @@ class Window extends Component {
       onClose,
       onMinimize
     } = props;
-    
+
     const windowClasses = classNames(
       "ui95-window",
       isMinimized && "ui95-window--minimized",

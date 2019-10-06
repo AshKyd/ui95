@@ -2,6 +2,13 @@ import { h, render, Component } from "preact";
 import Icon from "../../icon";
 import Button from "../../button";
 import "./style.css";
+
+/**
+ * stop propagation so buttons aren't overridden by the move handlers
+ */
+function stopPropagation(e) {
+  e.stopPropagation();
+}
 export default function WindowButtons({
   buttons = "minimize maximize close",
   onClose,
@@ -11,7 +18,12 @@ export default function WindowButtons({
 }) {
   const allowedButtons = buttons.split(" ");
   return (
-    <div class="ui95__window-buttons" onTouchStart={e => e.stopPropagation()}>
+    <div
+      class="ui95__window-buttons"
+      onTouchStart={e => e.stopPropagation()}
+      onTouchStart={stopPropagation}
+      onMouseDown={stopPropagation}
+    >
       {allowedButtons.includes("minimize") && (
         <Button classNames="titlebar minimize" onClick={onMinimize}>
           <Icon size="custom" name="window-minimize" title="Minimize" />
