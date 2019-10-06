@@ -39,9 +39,12 @@ class Window extends Component {
   constructor(props) {
     super(props);
     Object.assign(this, conformDimsToScreen(props));
-    this.x = 0;
-    this.y = 0;
-
+    if(props.shell){
+      const offset = window.innerWidth < 400 ? 30 : Math.min(50, props.shell.state.windows.length * 30);
+      this.x = offset;
+      this.y = offset;
+    }
+    
     if (props.center) {
       this.x =
         window.innerWidth / 2 - (this.width === "auto" ? 0 : this.width) / 2;
