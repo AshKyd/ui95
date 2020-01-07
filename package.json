@@ -23,7 +23,6 @@
     "@storybook/react": "^5.2.8",
     "aphrodite": "^2.4.0",
     "babel-loader": "^8.0.6",
-    "babel-preset-preact": "^1.1.0",
     "bem-cn": "^3.0.1",
     "css-loader": "^3.4.1",
     "docsify-cli": "^4.4.0",
@@ -40,12 +39,12 @@
     "webamp": "^1.4.0"
   },
   "dependencies": {
+    "babel-preset-preact": "^2.0.0",
     "classnames": "^2.2.6",
     "icons95": "^1.4.1",
     "lodash": "^4.17.15",
     "md5": "^2.2.1",
-    "preact": "^8.5.3",
-    "preact-compat": "^3.19.0",
+    "preact": "^10.1.1",
     "preact-compat-enzyme": "^0.2.5",
     "preact-test-utils": "^0.1.4",
     "resize-observer": "^1.0.0",
