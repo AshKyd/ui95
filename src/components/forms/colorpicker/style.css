@@ -1,0 +1,18 @@
+.ui95-button--color-picker {
+  padding: 2px 5px 2px 3px;
+}
+.ui95-colorpicker__swatch {
+  width: 22px;
+  height: 13px;
+  border: 1px solid black;
+  margin-right: 3px;
+}
+
+.ui95-button--color-picker .ui95-divider {
+  margin-right: 4px;
+  height: 13px;
+}
+
+.ui95-button--color-picker input {
+  display: none;
+}

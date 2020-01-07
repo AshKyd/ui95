@@ -24,6 +24,6 @@
 }
 
 .ui95-file-icon--solid-color .ui95-text--label {
-  background: var(--color-primary);
+  background: var(--background-color);
   color: var(--color-primary-alt);
 }

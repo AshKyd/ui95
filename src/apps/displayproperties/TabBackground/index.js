@@ -3,24 +3,29 @@ import "./style.less";
 import Text from "../../../components/text";
 import Button from "../../../components/button";
 import Select from "../../../components/forms/select";
+import ColorPicker from "../../../components/forms/colorpicker";
 import ScrollableContainer from "../../../components/scrollablecontainer";
 import DetailsView from "../../../components/desktop/DetailsView";
 import DisplayPreview from "../DisplayPreview";
 import wallpapers from "./wallpapers";
 const icons = Object.keys(wallpapers).map(label => ({ label, icon: "paint" }));
-icons.unshift({ label: "None", icon: "none" });
+icons.unshift({ label: "None", icon: "cancel" });
 
 export default function DisplayProperties({ styles, value, onChange }) {
-  console.log({ value });
   return (
     <div class="ui95-tab-background">
-      <DisplayPreview image={value.wallpaper} style={styles[value.style]} />
+      <DisplayPreview
+        image={value.wallpaper}
+        style={styles[value.style]}
+        backgroundColor={value.backgroundColor}
+      />
       <div class="ui95-tab-background__tools">
         <div class="ui95-tab-background__tools-left">
-          <ScrollableContainer style={{ height: 110 }}>
+          <ScrollableContainer style={{ height: 125 }}>
             <DetailsView
               items={icons}
               header={false}
+              shouldSort={false}
               onClick={({ label }) =>
                 onChange({ ...value, wallpaper: wallpapers[label] })
               }
@@ -42,6 +47,19 @@ export default function DisplayProperties({ styles, value, onChange }) {
             onChange={e => onChange({ ...value, style: e.target.value })}
             value={value.style}
             options={Object.keys(styles)}
+            style={{ marginBottom: 8 }}
+          />
+          <label
+            for="background-color"
+            style={{ display: "block", marginBottom: 4 }}
+          >
+            <Text>Desktop color:</Text>
+          </label>
+          <ColorPicker
+            value={value.backgroundColor}
+            onChange={backgroundColor =>
+              onChange({ ...value, backgroundColor })
+            }
           />
         </div>
       </div>

@@ -15,7 +15,7 @@ class Icon extends Component {
     if (size === "custom") return undefined;
     return size;
   }
-  render({ name = "default", size = 16, classNames, url }) {
+  render({ name = "default", size = 16, classNames, url, style }) {
     const className = [
       "ui95-icon",
       name,
@@ -24,6 +24,7 @@ class Icon extends Component {
     ].join(" ui95-icon--");
     return h("img", {
       className,
+      style,
       ...this.props,
       width: this.getSize(size),
       height: this.getSize(size),

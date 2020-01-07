@@ -18,6 +18,7 @@ export default class DisplayProperties extends Component {
     const backgroundRepeat = cs.getPropertyValue("--background-repeat").trim();
     const backgroundSize = cs.getPropertyValue("--background-size").trim();
     const backgroundImage = cs.getPropertyValue("--background-image").trim();
+    const backgroundColor = cs.getPropertyValue("--background-color").trim();
 
     this.state = {
       background: {
@@ -26,7 +27,8 @@ export default class DisplayProperties extends Component {
           if (backgroundRepeat === "repeat") return "Tile";
           if (backgroundSize === "100% 100%") return "Stretch";
           return "Center";
-        })()
+        })(),
+        backgroundColor
       }
     };
   }
@@ -36,8 +38,10 @@ export default class DisplayProperties extends Component {
     const props = {
       "--background-repeat": style.backgroundRepeat,
       "--background-size": style.backgroundSize,
-      "--background-image": "url(" + background.wallpaper + ")"
+      "--background-image": "url(" + background.wallpaper + ")",
+      "--background-color": background.backgroundColor
     };
+
     Object.entries(props).map(([name, value]) =>
       document.documentElement.style.setProperty(name, value)
     );
@@ -51,8 +55,7 @@ export default class DisplayProperties extends Component {
           onChange={background => this.setState({ background })}
           styles={styles}
         />
-      ),
-      Appearance: ["Appearance"]
+      )
     };
     return (
       <TabDialog

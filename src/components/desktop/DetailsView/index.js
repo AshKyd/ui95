@@ -54,7 +54,8 @@ class DetailsView extends Component {
     solidColor,
     direction = "row",
     mode = "explorer",
-    header = true
+    header = true,
+    shouldSort = true
   }) {
     const { sortKey, sortDirection } = this.state;
     const onSort = newSortKey => {
@@ -64,6 +65,11 @@ class DetailsView extends Component {
           sortDirection: newSortKey === sortKey ? !sortDirection : true
         });
     };
+
+    const sortedItems = shouldSort
+      ? sortMemoized(items, sortKey, sortDirection)
+      : Object.entries(items || []);
+
     return (
       <div class={`ui95-file-icons-details`}>
         <table className="ui95-file-icons-details__table">
@@ -82,17 +88,15 @@ class DetailsView extends Component {
             </thead>
           )}
           <tbody>
-            {sortMemoized(items, sortKey, sortDirection).map(
-              ([filename, item], index) => (
-                <FileRow
-                  {...item}
-                  selected={item.selected || this.state.selected === index}
-                  onSelect={e => this.selectItem(e)}
-                  onClick={() => onClick(item)}
-                  columns={columns}
-                />
-              )
-            )}
+            {sortedItems.map(([filename, item], index) => (
+              <FileRow
+                {...item}
+                selected={item.selected || this.state.selected === index}
+                onSelect={e => this.selectItem(e)}
+                onClick={() => onClick(item)}
+                columns={columns}
+              />
+            ))}
           </tbody>
         </table>
         {header && (

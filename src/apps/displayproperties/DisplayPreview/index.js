@@ -1,13 +1,13 @@
 import { h, render, Component } from "preact";
 import "./style.less";
 
-export default function DisplayPreview({ image, style }) {
+export default function DisplayPreview({ image, style, backgroundColor }) {
   console.log({ image, style });
   return (
     <div class="ui95-display-preview">
       <div
         class="ui95-display-preview__preview"
-        style={{ ...style, backgroundImage: `url(${image})` }}
+        style={{ ...style, backgroundImage: `url(${image})`, backgroundColor }}
       />
       <svg viewbox="0 0 114 110">
         <rect x="0" y="0" width="114" height="89" fill="var(--gray)" />
