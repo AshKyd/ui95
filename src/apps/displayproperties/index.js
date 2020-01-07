@@ -9,6 +9,20 @@ const styles = {
   Stretch: { backgroundRepeat: "no-repeat", backgroundSize: "100% 100%" }
 };
 
+export function updateVariables() {
+  let props;
+
+  try {
+    props = JSON.parse(localStorage.displayProperties);
+  } catch (e) {
+    props = JSON.parse(window.displayProperties || "{}");
+  }
+
+  Object.entries(props).map(([name, value]) =>
+    document.documentElement.style.setProperty(name, value)
+  );
+}
+
 export default class DisplayProperties extends Component {
   constructor() {
     super();
@@ -35,16 +49,20 @@ export default class DisplayProperties extends Component {
   setBackground() {
     const { background } = this.state;
     const style = styles[background.style];
-    const props = {
+    const props = JSON.stringify({
       "--background-repeat": style.backgroundRepeat,
       "--background-size": style.backgroundSize,
       "--background-image": "url(" + background.wallpaper + ")",
       "--background-color": background.backgroundColor
-    };
+    });
 
-    Object.entries(props).map(([name, value]) =>
-      document.documentElement.style.setProperty(name, value)
-    );
+    try {
+      localStorage.displayProperties = props;
+    } catch (e) {
+      window.displayProperties = props;
+    }
+
+    updateVariables();
   }
   render(props) {
     const { background } = this.state;
