@@ -12,6 +12,7 @@ import MediaPlayer from "../apps/mediaplayer";
 import Alert from "../apps/alert";
 import Reader from "../apps/reader";
 import Talks from "../apps/talks";
+import Webamp from "../apps/webamp";
 import TabDialog from "../apps/tabdialog";
 import startMenu from "./data-start";
 import desktopIcons from "./data-desktop-icons";
@@ -38,6 +39,7 @@ const apps = {
   Reader,
   TabDialog,
   Talks,
+  Webamp,
   Loader
 };
 
