@@ -49,5 +49,6 @@
     "preact-test-utils": "^0.1.4",
     "resize-observer": "^1.0.0",
     "social-share-links": "^2.0.0"
-  }
+  },
+  "prettier": {}
 }

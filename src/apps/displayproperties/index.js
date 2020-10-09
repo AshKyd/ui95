@@ -13,7 +13,7 @@ export function updateVariables() {
   let props;
 
   try {
-    props = JSON.parse(localStorage.displayProperties);
+    props = JSON.parse(localStorage.displayProperties || "{}");
   } catch (e) {
     props = JSON.parse(window.displayProperties || "{}");
   }
