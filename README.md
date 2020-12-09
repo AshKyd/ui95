@@ -8,7 +8,7 @@ A preact implementation of Windows 95/98 style components and apps. It's a very 
 
 There are three separate projects:
 
-1. Storybook for component developmern (`npm start`)
+1. Storybook for component development (`npm start`)
 1. Docs (`npm run watch-docs`)
 1. Example app (`npm run watch-example`)
 
