@@ -12,7 +12,6 @@ export default [
           src: "https://roadblocks.ash.ms/game/"
         }
       },
-      { text: "Winamp", icon: "sound", appProps: { app: "Webamp" } },
       { text: "Explorer", icon: "explorer", appProps: { app: "Explorer" } },
       {
         text: "Paint",
