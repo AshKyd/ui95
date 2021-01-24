@@ -7,8 +7,7 @@ export default class StartMenu extends Component {
   constructor() {
     super();
     this.state = {
-      open: false,
-      el: undefined
+      open: false
     };
   }
   render({
@@ -17,14 +16,13 @@ export default class StartMenu extends Component {
     attachTo,
     onLaunchApp
   }) {
-    const { open, el } = this.state;
+    const { open } = this.state;
+
     return (
       <div className="ui95-startmenu">
         <Button
-          ref={el => (this.el = el)}
-          onClick={() => this.setState({ open: !open })}
-          fwdRef={newEl => {
-            if (el !== newEl) this.setState({ el: newEl });
+          onClick={() => {
+            this.setState({ open: !open });
           }}
           classNames={["start-menu", open && "active"].join(" ")}
         >
@@ -37,7 +35,7 @@ export default class StartMenu extends Component {
             attachDirection="bottom"
             branding={branding}
             items={items}
-            attachTo={el}
+            attachTo={this.base.querySelector("button")}
             onClose={app => {
               this.setState({ open: false });
               console.log(app);
