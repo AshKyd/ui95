@@ -14,9 +14,7 @@ class Shell extends Component {
     this.state = {
       fs: props.fs,
       windows: [],
-      startMenu: props.startMenu || [],
       trayItems: props.trayItems || [],
-      desktopIcons: props.desktopIcons || {},
       defaultTitle: "",
       raisedWindow: null,
       contextMenu: null
@@ -51,12 +49,6 @@ class Shell extends Component {
     document.body.removeEventListener("mousedown", this.globalClick);
     window.removeEventListener("error", this.onerror);
     window.removeEventListener("unhandledrejection", this.onerror);
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      startMenu: nextProps.startMenu,
-      desktopIcons: nextProps.desktopIcons
-    });
   }
   getWindowByTitle(title) {
     return this.state.windows.find(
@@ -113,7 +105,7 @@ class Shell extends Component {
         .sort((a, b) => a.zIndex - b.zIndex)
         .pop();
     }
-    
+
     this.setState(
       () => ({ raisedWindow }),
       () => this.setAppState(windowId, { windowProps: { isMinimized: true } })
@@ -175,11 +167,15 @@ class Shell extends Component {
     const appProps = newProps.appProps || {};
     const newWindows = windows.map(window => {
       if (window.windowProps.key !== windowId) return window;
-      return defaultsDeep({}, {windowProps: { title: appProps.title }}, newProps, window);
+      return defaultsDeep(
+        {},
+        { windowProps: { title: appProps.title } },
+        newProps,
+        window
+      );
     });
     this.setState({ windows: newWindows }, () => {
-      if (appProps.permalink)
-        this.syncWindowHistory();
+      if (appProps.permalink) this.syncWindowHistory();
     });
   }
   windowProps(windowProps) {
@@ -197,14 +193,8 @@ class Shell extends Component {
     };
   }
   render({ apps, fullscreen }) {
-    const {
-      startMenu,
-      desktopIcons,
-      raisedWindow,
-      trayItems,
-      windows,
-      contextMenu
-    } = this.state;
+    const { startMenu, desktopIcons } = this.props;
+    const { raisedWindow, trayItems, windows, contextMenu } = this.state;
     return (
       <Desktop fullscreen={fullscreen}>
         <WindowArea shell={this}>
@@ -233,12 +223,12 @@ class Shell extends Component {
         {contextMenu && (
           <Menu
             deferAction
-            onClose={(appProps) => {
+            onClose={appProps => {
               // Insert a delay to avoid immediately selecting the first item
               // on mouse up
               if (Date.now() < contextMenu.minEndTime) return;
               this.setState({ contextMenu: null });
-              if(appProps) this.openWindow(appProps.app, appProps);
+              if (appProps) this.openWindow(appProps.app, appProps);
             }}
             {...contextMenu}
           />

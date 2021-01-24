@@ -68,14 +68,6 @@ export default {
       title: "Alert"
     }
   },
-  WebAmp: {
-    filename: "Webamp",
-    icon: "default",
-    appProps: {
-      app: "Webamp",
-      icon: "sound"
-    }
-  },
   Wizard: (function() {
     function generateStep() {
       return {
