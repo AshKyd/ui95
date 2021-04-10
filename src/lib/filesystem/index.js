@@ -1,3 +1,5 @@
+const uniqBy = require("lodash/uniqBy");
+
 const types = {
   com: "MS-DOS Application",
   sys: "System File",
@@ -72,7 +74,7 @@ class Filesystem {
   getFiles(requestedPath) {
     const path = this.conformPath(requestedPath);
     const files = this.files.filter(file => file.path.toLowerCase() === path);
-    return files;
+    return uniqBy(files, "filename");
   }
 }
 

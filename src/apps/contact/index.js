@@ -68,10 +68,7 @@ function Contact({ bio, contact, wmProps = {} }) {
           }}
         />
         <div class="ui95-tabdialog__util">
-          <Button
-            classNames="tabdialog-util"
-            onClick={onClose}
-          >
+          <Button classNames="tabdialog-util" onClick={onClose}>
             OK
           </Button>
           <Button classNames="tabdialog-util" onClick={onClose}>

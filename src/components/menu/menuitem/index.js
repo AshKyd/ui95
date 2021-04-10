@@ -12,7 +12,7 @@ export default function({
   zIndex,
   iconSize,
   className,
-  onClick,
+  onClick
 }) {
   const baseClassName = `ui95-menuitem ${
     className ? `ui95-menuitem--${className}` : ""

@@ -38,7 +38,7 @@ class Wizard extends Component {
   }
   performAction() {
     const action = this.state.action;
-    
+
     if (!action) return this.props.wmProps.onClose();
 
     if (action.mode === "update") {
@@ -55,13 +55,12 @@ class Wizard extends Component {
         ]
       });
     }
-    
-    if(action.mode === 'launch'){
-        this.props.wmProps.shell.openWindow(action.app, action.appProps);
-        this.props.wmProps.onClose();
-        return;
+
+    if (action.mode === "launch") {
+      this.props.wmProps.shell.openWindow(action.app, action.appProps);
+      this.props.wmProps.onClose();
+      return;
     }
-    
   }
   render({ image, title, width, height, wmProps = {} }) {
     const onClose = wmProps.onClose;

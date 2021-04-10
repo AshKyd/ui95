@@ -4,11 +4,11 @@ import "./style.css";
 
 const playStates = {
   "-1": "unstarted",
-  "0": "ended",
-  "1": "playing",
-  "2": "paused",
-  "3": "buffering",
-  "5": "video cued"
+  0: "ended",
+  1: "playing",
+  2: "paused",
+  3: "buffering",
+  5: "video cued"
 };
 
 class Player extends Component {

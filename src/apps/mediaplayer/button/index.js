@@ -13,9 +13,7 @@ function Button(props) {
       onClick={props.onClick}
     >
       <span
-        class={`ui95-mediaplayer__sidebar-img ui95-mediaplayer__sidebar-img--${
-          props.i
-        }`}
+        class={`ui95-mediaplayer__sidebar-img ui95-mediaplayer__sidebar-img--${props.i}`}
       />
       <Text>
         <span class="ui95-mediaplayer__sidebar-text">{props.title}</span>

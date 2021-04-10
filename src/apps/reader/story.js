@@ -4,8 +4,6 @@ import Reader from ".";
 
 storiesOf("App/Reader", module).add("With content", () => (
   <Reader
-    
-    
     content={`
 <header class="entry-header">
     <h1 class="entry-title">

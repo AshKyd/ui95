@@ -10,7 +10,7 @@ class ContainerQuery extends Component {
   componentDidMount() {
     const { resizeClassNames = () => {} } = this.props;
     const ro = new ResizeObserver(([entry]) => {
-      const {contentRect} = entry;
+      const { contentRect } = entry;
       this.setState({
         contentRect,
         resizedClassNames: resizeClassNames(contentRect)
