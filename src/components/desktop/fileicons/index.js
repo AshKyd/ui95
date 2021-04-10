@@ -13,22 +13,21 @@ class FileIcons extends Component {
     solidColor,
     Icon = FileIcon,
     direction = "row",
-    mode = "explorer"
+    mode = "explorer",
   }) {
     return (
       <ul
         class={`ui95-file-icons ui95-file-icons--${direction}  ui95-file-icons--${mode}`}
       >
         {Object.entries(items || {}).map(([filename, item], index) => (
-          <li class="ui95-file-icons__item">
-            {" "}
+          <li class="ui95-file-icons__item" key={item.filename + item.path}>
             <Icon
               {...item}
               solidColor={solidColor}
               label={item.label || item.filename}
               key={index}
               selected={item.selected || this.state.selected === index}
-              onSelect={e => this.selectItem(e)}
+              onSelect={(e) => this.selectItem(e)}
               onClick={() => onClick(item)}
             />
           </li>
