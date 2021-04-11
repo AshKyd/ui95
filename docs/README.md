@@ -11,12 +11,6 @@ old-school interface, maybe in a game or something.
 
 ⚠️ While you should consider this alpha quality and subject to change ⚠️, you can implement the components or the full-on apps in your own projects.
 
-ui95 is set up as follows:
-
-<iframe src="https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggVERcbkFbXCJJbnN0YW5jZSBvZiBTaGVsbFwiXSAtLSB3aW5kb3cgbWFuYWdlcyAtLT4gQltcIkFwcHMgKGluc3RhbmNlcyBvZiBXaW5kb3cpXCJdXG5CIC0tIGltcGxlbWVudGluZyAtLT4gQ1t1aTk1IENvbXBvbmVudHNdXG5DIC0tPiBCdXR0b25zXG5DIC0tPiBJY29uc1xuQyAtLT4gRFtvdGhlciBjb21wb25lbnRzXSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19" width="100%" height="450"></iframe>
-
-Each item in the lifecycle can be consumed individually (for instance you can use the components by themselves, implement a single app, or pull in the whole shell).
-
 ## Using components or apps in your project
 
 If you want to implement these components or apps, you can directly require the Preact components into your app.
