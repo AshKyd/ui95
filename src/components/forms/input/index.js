@@ -2,28 +2,25 @@ import { h, render, Component } from "preact";
 import "./style.css";
 import Bezel from "../../bezel/index.js";
 
-function Input(props) {
+function Input({ classNames, multiline, width, height, style, ...props } = {}) {
   const className = "input";
-  const classNames = [
+  const combinedClassNames = [
     className,
     "in",
     props.disabled && "disabled",
-    ...(props.classNames || "").split(" ")
+    ...(classNames || "").split(" ")
   ].join(` ${className}--`);
-  const element = props.multiline ? "textarea" : "input";
+  const Element = multiline ? "textarea" : "input";
   return (
     <Bezel
-      classNames={classNames}
+      classNames={combinedClassNames}
       style={{
-        width: props.width || "100px",
-        height: props.height || "16px",
-        ...(props.style || {})
+        width: width || "100px",
+        height: height || "16px",
+        ...(style || {})
       }}
     >
-      {h(element, {
-        value: props.value,
-        disabled: props.disabled
-      })}
+      <Element {...props} />
     </Bezel>
   );
 }

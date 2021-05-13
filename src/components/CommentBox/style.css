@@ -1,0 +1,26 @@
+.comment-box {
+}
+
+.comment-box__input {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 8px;
+  justify-items: stretch;
+}
+.comment-box__input > * {
+  display: flex;
+  align-items: center;
+}
+.comment-box__input-icon {
+  margin-right: 4px;
+}
+.comment-box__input-text {
+  width: 48px;
+}
+.comment-box__input-input {
+  flex: 1;
+  position: relative;
+}
+.comment-box__input-input > * {
+  flex: 1;
+}
