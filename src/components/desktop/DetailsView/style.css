@@ -1,0 +1,40 @@
+.ui95-file-icons-details {
+	display: flex;
+	align-items: flex-start;
+}
+
+.ui95-file-icons-details__head,
+.ui95-file-icons-details__decorative {
+	position: relative;
+	padding: 0;
+}
+
+.ui95-file-icons-details__head .ui95-button,
+.ui95-file-icons-details__decorative .ui95-button {
+	width: 100%;
+	justify-content: flex-start;
+	height: 17px;
+	padding-left: 4px;
+}
+
+@media (pointer: coarse) {
+	.ui95-file-icons-details__head .ui95-button,
+  .ui95-file-icons-details__decorative .ui95-button {
+		height: calc(17px * var(--touch-scale));
+	}
+}
+
+.ui95-file-icons-details__head {
+	white-space: nowrap;
+}
+
+.ui95-file-icons-details__table {
+	flex: 1;
+	border-collapse: collapse;
+}
+
+.ui95-file-icons-details__decorative {
+	flex: 1;
+	pointer-events: none;
+	max-width: 33%;
+}

@@ -1,5 +1,5 @@
 import { h, render, Component } from "preact";
-import "./style.less";
+import "./style.css";
 
 export default function DisplayPreview({ image, style, backgroundColor }) {
   console.log({ image, style });

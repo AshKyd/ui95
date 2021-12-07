@@ -1,0 +1,34 @@
+.ui95-window--shutdown .ui95-text--heading,
+.ui95-window--shutdown .ui95-radio {
+	margin-bottom: 10px;
+	font-weight: normal;
+}
+
+.ui95-shutdown__grid {
+	margin: 10px 10px 10px 16px;
+	display: flex;
+}
+
+.ui95-shutdown__icon {
+	padding-right: 20px;
+}
+
+.ui95-shutdown__buttons {
+	display: flex;
+}
+
+.ui95-shutdown__buttons button {
+	width: 75px;
+	height: 22px;
+	margin-right: 7px;
+}
+
+.ui95-shutdown__scrim {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100vh;
+	background: url("data:image/gif;base64,R0lGODlhBAAEAKECAAAAAP///4CAgICAgCH5BAEKAAEALAAAAAAEAAQAAAIGTACGqBkFADs=");
+	z-index: 900;
+}

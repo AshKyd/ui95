@@ -3,7 +3,7 @@ import Window from "../../components/window";
 import ScrollableContainer from "../../components/scrollablecontainer";
 import HTML from "../../components/html";
 import Share from "../../components/toolbar/share";
-import "./reader.less";
+import "./reader.css";
 
 // const loadedScripts = {};
 // function loadScript(src) {

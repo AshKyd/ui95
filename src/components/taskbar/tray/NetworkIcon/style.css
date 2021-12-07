@@ -1,0 +1,156 @@
+.ui95-network-icon {
+	width: 16px;
+	height: 16px;
+	position: relative;
+}
+
+.ui95-network-icon img {
+	position: relative;
+	z-index: 2;
+	width: 16px;
+	height: 16px;
+}
+
+.ui95-network-icon__in,
+.ui95-network-icon__out {
+	width: 5px;
+	height: 4px;
+	position: absolute;
+	z-index: 1;
+}
+
+.ui95-network-icon__in {
+	top: 2px;
+	left: 2px;
+	background: blue;
+}
+
+.ui95-network-icon__out {
+	top: 8px;
+	left: 8px;
+	background: #347e80;
+}
+
+body.loading .ui95-network-icon__in {
+	animation: infinite 1.5s ui95-network-icon-in;
+}
+
+body.loading .ui95-network-icon__out {
+	animation: infinite 2.5s ui95-network-icon-out;
+}
+
+@keyframes ui95-network-icon-out {
+	from {
+		background: black;
+	}
+
+	25% {
+		background: black;
+	}
+
+	25% {
+		background: blue;
+	}
+
+	38% {
+		background: blue;
+	}
+
+	38% {
+		background: black;
+	}
+
+	50% {
+		background: black;
+	}
+
+	50% {
+		background: blue;
+	}
+
+	70% {
+		background: blue;
+	}
+
+	70% {
+		background: black;
+	}
+
+	80% {
+		background: black;
+	}
+
+	80% {
+		background: blue;
+	}
+
+	90% {
+		background: blue;
+	}
+
+	100% {
+		background: black;
+	}
+
+	to {
+		background: black;
+	}
+}
+
+@keyframes ui95-network-icon-in {
+	from {
+		background: black;
+	}
+
+	25% {
+		background: black;
+	}
+
+	25% {
+		background: #347e80;
+	}
+
+	38% {
+		background: #347e80;
+	}
+
+	38% {
+		background: black;
+	}
+
+	50% {
+		background: black;
+	}
+
+	50% {
+		background: #347e80;
+	}
+
+	70% {
+		background: #347e80;
+	}
+
+	70% {
+		background: black;
+	}
+
+	80% {
+		background: black;
+	}
+
+	80% {
+		background: #347e80;
+	}
+
+	90% {
+		background: #347e80;
+	}
+
+	100% {
+		background: black;
+	}
+
+	to {
+		background: black;
+	}
+}

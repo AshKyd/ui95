@@ -1,6 +1,6 @@
 import { h, render, Component } from "preact";
 import FileRow from "./filerow";
-import "./style.less";
+import "./style.css";
 import Button from "../../button";
 import classNames from "classnames";
 import memoize from "lodash/memoize";

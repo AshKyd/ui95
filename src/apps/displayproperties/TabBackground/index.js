@@ -1,5 +1,5 @@
 import { h, render, Component } from "preact";
-import "./style.less";
+import "./style.css";
 import Text from "../../../components/text";
 import Button from "../../../components/button";
 import Select from "../../../components/forms/select";
