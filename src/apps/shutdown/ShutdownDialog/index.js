@@ -1,5 +1,5 @@
 import { h, render, Component } from "preact";
-import "./style.less";
+import "./style.css";
 import Window from "../../../components/window";
 import TabBox from "../../../components/tabbox";
 import Text from "../../../components/text";

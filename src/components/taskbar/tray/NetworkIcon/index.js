@@ -1,7 +1,7 @@
 import { h, render, Component } from "preact";
 import Icon from "../../../icon";
 import Img from "../../../img";
-import "./style.less";
+import "./style.css";
 
 export default function NetworkIcon() {
   return (

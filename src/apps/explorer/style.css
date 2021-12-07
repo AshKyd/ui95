@@ -1,0 +1,53 @@
+.ui95-explorer-columns {
+	display: flex;
+	padding: 0;
+	height: 100%;
+}
+
+.ui95-explorer-columns__left {
+	background: white url("explorer-background.png");
+	background-size: 100%;
+	width: 200px;
+	max-width: 200px;
+	min-width: 200px;
+	background-repeat: no-repeat;
+	position: relative;
+	overflow: hidden;
+	padding: 15px;
+	box-sizing: border-box;
+}
+
+.ui95-explorer-columns__mobile {
+	flex-direction: column;
+}
+
+.ui95-explorer-columns__mobile .ui95-explorer-columns__left {
+	overflow: visible;
+	width: auto;
+	min-width: none;
+	max-width: none;
+	height: 30%;
+	max-height: 30%;
+	min-height: 30%;
+	overflow: hidden;
+	flex: 1;
+}
+
+.ui95-explorer-columns__mobile .ui95-explorer-columns__left-head {
+	display: flex;
+}
+
+.ui95-explorer-columns__mobile .ui95-explorer-columns__left-head .ui95-icon {
+	margin-right: 7px;
+}
+
+.ui95-explorer-columns__folder-name {
+	margin: 0;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.ui95-explorer-columns__right {
+	overflow: scroll;
+	flex-grow: 1;
+}

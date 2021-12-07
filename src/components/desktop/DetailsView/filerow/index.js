@@ -2,7 +2,7 @@ import { h, render, Component } from "preact";
 import { getClasses } from "../../../../util";
 import Icon from "../../../icon/index.js";
 import Text from "../../../text/index.js";
-import "./style.less";
+import "./style.css";
 
 function formatColumn(value) {
   if (!value) return "";

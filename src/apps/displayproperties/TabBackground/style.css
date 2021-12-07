@@ -1,0 +1,19 @@
+.ui95-tab-background {
+	display: flex;
+	flex-direction: column;
+}
+
+.ui95-tab-background__tools {
+	padding-top: 30px;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.ui95-tab-background__tools-left {
+	flex: 1;
+}
+
+.ui95-tab-background__tools-right {
+	padding-left: 10px;
+}

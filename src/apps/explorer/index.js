@@ -1,5 +1,5 @@
 import { h, render, Component } from "preact";
-import "./style.less";
+import "./style.css";
 import Window from "../../components/window";
 import Toolbar from "../../components/toolbar";
 import Divider from "../../components/divider";
