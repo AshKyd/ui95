@@ -3,6 +3,7 @@ import Icon from "../../icon";
 import Text from "../../text";
 import Buttons from "../Buttons";
 import "./style.css";
+
 export default function WindowButtons({
   icon,
   title = "Untitled window",
@@ -18,6 +19,7 @@ export default function WindowButtons({
       class="ui95-window-titlebar"
       onMouseDown={onMove}
       onTouchStart={onMove}
+      onDoubleClick={() => (!buttons || buttons.split(" ").includes("maximize") )&& toggleState("isMaximized")}
     >
       <Text type="h1" className="ui95-window-titlebar__heading">
         {icon && (
