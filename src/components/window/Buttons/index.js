@@ -10,13 +10,12 @@ function stopPropagation(e) {
   e.stopPropagation();
 }
 export default function WindowButtons({
-  buttons = "minimize maximize close",
+  buttons,
   onClose,
   onMinimize,
   toggleState,
   isMaximized = false
 }) {
-  const allowedButtons = buttons.split(" ");
   return (
     <div
       class="ui95__window-buttons"
@@ -24,12 +23,12 @@ export default function WindowButtons({
       onTouchStart={stopPropagation}
       onMouseDown={stopPropagation}
     >
-      {allowedButtons.includes("minimize") && (
+      {buttons.includes("minimize") && (
         <Button classNames="titlebar minimize" onClick={onMinimize}>
           <Icon size="custom" name="window-minimize" title="Minimize" />
         </Button>
       )}
-      {allowedButtons.includes("maximize") && (
+      {buttons.includes("maximize") && (
         <Button
           classNames="titlebar maximize"
           onClick={() => toggleState("isMaximized")}
@@ -42,7 +41,7 @@ export default function WindowButtons({
           )}
         </Button>
       )}
-      {allowedButtons.includes("close") && (
+      {buttons.includes("close") && (
         <Button classNames="titlebar close" onClick={onClose}>
           <Icon size="custom" name="window-close" title="Close" />
         </Button>

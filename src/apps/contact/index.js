@@ -17,7 +17,7 @@ function Contact({ bio, contact, wmProps = {} }) {
       height="auto"
       isResizeable={false}
       className="tabdialog"
-      buttons="close"
+      buttons={["close"]}
       {...wmProps}
     >
       <div style={{ padding: "8px 7px" }}>

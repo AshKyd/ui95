@@ -14,7 +14,7 @@ function TabDialog({ title, tabs, onOkay, onApply, wmProps = {} }) {
       height="auto"
       isResizeable={false}
       classNames="tabdialog"
-      buttons="close"
+      buttons={["close"]}
       {...wmProps}
     >
       <div style={{ padding: "8px 7px" }}>

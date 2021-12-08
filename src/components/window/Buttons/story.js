@@ -5,4 +5,4 @@ import Buttons from ".";
 storiesOf("Components/Window/Buttons", module)
   .add("No config", () => <Buttons />)
   .add("Maximized", () => <Buttons isMaximized />)
-  .add("Custom buttons", () => <Buttons buttons="close" />);
+  .add("Custom buttons", () => <Buttons buttons={["close"]} />);

@@ -17,7 +17,7 @@ function ShutdownDialog({ onChange, wmProps }) {
         className="shutdown"
         width={320}
         height={140}
-        buttons="close"
+        buttons={["close"]}
         isResizeable={false}
         isMoveable={false}
         center={true}

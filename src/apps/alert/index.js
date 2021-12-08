@@ -29,7 +29,7 @@ function Alert({
       height="auto"
       isResizeable={false}
       classNames="alert"
-      buttons="close"
+      buttons={["close"]}
       {...wmProps}
     >
       <div class="ui95-window-alert">
