@@ -190,7 +190,7 @@ class Window extends Component {
       isResizeable,
       icon,
       title,
-      buttons,
+      buttons=["minimize", "maximize", "close"],
       onClose,
       onMinimize
     } = props;

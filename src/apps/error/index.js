@@ -35,7 +35,7 @@ class ErrorHandler extends Component {
           isResizeable={false}
           height="auto"
           minHeight={125}
-          buttons="close"
+          buttons={["close"]}
           {...wmProps}
         >
           <div class="ui95-window-error">
