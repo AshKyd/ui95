@@ -24,6 +24,20 @@ class Wizard extends Component {
       ]
     };
   }
+  componentDidMount(){
+
+    // If firstRun, check if we've already run before
+    const {firstRun, localStorageKey} = this.props;
+    if(!firstRun || !localStorageKey){
+      return;
+    }
+
+    try{
+      if(localStorage[localStorageKey]){
+        return this.props.wmProps.onClose();
+      }
+    }catch(e){}
+  }
   prepareAction(action, selected) {
     this.setState({ action, selected });
   }
@@ -39,7 +53,16 @@ class Wizard extends Component {
   performAction() {
     const action = this.state.action;
 
-    if (!action) return this.props.wmProps.onClose();
+    if (!action) {
+      // Set the localStorage key so we don't show this agaon
+      try{
+        if(this.props.localStorageKey){
+          localStorage[this.props.localStorageKey] = 'closed';
+        }
+      }catch(e){}
+
+      return this.props.wmProps.onClose();
+    }
 
     if (action.mode === "update") {
       return this.setState({
