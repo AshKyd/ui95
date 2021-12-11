@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "npm run build-example && npm run build-storybook",
+    "build": "npm run build-example && npm run build-storybook && npm run build-docs",
     "build-example": "parcel build src/example/index.html --detailed-report --out-dir docs/example/ --public-url /example/ --no-source-maps",
     "build-storybook": "build-storybook",
     "build-docs": "cp node_modules/docsify/lib/docsify.min.js docs/cp node_modules/docsify/lib/themes/vue.css docs/_media",
