@@ -7,3 +7,6 @@ dist
 src/components/icon/icons/*
 docs/example
 docs/storybook
+docs/_media/docsify.min.css
+docs/_media/docsify.min.js
+storybook-static
