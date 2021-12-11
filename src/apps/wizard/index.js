@@ -12,7 +12,6 @@ class Wizard extends Component {
   constructor(props) {
     super();
     this.state = {
-      zIndex: props.zIndex,
       selected: 0,
       action: Object.values(props.wizardOptions)[0],
       steps: [
@@ -50,18 +49,21 @@ class Wizard extends Component {
       steps: this.state.steps.slice(0, -1)
     });
   }
+  close(){
+    // Set the localStorage key so we don't show this again
+    try{
+      if(this.props.localStorageKey){
+        localStorage[this.props.localStorageKey] = 'closed';
+      }
+    }catch(e){}
+
+    return this.props.wmProps.onClose();
+  }
   performAction() {
     const action = this.state.action;
 
     if (!action) {
-      // Set the localStorage key so we don't show this agaon
-      try{
-        if(this.props.localStorageKey){
-          localStorage[this.props.localStorageKey] = 'closed';
-        }
-      }catch(e){}
-
-      return this.props.wmProps.onClose();
+      this.close();
     }
 
     if (action.mode === "update") {
@@ -81,12 +83,11 @@ class Wizard extends Component {
 
     if (action.mode === "launch") {
       this.props.wmProps.shell.openWindow(action.app, action.appProps);
-      this.props.wmProps.onClose();
+      this.close();
       return;
     }
   }
   render({ image, title, width, height, wmProps = {} }) {
-    const onClose = wmProps.onClose;
     const buttonStyle = {
       height: `23px`,
       width: `70px`,
@@ -138,7 +139,7 @@ class Wizard extends Component {
           >
             {buttonText}
           </Button>
-          <Button key="cancel" style={buttonStyle} onClick={onClose}>
+          <Button key="cancel" style={buttonStyle} onClick={() => this.close()}>
             Cancel
           </Button>
         </div>
