@@ -8,11 +8,11 @@ import "./index.css";
 function formatDate(timestamp) {
   const date = new Date(timestamp);
   const hours = date.getHours();
-  const hours12 = hours % 12;
+  const hours12 = hours % 12 || 12;
   const minutes = date.getMinutes();
 
   return `${hours12}:${String(minutes).padStart(2, "0")} ${
-    hours === hours12 ? "AM" : "PM"
+    hours < 12 ? "AM" : "PM"
   }`;
 }
 
