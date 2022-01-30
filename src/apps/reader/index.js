@@ -20,7 +20,7 @@ import "./reader.css";
 // }
 
 function loadTwitter() {
-  window.twttr = (function(d, s, id) {
+  window.twttr = (function (d, s, id) {
     var js,
       fjs = d.getElementsByTagName(s)[0],
       t = window.twttr || {};
@@ -31,7 +31,7 @@ function loadTwitter() {
     fjs.parentNode.insertBefore(js, fjs);
 
     t._e = [];
-    t.ready = function(f) {
+    t.ready = function (f) {
       t._e.push(f);
     };
 
@@ -58,13 +58,13 @@ class Reader extends Component {
       }
     }
 
-    this.el.querySelectorAll('a[href^="/"]').forEach(link => {
+    this.el.querySelectorAll('a[href^="/"]').forEach((link) => {
       if (link.href.match(/\/[^/]/))
-        link.addEventListener("click", e => {
+        link.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
           this.props.wmProps.shell.openWindow("Loader", {
-            permalink: link.href
+            permalink: link.href,
           });
         });
     });
@@ -84,8 +84,9 @@ class Reader extends Component {
     // });
   }
   render({ content, wmProps }) {
+    console.log("hi");
     // Lazy split pages by <hr>. Potentially buggy. Be careful.
-    const pages = (content || "").split("<hr>");
+    const pages = (content || "").split(/<hr[^>]*>/);
     return (
       <Window
         icon="wordpad"
@@ -95,8 +96,8 @@ class Reader extends Component {
         {...wmProps}
       >
         <Share />
-        <ScrollableContainer ref={el => (this.scrollable = el)}>
-          <article className="ui95__reader-wrap" ref={el => (this.el = el)}>
+        <ScrollableContainer ref={(el) => (this.scrollable = el)}>
+          <article className="ui95__reader-wrap" ref={(el) => (this.el = el)}>
             {pages.map((page, i) => (
               <div key={i} className="ui95__reader-page">
                 <HTML html={page} />
@@ -109,10 +110,10 @@ class Reader extends Component {
   }
 }
 
-Reader.prototype.getInitialState = function() {
+Reader.prototype.getInitialState = function () {
   return {
     title: "Reader",
-    icon: "wordpad"
+    icon: "wordpad",
   };
 };
 
