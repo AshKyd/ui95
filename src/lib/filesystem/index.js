@@ -6,7 +6,7 @@ const types = {
   bat: "MS-DOS Batch File",
   txt: "Blog Post",
   folder: "File Folder",
-  drive: "Local Disk"
+  drive: "Local Disk",
 };
 
 class File {
@@ -28,10 +28,12 @@ class File {
     if (this.filename.match(/a:$/)) return (this.icon = "floppy");
     if (this.filename.match(/:$/)) return (this.icon = "drive");
     if (this.extension === null) return (this.icon = "folder");
-    if (["txt", "doc", "ini", "cfg"].includes(this.extension))
+    if (["txt", "doc", "ini", "cfg"].includes(this.extension.toLowerCase()))
       return (this.icon = "wordpad");
-    if (["exe", "bat"].includes(this.extension)) return (this.icon = "default");
-    if (["avi"].includes(this.extension)) return (this.icon = "video");
+    if (["exe", "bat"].includes(this.extension.toLowerCase()))
+      return (this.icon = "default");
+    if (["avi"].includes(this.extension.toLowerCase()))
+      return (this.icon = "video");
     return (this.icon = "document");
   }
   fullPath() {
@@ -56,10 +58,10 @@ class Filesystem {
       return new File("/", {
         label: "My Computer",
         description: "Select an item to view its description.",
-        icon: "mycomputer"
+        icon: "mycomputer",
       });
     const path = this.conformPath(requestedPath);
-    const folder = this.files.find(file => {
+    const folder = this.files.find((file) => {
       const thisPath =
         (file.path === "/" ? "" : file.path.toLowerCase()) +
         "/" +
@@ -73,7 +75,18 @@ class Filesystem {
   }
   getFiles(requestedPath) {
     const path = this.conformPath(requestedPath);
-    const files = this.files.filter(file => file.path.toLowerCase() === path);
+    const files = this.files.filter((file) => file.path.toLowerCase() === path);
+
+    files.sort((a, b) => {
+      const dirA = !a.filename.includes(".");
+      const dirB = !b.filename.includes(".");
+      if ((dirA || dirB) && !(dirA && dirB)) {
+        return 0 - dirA + dirB;
+      }
+
+      if (a.filename === b.filename) return 0;
+      return a.filename < b.filename ? -1 : 1;
+    });
     return uniqBy(files, "filename");
   }
 }
