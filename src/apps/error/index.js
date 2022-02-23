@@ -10,7 +10,7 @@ class ErrorHandler extends Component {
   constructor({ error, title, zIndex }) {
     super();
     this.state = {
-      errorShown: false
+      errorShown: false,
     };
     console.error("ErrorHandler", error);
   }
@@ -22,11 +22,16 @@ class ErrorHandler extends Component {
         ? [
             "Debug information follows:",
             "--------------------------",
-            debugInfo
+            debugInfo,
           ].join("\n")
         : "";
 
       const errorDetails = [message, stack, renderedDebugInfo || ""].join("\n");
+
+      try {
+        var event = new ErrorEvent("error", { error });
+        window.dispatchEvent(event);
+      } catch (e) {}
 
       return (
         <Window
