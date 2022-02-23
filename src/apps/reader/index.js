@@ -84,7 +84,6 @@ class Reader extends Component {
     // });
   }
   render({ content, wmProps }) {
-    console.log("hi");
     // Lazy split pages by <hr>. Potentially buggy. Be careful.
     const pages = (content || "").split(/<hr[^>]*>/);
     return (
