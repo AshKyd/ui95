@@ -28,8 +28,9 @@ class ErrorHandler extends Component {
 
       const errorDetails = [message, stack, renderedDebugInfo || ""].join("\n");
 
+      // Emit a custom event so error logging listeners can report this
       try {
-        var event = new ErrorEvent("error", { error });
+        var event = new ErrorEvent("ErrorHandler", { error });
         window.dispatchEvent(event);
       } catch (e) {}
 
