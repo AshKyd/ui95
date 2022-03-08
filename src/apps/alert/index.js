@@ -6,20 +6,11 @@ import Icon from "../../components/icon/index.js";
 import Text from "../../components/text/index.js";
 import Input from "../../components/forms/input/index.js";
 
-function Alert({
-  title,
-  text,
-  html,
-  buttons,
-  icon,
-  width,
-  height,
-  wmProps = {}
-}) {
+function Alert({ title, text, html, buttons, icon, width, wmProps = {} }) {
   const normalizedButtons = (buttons || [{ text: "Ok" }]).map(
     ({ text, onClick = wmProps.onClose }) => ({
       text,
-      onClick
+      onClick,
     })
   );
   return (
@@ -41,12 +32,20 @@ function Alert({
           )}
           <div class="ui95-window-alert__text">
             <Text style="margin-bottom:15px;" type="div" html={html}>
-              {text}
+              {Array.isArray(text)
+                ? text.map((line) => (
+                    <div key={line}>
+                      {line}
+                      <br />
+                      <br />
+                    </div>
+                  ))
+                : text}
             </Text>
           </div>
         </div>
         <div class="ui95-window-alert__buttons">
-          {normalizedButtons.map(props => (
+          {normalizedButtons.map((props) => (
             <Button {...props}>{props.text}</Button>
           ))}
         </div>
