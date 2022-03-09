@@ -18,24 +18,23 @@ class Wizard extends Component {
         {
           content: props.content,
           wizardOptions: props.wizardOptions,
-          buttonText: props.buttonText || "Next >"
-        }
-      ]
+          buttonText: props.buttonText || "Next >",
+        },
+      ],
     };
   }
-  componentDidMount(){
-
+  componentDidMount() {
     // If firstRun, check if we've already run before
-    const {firstRun, localStorageKey} = this.props;
-    if(!firstRun || !localStorageKey){
+    const { firstRun, localStorageKey } = this.props;
+    if (!firstRun || !localStorageKey) {
       return;
     }
 
-    try{
-      if(localStorage[localStorageKey]){
+    try {
+      if (localStorage[localStorageKey]) {
         return this.props.wmProps.onClose();
       }
-    }catch(e){}
+    } catch (e) {}
   }
   prepareAction(action, selected) {
     this.setState({ action, selected });
@@ -46,16 +45,16 @@ class Wizard extends Component {
       action: Object.values(
         this.state.steps[this.state.steps.length - 2].wizardOptions
       )[0],
-      steps: this.state.steps.slice(0, -1)
+      steps: this.state.steps.slice(0, -1),
     });
   }
-  close(){
+  close() {
     // Set the localStorage key so we don't show this again
-    try{
-      if(this.props.localStorageKey){
-        localStorage[this.props.localStorageKey] = 'closed';
+    try {
+      if (this.props.localStorageKey) {
+        localStorage[this.props.localStorageKey] = "closed";
       }
-    }catch(e){}
+    } catch (e) {}
 
     return this.props.wmProps.onClose();
   }
@@ -64,6 +63,7 @@ class Wizard extends Component {
 
     if (!action) {
       this.close();
+      return;
     }
 
     if (action.mode === "update") {
@@ -75,9 +75,9 @@ class Wizard extends Component {
           {
             content: action.content,
             buttonText: action.buttonText,
-            wizardOptions: action.wizardOptions
-          }
-        ]
+            wizardOptions: action.wizardOptions,
+          },
+        ],
       });
     }
 
@@ -91,11 +91,10 @@ class Wizard extends Component {
     const buttonStyle = {
       height: `23px`,
       width: `70px`,
-      marginLeft: `5px`
+      marginLeft: `5px`,
     };
-    const { content, buttonText, wizardOptions } = this.state.steps[
-      this.state.steps.length - 1
-    ];
+    const { content, buttonText, wizardOptions } =
+      this.state.steps[this.state.steps.length - 1];
     return (
       <Window
         title={title}
