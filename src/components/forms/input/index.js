@@ -8,7 +8,7 @@ function Input(props) {
     className,
     "in",
     props.disabled && "disabled",
-    ...(props.classNames || "").split(" ")
+    ...(props.classNames || "").split(" "),
   ].join(` ${className}--`);
   const element = props.multiline ? "textarea" : "input";
   return (
@@ -17,12 +17,15 @@ function Input(props) {
       style={{
         width: props.width || "100px",
         height: props.height || "16px",
-        ...(props.style || {})
+        ...(props.style || {}),
       }}
     >
       {h(element, {
         value: props.value,
-        disabled: props.disabled
+        disabled: props.disabled,
+        name: props.name,
+        id: props.id,
+        type: props.type,
       })}
     </Bezel>
   );
