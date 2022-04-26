@@ -8,7 +8,7 @@ class Radio extends Component {
   constructor(props) {
     super();
     this.state = {
-      id: props.id || radioId++
+      id: props.id || radioId++,
     };
   }
   id() {
@@ -18,7 +18,7 @@ class Radio extends Component {
     return (
       <ul class={getClasses("radio", classNames)}>
         {Object.entries(values).map(([text, value], i) => (
-          <li key={i}>
+          <li key={value}>
             <label for={`${this.id()}__${i}`}>
               <input
                 name={this.id()}
@@ -26,13 +26,13 @@ class Radio extends Component {
                 type="radio"
                 value={value}
                 checked={selected === i}
-                onChange={e => onChange(value, i)}
+                onChange={(e) => onChange(value, i)}
               />
               <Bezel
                 classNames="in round"
                 style={{
                   width: "9px",
-                  height: "9px"
+                  height: "9px",
                 }}
               >
                 <div class="ui95-radio__dot" />
