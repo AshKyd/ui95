@@ -59,7 +59,7 @@ class Reader extends Component {
     }
 
     this.el.querySelectorAll('a[href^="/"]').forEach((link) => {
-      if (link.href.match(/\/[^/]/))
+      if (link.href.match(/\/[^/]/) && !link.dataset.transformed)
         link.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -67,6 +67,7 @@ class Reader extends Component {
             permalink: link.href,
           });
         });
+      link.dataset.transformed = true;
     });
 
     // Make hash links work. This doesn't work, not sure why yet
