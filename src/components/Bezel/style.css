@@ -21,7 +21,7 @@
 .ui95-bezel--round:before {
   border-radius: 100%;
 }
-.ui95-bezel--in:before:not {
+.ui95-bezel--in:before {
   content: "";
   position: absolute;
   display: block;
