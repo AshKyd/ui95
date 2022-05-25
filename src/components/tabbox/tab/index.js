@@ -1,12 +1,13 @@
 import { h, render, Component } from "preact";
+import Text from "../../text";
 import "./style.css";
 
 function Tab({ onClick, children, style }) {
-  const className = "ui95-tab";
-  return h("button", { className, onClick, style }, [
-    h("div", { class: "ui95-tab__ring" }),
-    children
-  ]);
+  return (
+    <button className="ui95-tab" onClick={onClick} style={style}>
+      <Text class="ui95-tab__ring">{children}</Text>
+    </button>
+  );
 }
 
 export default Tab;
