@@ -87,7 +87,15 @@ class Wizard extends Component {
       return;
     }
   }
-  render({ image, title, width, height, wmProps = {} }) {
+  render({
+    image,
+    title,
+    width,
+    height,
+    imageWidth,
+    imageHeight,
+    wmProps = {},
+  }) {
     const buttonStyle = {
       height: `23px`,
       width: `70px`,
@@ -106,7 +114,13 @@ class Wizard extends Component {
       >
         <div class="ui95-window--wizard__row">
           <Bezel classNames="in image">
-            <Img src={image} alt="" class="ui95-window--wizard__image" />
+            <Img
+              src={image}
+              alt=""
+              class="ui95-window--wizard__image"
+              width={imageWidth}
+              height={imageHeight}
+            />
           </Bezel>
           <div class="ui95-window--wizard__content">
             <Text type="div" html={content} />
