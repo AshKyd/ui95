@@ -1,0 +1,31 @@
+.ui95-menuitem.ui95-menuitem--submenu {
+  padding-right: calc(var(--px) * 20);
+}
+.ui95-menuitem--submenu .ui95-icon--chevron-black-right,
+.ui95-menuitem--submenu .ui95-icon--chevron-white-right {
+  position: absolute;
+  right: 7px;
+  margin-top: 0 !important;
+  top: calc(50% - calc(var(--px) * 3.5));
+}
+.ui95-menuitem--submenu:not(:hover) > span > .ui95-icon--chevron-white-right,
+.ui95-menuitem--submenu:not(:focus) > span > .ui95-icon--chevron-white-right {
+  display: none;
+}
+.ui95-menuitem--submenu:hover > span > .ui95-icon--chevron-black-right {
+  display: none;
+}
+.ui95-menuitem--submenu:hover > span > .ui95-icon--chevron-white-right {
+  display: block;
+}
+
+.ui95-menuitem--submenu .ui95-menu,
+.ui95-menuitem--submenu .ui95-menu {
+  display: none;
+  background: red;
+}
+
+.ui95-menuitem--submenu:hover > .ui95-menu,
+.ui95-menuitem--submenu:focus > .ui95-menu {
+  display: block;
+}

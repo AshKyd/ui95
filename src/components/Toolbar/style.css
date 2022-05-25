@@ -1,0 +1,17 @@
+.ui95-toolbar {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: var(--gray);
+  color: black;
+  border: var(--px) solid black;
+  border-color: var(--grayLight) var(--grayDark) var(--grayDark)
+    var(--grayLight);
+  padding: var(--px) 3px;
+  font-family: system;
+  font-size: 10px;
+}
+
+.ui95-toolbar .ui95-divider--vertical {
+  margin: 0 5px;
+}

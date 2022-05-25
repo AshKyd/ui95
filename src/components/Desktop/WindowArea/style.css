@@ -1,0 +1,9 @@
+.ui95-windowarea {
+  position: relative;
+  height: calc(100% - 24px);
+  overflow: hidden;
+}
+body.loading .ui95-windowarea,
+body.loading .ui95-windowarea * {
+  cursor: wait;
+}

@@ -1,6 +1,6 @@
 import { h, render, Component } from "preact";
-import Window from "../../components/window";
-import FormBuilder from "../../components/forms/FormBuilder";
+import Window from "../../components/Window";
+import FormBuilder from "../../components/Forms/FormBuilder";
 
 function FormBuilderWindow({
   title = "FormBuilderWindow",

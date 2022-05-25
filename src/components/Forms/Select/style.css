@@ -1,0 +1,55 @@
+.ui95-bezel--select {
+  display: block;
+  background: var(--white);
+  border: var(--px) solid black;
+  border-color: var(--black) var(--white) var(--white) var(--black);
+  position: relative;
+}
+.ui95-bezel--select--disabled {
+  background: var(--gray);
+}
+.ui95-bezel--select:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: var(--px) solid black;
+  border-color: var(--grayDark) var(--grayLight) var(--grayLight)
+    var(--grayDark);
+  pointer-events: none;
+}
+
+.ui95-bezel--select select {
+  border: none;
+  background: transparent;
+  font-family: sans-serif;
+  font-size: 10px;
+  padding: 0 2px;
+  color: var(--black);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.ui95-bezel--select button {
+  pointer-events: none;
+  position: absolute;
+  right: 1px;
+  top: 2px;
+  height: calc(100% - 4px);
+  width: 16px;
+}
+.ui95-bezel--select button .ui95-icon {
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+.ui95-bezel--select--disabled > * {
+  color: var(--greyDark);
+  text-shadow: 1px 1px 0 var(--white);
+}

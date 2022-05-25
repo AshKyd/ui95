@@ -1,0 +1,57 @@
+.ui95-menuitem {
+  line-height: 18px;
+  display: flex;
+  font-family: system;
+  font-size: 10px;
+  padding-left: 23px;
+  padding-right: 10px;
+  color: var(--black);
+  text-decoration: none;
+  position: relative;
+  white-space: nowrap;
+  cursor: default;
+}
+
+a.ui95-menuitem:hover,
+a.ui95-menuitem:active,
+a.ui95-menuitem:focus {
+  background: var(--highlightBackground);
+  color: var(--highlightForeground);
+}
+
+.ui95-menuitem .ui95-icon {
+  position: absolute;
+  margin-left: -19px;
+  margin-top: 1px;
+}
+
+.ui95-menuitem--large > .ui95-icon {
+  margin-top: 3px;
+}
+
+.ui95-menuitem__divider {
+  margin: 3px 2px;
+}
+
+.ui95-menuitem--disabled {
+  color: var(--grayDark);
+}
+
+/* Large variant */
+.ui95-menuitem.ui95-menuitem--large {
+  line-height: 32px;
+  padding-left: 43px;
+}
+
+.ui95-menuitem.ui95-menuitem--large > .ui95-icon {
+  margin-left: -38px;
+}
+
+@media (pointer: coarse) {
+  .ui95-menuitem {
+    line-height: calc(18px * var(--touch-scale));
+  }
+  .ui95-menuitem .ui95-icon {
+    margin-top: 6px;
+  }
+}

@@ -1,0 +1,38 @@
+.ui95-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.ui95-menu .ui95-bezel {
+  display: flex;
+  flex-direction: column;
+}
+.ui95-menu-entry:hover,
+.ui95-menu-entry:active,
+.ui95-menu-entry:focus {
+  background: var(--highlightBackground);
+  color: var(--highlightForeground);
+}
+
+.ui95-menu-entry {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.ui95-menu--with-branding > .ui95-bezel {
+  padding-left: 22px;
+}
+
+/* prevent accidentally clicking for the first 300ms */
+.ui95-menu--defer-action {
+  animation: 0.3s ui95-menu--defer-action;
+}
+
+@keyframes ui95-menu--defer-action {
+  from {
+    pointer-events: none;
+  }
+  to {
+    pointer-events: none;
+  }
+}

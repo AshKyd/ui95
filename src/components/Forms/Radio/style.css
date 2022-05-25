@@ -1,0 +1,49 @@
+.ui95-radio--down {
+  display: flex;
+  flex-direction: column;
+}
+.ui95-radio__dot {
+  --size: 4px;
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 100%;
+  background: var(--black);
+  position: absolute;
+  left: calc(50% - calc(var(--size) / 2));
+  top: calc(50% - calc(var(--size) / 2));
+  display: none;
+}
+
+.ui95-radio input:checked + .ui95-bezel .ui95-radio__dot {
+  display: block;
+}
+.ui95-radio input {
+  display: none;
+}
+
+.ui95-radio label {
+  display: flex;
+}
+
+.ui95-radio,
+.ui95-radio li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ui95-radio .ui95-text {
+  margin-left: 8px;
+}
+
+.ui95-radio--down li {
+  margin-bottom: 8px;
+}
+.ui95-radio--across {
+  display: flex;
+  flex-direction: row;
+}
+.ui95-radio--across li {
+  margin-right: 8px;
+}

@@ -1,0 +1,44 @@
+.ui95-window-titlebar {
+  display: flex;
+  flex-direction: row;
+  font-family: system;
+  font-size: 10px;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    var(--highlightBackground),
+    var(--highlightBackground2)
+  );
+  margin-left: 2px;
+  margin-top: 1px;
+  margin-right: 2px;
+  margin-bottom: 0;
+  padding: 0;
+  line-height: 18px;
+  color: var(--white);
+  padding-left: 3px;
+}
+.ui95-text--ui95-window-titlebar__heading {
+  flex: 1;
+  width: calc(100% - 5em);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ui95-window-titlebar .ui95-icon--application {
+  margin-bottom: calc(-4 * var(--px));
+  margin-right: 2px;
+}
+
+.ui95-window-titlebar-icons {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  display: flex;
+}
+
+@media (pointer: coarse) {
+  .ui95-window-titlebar {
+    line-height: calc(18px * 1.7);
+  }
+}

@@ -1,0 +1,11 @@
+.ui95-button--start-menu {
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  background-image: url("data:image/gif;base64,R0lGODlhEAAQAOMJAAAAAAAA/1ciBoMA/9kAFP8AAPgvDAD/AP//AAD2AAD2AAD2AAD2AAD2AAD2AAD2ACH5BAEKAA8ALAAAAAAQABAAAARR8MlJq6UggzvzOUGQPRuGIF84DIBAkoBxpsFaCgBhyChYsy4Kj2ZzuQq7mc8mERSQwyWwElVNXbrqr/UQELJKK1d40gBsG+xu1GGbSxY4pxIBADs=");
+  background-repeat: no-repeat;
+  background-position: 3px center;
+  padding-left: 22px;
+  width: 55px;
+  height: 100%;
+  font-weight: bold;
+}

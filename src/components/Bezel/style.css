@@ -1,0 +1,79 @@
+.ui95-bezel--in,
+.ui95-bezel--in-tab {
+  display: block;
+  background: var(--white);
+  border: var(--px) solid black;
+  border-color: var(--black) var(--white) var(--white) var(--black);
+  position: relative;
+  pointer-events: none;
+}
+
+.ui95-bezel--in-tab {
+  border-color: var(--grayDark) var(--grayLight) var(--grayLight)
+    var(--grayDark);
+}
+.ui95-bezel--disabled {
+  background: var(--gray);
+}
+.ui95-bezel--round {
+  border-radius: 100%;
+}
+.ui95-bezel--round:before {
+  border-radius: 100%;
+}
+.ui95-bezel--in:before:not {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: var(--px) solid black;
+  border-color: var(--grayDark) var(--grayLight) var(--grayLight)
+    var(--grayDark);
+  pointer-events: none;
+}
+
+.ui95-bezel--out,
+.ui95-bezel--out-tab {
+  display: block;
+  background: var(--gray);
+  border: var(--px) solid black;
+  border-color: var(--grayLight) var(--black) var(--black) var(--grayLight);
+  position: relative;
+}
+.ui95-bezel--out:before,
+.ui95-bezel--out-tab:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: var(--px) solid black;
+  border-color: var(--white) var(--grayDark) var(--grayDark) var(--white);
+  pointer-events: none;
+}
+
+.ui95-bezel--out-tab {
+  border-color: var(--white) var(--black) var(--black) var(--white);
+}
+.ui95-bezel--out-tab:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: var(--px) solid black;
+  border-color: var(--grayLight) var(--grayDark) var(--grayDark)
+    var(--grayLight);
+  pointer-events: none;
+}
+
+.ui95-bezel--image {
+  display: inline-block;
+}

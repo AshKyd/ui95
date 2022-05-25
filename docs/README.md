@@ -84,7 +84,7 @@ The simplest implementation of an app can be found in the functional webview com
 
 ```js
 import { h, render, Component } from "preact";
-import Window from "../../components/window/index.js";
+import Window from "../../components/Window";
 
 function Webview({ title, src, wmProps }) {
   return (
@@ -117,7 +117,7 @@ For instance, the following will open the Alert app with some sample text:
 props.openWindow("Alert", {
   app: "Alert",
   title: "Untitled window",
-  test: "An error occurred"
+  test: "An error occurred",
 });
 ```
 

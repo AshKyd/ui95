@@ -1,0 +1,20 @@
+.ui95-scrollable-container {
+  position: relative;
+  will-change: scroll-position;
+  flex: 1;
+}
+.ui95-bezel--scrollable-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.ui95-scrollable-container__scrollable {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+  overflow: auto;
+}

@@ -1,0 +1,93 @@
+.ui95-mpguide {
+  background: #004275;
+  color: white;
+  position: relative;
+  padding: 10px;
+  font-family: sans-serif;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.ui95-mpguide a {
+  color: #f4fdcf;
+  text-decoration: none;
+}
+.ui95-mpguide a:focus {
+  text-decoration: underline;
+}
+
+.ui95-mpguide__bullet {
+  width: 11px;
+  height: 11px;
+  background: url("./bullet.png");
+  display: inline-block;
+}
+
+.ui95-mpguide * {
+  margin: 0;
+  padding: 0;
+}
+
+.ui95-mpguide img {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  height: auto;
+  border: 1px solid white;
+  margin-bottom: 5px;
+}
+
+.ui95-mpguide ul {
+  position: relative;
+  display: grid;
+  list-style: none;
+  grid-column-gap: 30px;
+  margin: 15px 0 20px;
+  grid-template-columns: calc(50% - 15px) calc(50% - 15px);
+}
+
+.ui95-mpguide li a {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+  padding-bottom: 5px;
+}
+
+.ui95-mpguide li a:hover,
+.ui95-mpguide li a:focus {
+  background: #83aad2;
+}
+
+.ui95-mpguide h2 {
+  font-size: 30px;
+  background: linear-gradient(to bottom, #f9f9fb, #9e9fa8 96%, #000);
+  color: black;
+  margin: -10px -10px 10px;
+  padding: 10px 10px 25px;
+  position: relative;
+}
+.ui95-mpguide h2::after {
+  content: "Latest videos";
+  position: absolute;
+  display: block;
+  left: 10px;
+  bottom: 0;
+  background: #004275;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+  font-size: 12px;
+  padding: 2px 20px 2px 5px;
+  color: white;
+}
+
+.ui95-mpguide p {
+  margin-bottom: 10px;
+}
+
+.ui95-mediaplayer__subscribe {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 0 5px;
+  background: white;
+  border: 1px solid #004275;
+}

@@ -1,0 +1,69 @@
+.ui95-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--gray);
+  color: black;
+  border: none;
+  border: var(--px) solid black;
+  border-color: var(--white) var(--black) var(--black) var(--white);
+  font-size: 10px;
+  padding: 0 2px;
+  justify-content: center;
+}
+.ui95-button[disabled] {
+  color: var(--greyDark);
+  text-shadow: 1px 1px 0 var(--white);
+}
+.ui95-button--bold {
+  font-weight: bold;
+}
+.ui95-button--left {
+  justify-content: flex-start;
+}
+.ui95-button--flex-taskbar {
+  flex: 1;
+  max-width: 160px;
+}
+.ui95-button:before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: var(--px) solid black;
+  border-color: var(--grayLight) var(--grayDark) var(--grayDark)
+    var(--grayLight);
+}
+.ui95-button--borderless:not(:active):not(.active) {
+  border-color: transparent;
+}
+.ui95-button--borderless:not(:active):not(.active):before {
+  display: none;
+}
+
+.ui95-button:focus {
+  outline: none;
+}
+.ui95-button:focus:after {
+  content: "";
+  position: absolute;
+  display: block;
+  top: var(--px);
+  right: var(--px);
+  bottom: var(--px);
+  left: var(--px);
+  border: var(--px) dotted var(--black);
+}
+
+.ui95-button.ui95-button--active,
+.ui95-button:active:not([disabled]) {
+  border-color: var(--black) var(--white) var(--white) var(--black);
+}
+.ui95-button.ui95-button--active:before,
+.ui95-button:active:not([disabled]):before {
+  border-color: var(--grayDark) var(--grayLight) var(--grayLight)
+    var(--grayDark);
+}

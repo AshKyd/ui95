@@ -1,0 +1,53 @@
+.ui95-file-row {
+	display: table-row;
+	cursor: pointer;
+}
+
+.ui95-file-row a {
+	color: black;
+	display: block;
+	text-decoration: none;
+	outline: none;
+	position: relative;
+	height: 15px;
+	display: flex;
+	align-items: center;
+	padding: 0 6px 0 2px;
+	margin-left: -2px;
+}
+
+@media (pointer: coarse) {
+	.ui95-file-row a {
+		height: calc(15px * var(--touch-scale));
+	}
+}
+
+.ui95-file-row > * {
+	padding: 0 4px;
+	align-items: middle;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.ui95-file-row__label-icon {
+	padding-right: 0;
+	width: 16px;
+}
+
+.ui95-file-row__label-icon .ui95-icon {
+	margin-bottom: -3px;
+}
+
+.ui95-file-row--selected a,
+.ui95-file-row:hover a,
+.ui95-file-row:focus a {
+	background: var(--color-primary);
+	color: var(--color-primary-alt);
+	outline: 1px dotted var(--black);
+}
+
+.ui95-file-row--solid-color a {
+	background: var(--color-primary);
+	color: var(--color-primary-alt);
+	outline: 1px dotted var(--black);
+}

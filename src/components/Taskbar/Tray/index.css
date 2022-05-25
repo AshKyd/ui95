@@ -1,0 +1,16 @@
+.ui95-bezel--ui95-tray {
+  display: flex;
+  padding: 2px 3px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ui95-tray__time {
+  margin: 0 5px 0 3px;
+}
+
+.ui95-tray__icon {
+  margin-right: 5px;
+  width: 16px;
+  height: 16px;
+}

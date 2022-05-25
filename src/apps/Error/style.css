@@ -1,0 +1,26 @@
+.ui95-window-error {
+  display: flex;
+  margin-top: 8px;
+  padding-bottom: 8px;
+}
+.ui95-window-error__icon {
+  width: 55px;
+  text-align: center;
+}
+
+.ui95-window-error__text {
+  flex: 1;
+}
+.ui95-window-error__buttons {
+  margin-right: 12px;
+  margin-left: 40px;
+}
+.ui95-window-error__buttons > button {
+  width: 75px;
+  height: 24px;
+  margin-bottom: 6px;
+}
+
+.ui95-window--error .ui95-window__content {
+  padding-bottom: 8px;
+}

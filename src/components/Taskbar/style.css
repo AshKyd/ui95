@@ -1,0 +1,57 @@
+.ui95-taskbar {
+  display: flex;
+  background: var(--gray);
+  background: linear-gradient(
+    to bottom,
+    var(--gray) 0,
+    var(--gray) 1px,
+    white 1px,
+    white 2px,
+    var(--gray) 2px
+  );
+  color: var(--black);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 22px;
+  padding: 4px 2px 2px;
+  box-shadow: 0 calc(-1 * var(--px)) 0 var(--graylight);
+  z-index: 90;
+}
+
+.ui95-taskbar > * {
+  margin-right: 4px;
+}
+
+.ui95-button--ui95-taskbar__window {
+  width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: start;
+  padding-left: 3px;
+  margin-right: 3px;
+}
+.ui95-button--ui95-taskbar__window .ui95-icon {
+  margin-right: 3px;
+}
+
+.ui95-taskbar__windows {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.ui95-taskbar__windows {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+@media (pointer: coarse) {
+  .ui95-taskbar {
+    height: calc(22px * var(--touch-scale));
+  }
+}

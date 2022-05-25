@@ -1,0 +1,23 @@
+.ui95-window--wizard__row {
+  display: flex;
+  margin-bottom: 5px;
+}
+.ui95-window--wizard__content {
+  margin: 10px;
+}
+.ui95-window--wizard__content p {
+  margin-top: 0;
+}
+
+.ui95-window--wizard__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+@media (max-width: 500px) {
+  .ui95-window--wizard__image {
+    height: auto;
+    width: 100px;
+  }
+}

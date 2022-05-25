@@ -1,0 +1,16 @@
+.ui95__reader-wrap {
+  background: #808080;
+  overflow: hidden;
+  flex: 1;
+  min-height: 100%;
+}
+
+.ui95__reader-page {
+  max-width: 35em;
+  padding: 1em 2em;
+  margin: 1em auto;
+  border: 1px solid black;
+  background: #f9f9f9;
+  box-shadow: 2px 2px 0 black;
+  color: black;
+}

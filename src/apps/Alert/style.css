@@ -1,0 +1,25 @@
+.ui95-window-alert__content {
+  display: flex;
+}
+.ui95-window-alert__icon {
+  padding-top: 10px;
+  width: 55px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.ui95-window-alert__text {
+  padding: 10px;
+  flex: 1;
+}
+.ui95-window-alert__buttons {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+.ui95-window-alert__buttons > button {
+  width: 75px;
+  height: 24px;
+  margin: 0 6px;
+}

@@ -1,0 +1,48 @@
+.ui95-tab {
+  border: none;
+  margin: 0;
+  padding: 3px 7px 7px;
+  background: transparent;
+  box-shadow: 0 -1px 0 var(--white), -1px 0 0 var(--grayLight),
+    1px 0 0 var(--grayDark);
+  border-top: 1px solid var(--grayLight);
+  position: relative;
+  background: var(--gray);
+  outline: unset;
+}
+.ui95-tab::-moz-focus-inner {
+  border: 0;
+}
+
+.ui95-tab::before {
+  position: absolute;
+  display: block;
+  content: "";
+  height: 1px;
+  top: -1px;
+  left: -1px;
+  width: 100%;
+  border-right: 1px solid var(--black);
+  border-left: 1px solid var(--white);
+}
+
+.ui95-tab::after {
+  position: absolute;
+  display: block;
+  content: "";
+  height: calc(100% - 1px);
+  top: 0px;
+  left: -2px;
+  width: calc(100% + 2px);
+  border-right: 1px solid var(--black);
+  border-left: 1px solid var(--white);
+}
+
+.ui95-tab:focus .ui95-tab__ring {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  border: 1px dotted black;
+}

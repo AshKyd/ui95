@@ -1,0 +1,23 @@
+.ui95-file-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 5px 0;
+  height: 100%;
+  align-content: flex-start;
+}
+.ui95-file-icons--column {
+  flex-direction: column;
+}
+.ui95-file-icons--row {
+  flex-direction: row;
+}
+.ui95-file-icons--desktop {
+  position: absolute;
+}
+.ui95-file-icons__item {
+  list-style: none;
+  overflow: hidden;
+}
