@@ -1,18 +1,18 @@
-import Shell from "../apps/shell/index.js";
+import Shell from "../apps/Shell/";
 import { h, render, Component } from "preact";
 import domready from "domready";
 import { Filesystem, File } from "../lib/filesystem";
 import mockedFilesystem from "../lib/filesystem/mocks.js";
 
-import ErrorHandler from "../apps/error";
-import Webview from "../apps/webview";
-import Wizard from "../apps/wizard";
-import Explorer from "../apps/explorer";
-import MediaPlayer from "../apps/mediaplayer";
-import Alert from "../apps/alert";
-import Reader from "../apps/reader";
-import Talks from "../apps/talks";
-import TabDialog from "../apps/tabdialog";
+import ErrorHandler from "../apps/Error/";
+import Webview from "../apps/WebView/";
+import Wizard from "../apps/Wizard/";
+import Explorer from "../apps/Explorer/";
+import MediaPlayer from "../apps/MediaPlayer/";
+import Alert from "../apps/Alert/";
+import Reader from "../apps/Reader/";
+import Talks from "../apps/Talks/";
+import TabDialog from "../apps/TabDialog/";
 import startMenu from "./data-start";
 import desktopIcons from "./data-desktop-icons";
 const site = { title: "Example ui95 app" };
@@ -38,14 +38,14 @@ const apps = {
   Reader,
   TabDialog,
   Talks,
-  Loader
+  Loader,
 };
 
 class Wrapper extends Component {
   constructor() {
     super();
     this.state = {
-      fs: new Filesystem()
+      fs: new Filesystem(),
     };
   }
   createFilesystem() {
@@ -58,16 +58,15 @@ class Wrapper extends Component {
           app: "Alert",
           icon: "info",
           title: "A:",
-          text:
-            "There is no disk in this drive or the drive door is open. Insert a disk in the drive and make sure the drive door is closed, and then click Retry.",
+          text: "There is no disk in this drive or the drive door is open. Insert a disk in the drive and make sure the drive door is closed, and then click Retry.",
           width: 400,
           height: 248,
-          buttons: [{ text: "Retry" }, { text: "Cancel" }]
-        }
+          buttons: [{ text: "Retry" }, { text: "Cancel" }],
+        },
       })
     );
     files.push(new File("c:", { label: "Local Disk (C:)" }));
-    mockedFilesystem.forEach(path => {
+    mockedFilesystem.forEach((path) => {
       const components = path.split("/");
       const label = components.pop().trim();
       const fullPath = "c:" + path;
@@ -77,8 +76,8 @@ class Wrapper extends Component {
           app: "Alert",
           title: path,
           html: `${path} is not accessible<br><br>Access is denied.`,
-          icon: "error-circle"
-        }
+          icon: "error-circle",
+        },
       });
       newFile.icon = "default";
       files.push(newFile);
@@ -97,7 +96,7 @@ class Wrapper extends Component {
         startMenu={startMenu}
         desktopIcons={desktopIcons}
         apps={apps}
-        ref={shell => (this.shell = shell)}
+        ref={(shell) => (this.shell = shell)}
         site={site}
         fullscreen
       />
