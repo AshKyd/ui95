@@ -1,5 +1,5 @@
 import { h, render, Component } from "preact";
-import FileIcon from "../FileIcon/index.js";
+import FileIcon from "../FileIcon/";
 import "./style.css";
 
 class FileIcons extends Component {

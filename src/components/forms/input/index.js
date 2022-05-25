@@ -1,6 +1,6 @@
 import { h, render, Component } from "preact";
 import "./style.css";
-import Bezel from "../../Bezel/index.js";
+import Bezel from "../../Bezel/";
 
 function Input(props) {
   const className = "input";

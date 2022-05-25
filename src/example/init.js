@@ -1,4 +1,4 @@
-import Shell from "../apps/shell/index.js";
+import Shell from "../apps/shell/";
 import { h, render, Component } from "preact";
 import domready from "domready";
 import { Filesystem, File } from "../lib/filesystem";
@@ -38,14 +38,14 @@ const apps = {
   Reader,
   TabDialog,
   Talks,
-  Loader
+  Loader,
 };
 
 class Wrapper extends Component {
   constructor() {
     super();
     this.state = {
-      fs: new Filesystem()
+      fs: new Filesystem(),
     };
   }
   createFilesystem() {
@@ -58,16 +58,15 @@ class Wrapper extends Component {
           app: "Alert",
           icon: "info",
           title: "A:",
-          text:
-            "There is no disk in this drive or the drive door is open. Insert a disk in the drive and make sure the drive door is closed, and then click Retry.",
+          text: "There is no disk in this drive or the drive door is open. Insert a disk in the drive and make sure the drive door is closed, and then click Retry.",
           width: 400,
           height: 248,
-          buttons: [{ text: "Retry" }, { text: "Cancel" }]
-        }
+          buttons: [{ text: "Retry" }, { text: "Cancel" }],
+        },
       })
     );
     files.push(new File("c:", { label: "Local Disk (C:)" }));
-    mockedFilesystem.forEach(path => {
+    mockedFilesystem.forEach((path) => {
       const components = path.split("/");
       const label = components.pop().trim();
       const fullPath = "c:" + path;
@@ -77,8 +76,8 @@ class Wrapper extends Component {
           app: "Alert",
           title: path,
           html: `${path} is not accessible<br><br>Access is denied.`,
-          icon: "error-circle"
-        }
+          icon: "error-circle",
+        },
       });
       newFile.icon = "default";
       files.push(newFile);
@@ -97,7 +96,7 @@ class Wrapper extends Component {
         startMenu={startMenu}
         desktopIcons={desktopIcons}
         apps={apps}
-        ref={shell => (this.shell = shell)}
+        ref={(shell) => (this.shell = shell)}
         site={site}
         fullscreen
       />

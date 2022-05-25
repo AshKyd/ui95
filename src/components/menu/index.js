@@ -1,6 +1,6 @@
 import { h, render, Component } from "preact";
 import "./style.css";
-import Bezel from "../Bezel/index.js";
+import Bezel from "../Bezel/";
 import MenuItem from "./MenuItem/";
 import Branding from "./Branding";
 import classNames from "classnames";

@@ -1,6 +1,6 @@
 import { h, render, Component } from "preact";
 import throttle from "lodash/throttle";
-import { updateVariables } from "../../apps/DisplayProperties/index.js";
+import { updateVariables } from "../../apps/DisplayProperties/";
 
 import "./style.css";
 

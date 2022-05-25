@@ -1,7 +1,7 @@
 import { h, render, Component } from "preact";
 import { getClasses } from "../../../util";
-import Icon from "../../Icon/index.js";
-import Text from "../../Text/index.js";
+import Icon from "../../Icon/";
+import Text from "../../Text/";
 import "./style.css";
 
 class FileThumbnail extends Component {

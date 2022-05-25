@@ -1,6 +1,6 @@
 import { h, render, Component } from "preact";
 import "./style.css";
-import Text from "../../../components/Text/index.js";
+import Text from "../../../components/Text/";
 
 function formatSeconds(seconds) {
   const date = new Date(null);

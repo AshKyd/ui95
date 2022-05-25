@@ -1,7 +1,7 @@
 import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import Divider from ".";
-import Icon from "../Icon/index.js";
+import Icon from "../Icon/";
 
 storiesOf("Components/Divider", module)
   .add("horizontal", () => <Divider classNames="horizontal" />)

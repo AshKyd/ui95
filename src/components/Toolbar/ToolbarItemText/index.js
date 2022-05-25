@@ -1,5 +1,5 @@
 import { h, render, Component } from "preact";
-import Text from "../../Text/index.js";
+import Text from "../../Text/";
 import "./style.css";
 
 function ToolbarItemText({ onClick, text, className }) {

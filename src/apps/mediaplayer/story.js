@@ -2,9 +2,9 @@ import { h } from "preact";
 import { storiesOf } from "@storybook/react";
 import playlists from "./example.json";
 import MediaPlayer from ".";
-import Guide from "./Guide/index.js";
-import StatusBar from "./StatusBar/index.js";
-import Player from "./Player/index.js";
+import Guide from "./Guide/";
+import StatusBar from "./StatusBar/";
+import Player from "./Player/";
 
 storiesOf("App/Media Player", module)
   .add("Media player", () => <MediaPlayer playlists={playlists} />)

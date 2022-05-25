@@ -1,8 +1,8 @@
 import { h, render, Component } from "preact";
 import { getClasses } from "../../../util";
 import "./style.css";
-import Bezel from "../../Bezel/index.js";
-import Text from "../../Text/index.js";
+import Bezel from "../../Bezel/";
+import Text from "../../Text/";
 let radioId = Math.round(Math.random() * 1e6);
 class Radio extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import { h, render, Component } from "preact";
-import Bezel from "../Bezel/index.js";
+import Bezel from "../Bezel/";
 import "./style.css";
 
 function ScrollableContainer(props) {

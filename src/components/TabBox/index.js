@@ -1,7 +1,7 @@
 import { h, render, Component } from "preact";
 import "./style.css";
-import Tab from "./Tab/index.js";
-import Bezel from "../Bezel/index.js";
+import Tab from "./Tab/";
+import Bezel from "../Bezel/";
 
 class TabBox extends Component {
   constructor() {

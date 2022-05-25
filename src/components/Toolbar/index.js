@@ -1,7 +1,7 @@
 import { h, render, Component } from "preact";
-import Divider from "../Divider/index.js";
-import ToolbarItemText from "./ToolbarItemText/index.js";
-import ToolbarItemStacked from "./ToolbarItemStacked/index.js";
+import Divider from "../Divider/";
+import ToolbarItemText from "./ToolbarItemText/";
+import ToolbarItemStacked from "./ToolbarItemStacked/";
 import Menu from "../Menu";
 import "./style.css";
 

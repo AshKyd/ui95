@@ -1,8 +1,8 @@
 import { h, render, Component } from "preact";
 import "./style.css";
-import Button from "../../Button/index.js";
-import Divider from "../../Divider/index.js";
-import Icon from "../../Icon/index.js";
+import Button from "../../Button/";
+import Divider from "../../Divider/";
+import Icon from "../../Icon/";
 
 function ColorPicker(props) {
   const className = "input";
