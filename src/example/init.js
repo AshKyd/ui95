@@ -1,18 +1,18 @@
-import Shell from "../apps/shell/";
+import Shell from "../apps/Shell/";
 import { h, render, Component } from "preact";
 import domready from "domready";
 import { Filesystem, File } from "../lib/filesystem";
 import mockedFilesystem from "../lib/filesystem/mocks.js";
 
-import ErrorHandler from "../apps/error";
-import Webview from "../apps/webview";
-import Wizard from "../apps/wizard";
-import Explorer from "../apps/explorer";
-import MediaPlayer from "../apps/mediaplayer";
-import Alert from "../apps/alert";
-import Reader from "../apps/reader";
-import Talks from "../apps/talks";
-import TabDialog from "../apps/tabdialog";
+import ErrorHandler from "../apps/Error/";
+import Webview from "../apps/WebView/";
+import Wizard from "../apps/Wizard/";
+import Explorer from "../apps/Explorer/";
+import MediaPlayer from "../apps/MediaPlayer/";
+import Alert from "../apps/Alert/";
+import Reader from "../apps/Reader/";
+import Talks from "../apps/Talks/";
+import TabDialog from "../apps/TabDialog/";
 import startMenu from "./data-start";
 import desktopIcons from "./data-desktop-icons";
 const site = { title: "Example ui95 app" };
