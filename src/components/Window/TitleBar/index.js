@@ -1,3 +1,4 @@
+/** @jsx h */
 import { h, render, Component } from "preact";
 import Icon from "../../Icon";
 import Text from "../../Text";

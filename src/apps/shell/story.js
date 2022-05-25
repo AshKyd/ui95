@@ -1,18 +1,29 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Shell from ".";
 
-storiesOf("App/Shell", module)
-  .add("No configuration", () => <Shell />)
-  .add("Mocked start", () => (
-    <Shell
-      startMenu={Array.from({ length: 10 }).map((no, i) => ({
-        text: "Test " + i,
-        items:
-          i % 3 === 0 &&
-          Array.from({ length: 10 }).map((no, i) => ({
-            text: "Test " + i
-          }))
-      }))}
-    />
-  ));
+export default {
+  title: "App/Shell",
+};
+
+export const NoConfiguration = () => <Shell />;
+
+NoConfiguration.story = {
+  name: "No configuration",
+};
+
+export const MockedStart = () => (
+  <Shell
+    startMenu={Array.from({ length: 10 }).map((no, i) => ({
+      text: "Test " + i,
+      items:
+        i % 3 === 0 &&
+        Array.from({ length: 10 }).map((no, i) => ({
+          text: "Test " + i,
+        })),
+    }))}
+  />
+);
+
+MockedStart.story = {
+  name: "Mocked start",
+};

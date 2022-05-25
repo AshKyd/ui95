@@ -1,29 +1,37 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Radio from ".";
 const values = {
   "I would like to find out more": {
     app: "Blog",
-    mode: "latest"
+    mode: "latest",
   },
   "I would like to play a game": {
-    app: "Games"
+    app: "Games",
   },
-  "No thanks, I will explore by myself": {}
+  "No thanks, I will explore by myself": {},
 };
 
-storiesOf("Components/Radio button", module)
-  .add("Down", () => (
-    <Radio classNames="down" onChange={console.log} values={values} />
-  ))
-  .add("Across", () => (
-    <Radio classNames="across" onChange={console.log} values={values} />
-  ))
-  .add("Pre-selected value (second)", () => (
-    <Radio
-      selected={1}
-      classNames="across"
-      onChange={console.log}
-      values={values}
-    />
-  ));
+export default {
+  title: "Components/Radio button",
+};
+
+export const Down = () => (
+  <Radio classNames="down" onChange={console.log} values={values} />
+);
+
+export const Across = () => (
+  <Radio classNames="across" onChange={console.log} values={values} />
+);
+
+export const PreSelectedValueSecond = () => (
+  <Radio
+    selected={1}
+    classNames="across"
+    onChange={console.log}
+    values={values}
+  />
+);
+
+PreSelectedValueSecond.story = {
+  name: "Pre-selected value (second)",
+};

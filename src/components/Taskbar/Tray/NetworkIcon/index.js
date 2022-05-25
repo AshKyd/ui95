@@ -1,5 +1,4 @@
 import { h, render, Component } from "preact";
-import Icon from "../../../Icon";
 import Img from "../../../Img";
 import "./style.css";
 

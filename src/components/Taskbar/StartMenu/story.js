@@ -1,5 +1,4 @@
 import { h, Component } from "preact";
-import { storiesOf } from "@storybook/react";
 import StartMenu from ".";
 
 const items = [
@@ -13,14 +12,22 @@ const items = [
   { text: "Run", icon: "default" },
   "divider",
   { text: "Log Off", icon: "default" },
-  { text: "Shut Down", icon: "default" }
+  { text: "Shut Down", icon: "default" },
 ];
 
-storiesOf("Components/Taskbar/StartMenu", module).add("basic", () => {
+export default {
+  title: "Components/Taskbar/StartMenu",
+};
+
+export const Basic = () => {
   return (
     <div>
       <style>{`.ui95-button{position:absolute;left:0;bottom:0;}`}</style>
       <StartMenu items={items} />
     </div>
   );
-});
+};
+
+Basic.story = {
+  name: "basic",
+};

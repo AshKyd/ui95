@@ -1,10 +1,13 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Taskbar from ".";
 import Button from "../Button";
 import Icon from "../Icon";
 
-storiesOf("Components/Taskbar", module).add("Render a taskbar", () => (
+export default {
+  title: "Components/Taskbar",
+};
+
+export const RenderATaskbar = () => (
   <Taskbar>
     <Button classNames="bold left">
       <Icon size="16" name="folder" />
@@ -19,4 +22,8 @@ storiesOf("Components/Taskbar", module).add("Render a taskbar", () => (
       Control panel
     </Button>
   </Taskbar>
-));
+);
+
+RenderATaskbar.story = {
+  name: "Render a taskbar",
+};

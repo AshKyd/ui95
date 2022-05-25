@@ -1,7 +1,18 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import TitleBar from ".";
 
-storiesOf("Components/Window/TitleBar", module)
-  .add("Text only", () => <TitleBar text="Hello world" />)
-  .add("Text and icon", () => <TitleBar icon="preact" text="Hello world" />);
+export default {
+  title: "Components/Window/TitleBar",
+};
+
+export const TextOnly = () => <TitleBar text="Hello world" />;
+
+TextOnly.story = {
+  name: "Text only",
+};
+
+export const TextAndIcon = () => <TitleBar icon="preact" text="Hello world" />;
+
+TextAndIcon.story = {
+  name: "Text and icon",
+};

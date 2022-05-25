@@ -1,7 +1,8 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Tab from ".";
 
-storiesOf("Components/TabBox/Tab", module).add("Active", () => (
-  <Tab>General</Tab>
-));
+export default {
+  title: "Components/TabBox/Tab",
+};
+
+export const Active = () => <Tab>General</Tab>;

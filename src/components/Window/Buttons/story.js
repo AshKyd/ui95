@@ -1,8 +1,19 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Buttons from ".";
 
-storiesOf("Components/Window/Buttons", module)
-  .add("No config", () => <Buttons />)
-  .add("Maximized", () => <Buttons isMaximized />)
-  .add("Custom buttons", () => <Buttons buttons={["close"]} />);
+export default {
+  title: "Components/Window/Buttons",
+};
+
+export const NoConfig = () => <Buttons />;
+
+NoConfig.story = {
+  name: "No config",
+};
+
+export const Maximized = () => <Buttons isMaximized />;
+export const CustomButtons = () => <Buttons buttons={["close"]} />;
+
+CustomButtons.story = {
+  name: "Custom buttons",
+};

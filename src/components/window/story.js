@@ -1,10 +1,21 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Window from ".";
 import WindowArea from "../Desktop/WindowArea";
 import Taskbar from "../Taskbar";
 import Button from "../Button";
 
-storiesOf("Components/Window", module)
-  .add("Without icon", () => <Window>Hello window</Window>)
-  .add("With icon", () => <Window icon="preact">Hello window</Window>);
+export default {
+  title: "Components/Window",
+};
+
+export const WithoutIcon = () => <Window>Hello window</Window>;
+
+WithoutIcon.story = {
+  name: "Without icon",
+};
+
+export const WithIcon = () => <Window icon="preact">Hello window</Window>;
+
+WithIcon.story = {
+  name: "With icon",
+};

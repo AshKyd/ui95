@@ -1,7 +1,18 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Window from ".";
 
-storiesOf("App/Webview", module)
-  .add("Window style", () => <Window src="http://example.org/" />)
-  .add("JSPaint app", () => <Window src="https://jspaint.app/" />);
+export default {
+  title: "App/Webview",
+};
+
+export const WindowStyle = () => <Window src="http://example.org/" />;
+
+WindowStyle.story = {
+  name: "Window style",
+};
+
+export const JsPaintApp = () => <Window src="https://jspaint.app/" />;
+
+JsPaintApp.story = {
+  name: "JSPaint app",
+};

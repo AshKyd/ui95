@@ -1,7 +1,13 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Bezel from ".";
 
-storiesOf("Components/Bezel", module)
-  .add("Recessed", () => <Bezel classNames="in">A recessed area</Bezel>)
-  .add("Pop out", () => <Bezel classNames="out">A popped out area</Bezel>);
+export default {
+  title: "Components/Bezel",
+};
+
+export const Recessed = () => <Bezel classNames="in">A recessed area</Bezel>;
+export const PopOut = () => <Bezel classNames="out">A popped out area</Bezel>;
+
+PopOut.story = {
+  name: "Pop out",
+};

@@ -1,7 +1,8 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import DisplayProperties from ".";
 
-storiesOf("App/Display Properties", module).add("Display Properties", () => (
-  <DisplayProperties />
-));
+export default {
+  title: "App/Display Properties",
+};
+
+export const _DisplayProperties = () => <DisplayProperties />;

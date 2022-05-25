@@ -1,29 +1,45 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import MenuItem from ".";
 
-storiesOf("Components/Menu/MenuItem", module)
-  .add("divider", () => <MenuItem item="divider" />)
-  .add("appProps", () => (
-    <MenuItem
-      item={{
-        text: "Launch the app",
-        link: "https://example.org/",
-        appProps: {
-          app: "foo"
-        }
-      }}
-    />
-  ))
-  .add("with an icon", () => (
-    <MenuItem
-      item={{
-        icon: "default",
-        text: "Launch the app",
-        link: "https://example.org/",
-        appProps: {
-          app: "foo"
-        }
-      }}
-    />
-  ));
+export default {
+  title: "Components/Menu/MenuItem",
+};
+
+export const Divider = () => <MenuItem item="divider" />;
+
+Divider.story = {
+  name: "divider",
+};
+
+export const AppProps = () => (
+  <MenuItem
+    item={{
+      text: "Launch the app",
+      link: "https://example.org/",
+      appProps: {
+        app: "foo",
+      },
+    }}
+  />
+);
+
+AppProps.story = {
+  name: "appProps",
+};
+
+export const WithAnIcon = () => (
+  <MenuItem
+    item={{
+      icon: "default",
+      text: "Launch the app",
+      link: "https://example.org/",
+      appProps: {
+        app: "foo",
+      },
+    }}
+  />
+);
+
+WithAnIcon.story = {
+  name: "with an icon",
+};

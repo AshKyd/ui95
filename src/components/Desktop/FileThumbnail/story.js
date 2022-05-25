@@ -1,38 +1,58 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import FileThumbnail from ".";
 
-storiesOf("Components/Desktop/FileThumbnail", module)
-  .add("C Drive", () => (
-    <FileThumbnail size="16" icon="default" label=" (C:)" />
-  ))
-  .add("C Drive selected", () => (
-    <FileThumbnail size="16" icon="default" selected={true} label=" (C:)" />
-  ))
-  .add("Long file name", () => (
-    <FileThumbnail
-      size="16"
-      icon="default"
-      label="Maritime Museum of Denmark + catching a boat to Sweden"
-    />
-  ))
+export default {
+  title: "Components/Desktop/FileThumbnail",
+};
 
-  .add("With image", () => (
-    <FileThumbnail
-      size="16"
-      icon="default"
-      image={require("./kitten.jpg")}
-      imageAlt="A kitten"
-      label="Maritime Museum of Denmark + catching a boat to Sweden"
-    />
-  ))
+export const CDrive = () => (
+  <FileThumbnail size="16" icon="default" label=" (C:)" />
+);
 
-  .add("With 4X3 image", () => (
-    <FileThumbnail
-      size="16"
-      icon="default"
-      image={require("./kitten-4x3.jpg")}
-      imageAlt="A kitten"
-      label="Maritime Museum of Denmark + catching a boat to Sweden"
-    />
-  ));
+export const CDriveSelected = () => (
+  <FileThumbnail size="16" icon="default" selected={true} label=" (C:)" />
+);
+
+CDriveSelected.story = {
+  name: "C Drive selected",
+};
+
+export const LongFileName = () => (
+  <FileThumbnail
+    size="16"
+    icon="default"
+    label="Maritime Museum of Denmark + catching a boat to Sweden"
+  />
+);
+
+LongFileName.story = {
+  name: "Long file name",
+};
+
+export const WithImage = () => (
+  <FileThumbnail
+    size="16"
+    icon="default"
+    image={require("./kitten.jpg")}
+    imageAlt="A kitten"
+    label="Maritime Museum of Denmark + catching a boat to Sweden"
+  />
+);
+
+WithImage.story = {
+  name: "With image",
+};
+
+export const With4X3Image = () => (
+  <FileThumbnail
+    size="16"
+    icon="default"
+    image={require("./kitten-4x3.jpg")}
+    imageAlt="A kitten"
+    label="Maritime Museum of Denmark + catching a boat to Sweden"
+  />
+);
+
+With4X3Image.story = {
+  name: "With 4X3 image",
+};

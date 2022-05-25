@@ -1,8 +1,11 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import FormBuilder from ".";
 
-storiesOf("Components/FormBuilder", module).add("Main", () => (
+export default {
+  title: "Components/FormBuilder",
+};
+
+export const Main = () => (
   <FormBuilder
     form={{
       target: "_blank",
@@ -48,4 +51,4 @@ storiesOf("Components/FormBuilder", module).add("Main", () => (
       ],
     }}
   />
-));
+);

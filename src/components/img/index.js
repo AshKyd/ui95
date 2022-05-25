@@ -11,4 +11,4 @@ function Img(props) {
   );
 }
 
-export default Image;
+export default Img;

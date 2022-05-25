@@ -1,5 +1,4 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Explorer from ".";
 import WindowArea from "../../components/Desktop/WindowArea";
 import Taskbar from "../../components/Taskbar";
@@ -28,10 +27,22 @@ fs.files.push(
   );
 });
 
-storiesOf("App/Explorer", module)
-  .add("No configuration", () => (
-    <Explorer wmProps={{ fs, setAppState: () => {} }} path="/" />
-  ))
-  .add("Small window", () => (
-    <Explorer wmProps={{ fs, setAppState: () => {}, width: 400 }} path="/" />
-  ));
+export default {
+  title: "App/Explorer",
+};
+
+export const NoConfiguration = () => (
+  <Explorer wmProps={{ fs, setAppState: () => {} }} path="/" />
+);
+
+NoConfiguration.story = {
+  name: "No configuration",
+};
+
+export const SmallWindow = () => (
+  <Explorer wmProps={{ fs, setAppState: () => {}, width: 400 }} path="/" />
+);
+
+SmallWindow.story = {
+  name: "Small window",
+};

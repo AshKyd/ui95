@@ -1,7 +1,14 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Window from ".";
 
-storiesOf("App/Error", module).add("Window style", () => (
+export default {
+  title: "App/Error",
+};
+
+export const WindowStyle = () => (
   <Window wmProps={{}} error={new Error("an error")} />
-));
+);
+
+WindowStyle.story = {
+  name: "Window style",
+};

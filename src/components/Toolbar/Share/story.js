@@ -1,5 +1,8 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Toolbar from ".";
 
-storiesOf("Components/Toolbar/Share", module).add("Default", () => <Toolbar />);
+export default {
+  title: "Components/Toolbar/Share",
+};
+
+export const Default = () => <Toolbar />;

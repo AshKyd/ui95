@@ -1,8 +1,11 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import TabDialog from ".";
 
-storiesOf("App/Contact", module).add("Main", () => (
+export default {
+  title: "App/Contact",
+};
+
+export const Main = () => (
   <TabDialog
     bio={`
       <p>Australian in Europe. Webdev, sometimes speaker, gamedev, vlogger.</p>
@@ -17,34 +20,34 @@ storiesOf("App/Contact", module).add("Main", () => (
         {
           text: "Email",
           link: "mailto:ash@kyd.com.au",
-          value: "ash@kyd.com.au"
+          value: "ash@kyd.com.au",
         },
         {
           text: "Twitter",
           link: "https://twitter.com/ashkyd",
-          value: "@ashkyd"
+          value: "@ashkyd",
         },
         {
           text: "Linkedin",
           link: "https://www.linkedin.com/in/ashkyd/",
-          value: "www.linkedin.com/in/ashkyd/"
+          value: "www.linkedin.com/in/ashkyd/",
         },
         {
           text: "Facebook",
           link: "https://www.facebook.com/ashkydkthx",
-          value: "ashkydkthx"
+          value: "ashkydkthx",
         },
         {
           text: "Last.fm",
           link: "https://www.last.fm/user/2_",
-          value: "www.last.fm/user/2_"
+          value: "www.last.fm/user/2_",
         },
         {
           text: "Github",
           link: "https://github.com/ashkyd",
-          value: "ashkyd"
-        }
-      ]
+          value: "ashkyd",
+        },
+      ],
     }}
   />
-));
+);

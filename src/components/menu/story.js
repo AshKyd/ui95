@@ -1,5 +1,4 @@
 import { h, Component } from "preact";
-import { storiesOf } from "@storybook/react";
 import Menu from ".";
 
 const items = [
@@ -20,11 +19,11 @@ const items = [
           { text: "3 1/4 Floppy (A:)", icon: "default" },
           { text: "Desktop (Create Shortcut)", icon: "default" },
           { text: "Mail recipient", icon: "default" },
-          { text: "My Documents", icon: "default" }
-        ]
+          { text: "My Documents", icon: "default" },
+        ],
       },
-      { text: "My Documents", icon: "default" }
-    ]
+      { text: "My Documents", icon: "default" },
+    ],
   },
   "divider",
   { text: "Cut" },
@@ -34,7 +33,7 @@ const items = [
   { text: "Delete" },
   { text: "Rename" },
   "divider",
-  { text: "Properties" }
+  { text: "Properties" },
 ];
 
 function makeStory(props) {
@@ -47,14 +46,14 @@ function makeStory(props) {
       return (
         <div>
           <button
-            ref={el => (this.el = el)}
+            ref={(el) => (this.el = el)}
             onClick={() => this.setState({ open: true })}
           >
             Click me
           </button>
           {this.state.open && (
             <Menu
-              onClose={app => {
+              onClose={(app) => {
                 console.log({ app });
                 this.setState({ open: false });
               }}
@@ -68,67 +67,85 @@ function makeStory(props) {
   };
 }
 
-storiesOf("Components/Menu", module)
-  .add("attachTo top", () => {
-    const Story = makeStory({
-      items: items,
-      attachDirection: "top"
-    });
-    return <Story />;
-  })
-  .add("AttachTo horizontal", () => {
-    const Story = makeStory({
-      items: items,
-      attachDirection: "horizontal"
-    });
-    return <Story />;
-  })
-  .add("attachTo bottom", () => {
-    const Story = makeStory({
-      items: items,
-      attachDirection: "bottom"
-    });
-    return (
-      <div>
-        <style>{`button{position:absolute;left:0;bottom:0;}`}</style>
-        <Story />
-      </div>
-    );
-  })
-  .add("Start Menu", () => {
-    const items = [
-      { text: "Windows Update", icon: "default" },
-      "divider",
-      {
-        text: "Programs",
-        icon: "default",
+export default {
+  title: "Components/Menu",
+};
+
+export const AttachToTop = () => {
+  const Story = makeStory({
+    items: items,
+    attachDirection: "top",
+  });
+  return <Story />;
+};
+
+AttachToTop.story = {
+  name: "attachTo top",
+};
+
+export const AttachToHorizontal = () => {
+  const Story = makeStory({
+    items: items,
+    attachDirection: "horizontal",
+  });
+  return <Story />;
+};
+
+AttachToHorizontal.story = {
+  name: "AttachTo horizontal",
+};
+
+export const AttachToBottom = () => {
+  const Story = makeStory({
+    items: items,
+    attachDirection: "bottom",
+  });
+  return (
+    <div>
+      <style>{`button{position:absolute;left:0;bottom:0;}`}</style>
+      <Story />
+    </div>
+  );
+};
+
+AttachToBottom.story = {
+  name: "attachTo bottom",
+};
+
+export const StartMenu = () => {
+  const items = [
+    { text: "Windows Update", icon: "default" },
+    "divider",
+    {
+      text: "Programs",
+      icon: "default",
+      items: Array.from({ length: 10 }).map((no, i) => ({
+        text: "Test " + i,
         items: Array.from({ length: 10 }).map((no, i) => ({
           text: "Test " + i,
-          items: Array.from({ length: 10 }).map((no, i) => ({
-            text: "Test " + i
-          }))
-        }))
-      },
-      { text: "Documents", icon: "default" },
-      { text: "Settings", icon: "default" },
-      { text: "Search", icon: "default" },
-      { text: "Help", icon: "default" },
-      { text: "Run", icon: "default" },
-      "divider",
-      { text: "Log Off", icon: "default" },
-      { text: "Shut Down", icon: "default" }
-    ];
-    const Story = makeStory({
-      className: "large",
-      iconSize: 24,
-      attachDirection: "bottom",
-      branding: { text1: "Windows", text2: "ME" },
-      items
-    });
-    return (
-      <div>
-        <style>{`button{position:absolute;left:0;bottom:0;}`}</style>
-        <Story />
-      </div>
-    );
+        })),
+      })),
+    },
+    { text: "Documents", icon: "default" },
+    { text: "Settings", icon: "default" },
+    { text: "Search", icon: "default" },
+    { text: "Help", icon: "default" },
+    { text: "Run", icon: "default" },
+    "divider",
+    { text: "Log Off", icon: "default" },
+    { text: "Shut Down", icon: "default" },
+  ];
+  const Story = makeStory({
+    className: "large",
+    iconSize: 24,
+    attachDirection: "bottom",
+    branding: { text1: "Windows", text2: "ME" },
+    items,
   });
+  return (
+    <div>
+      <style>{`button{position:absolute;left:0;bottom:0;}`}</style>
+      <Story />
+    </div>
+  );
+};

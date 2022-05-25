@@ -1,8 +1,11 @@
 import { h } from "preact";
-import { storiesOf } from "@storybook/react";
 import Reader from ".";
 
-storiesOf("App/Reader", module).add("With content", () => (
+export default {
+  title: "App/Reader",
+};
+
+export const WithContent = () => (
   <Reader
     content={`
 <header class="entry-header">
@@ -187,4 +190,8 @@ storiesOf("App/Reader", module).add("With content", () => (
   
 </div>`}
   />
-));
+);
+
+WithContent.story = {
+  name: "With content",
+};
