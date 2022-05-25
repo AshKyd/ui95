@@ -8,7 +8,7 @@
     "build": "npm run build-example && npm run build-storybook && npm run build-docs",
     "build-example": "parcel build src/example/index.html --detailed-report --out-dir docs/example/ --public-url /example/ --no-source-maps",
     "build-storybook": "build-storybook",
-    "build-docs": "cp node_modules/docsify/lib/docsify.min.js docs/_media && cp node_modules/docsify/lib/themes/vue.css docs/_media",
+    "build-docs": "cp node_modules/docsify/lib/docsify.min.js docs/_media && cp node_modules/docsify/lib/themes/vue.css docs/_media && mv storybook-static docs/storybook",
     "watch-docs": "npm run build-docs;docsify serve docs",
     "watch-example": "parcel src/example/index.html",
     "storybook": "start-storybook -p 6006"
