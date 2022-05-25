@@ -25,6 +25,8 @@ export const WizardStyle = () => (
   <Wizard
     title="Wizard post"
     image="http://placekitten.com/100/300"
+    imageWidth="100"
+    imageHeight="200"
     wizardOptions={wizardOptions}
     content={"Hello world, what's going on today?<br><br>"}
   >

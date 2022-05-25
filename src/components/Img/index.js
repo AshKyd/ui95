@@ -7,6 +7,8 @@ function Img(props) {
       class={props.class}
       alt={props.alt}
       style="image-rendering: crisp-edges; image-rendering:pixelated;"
+      width={props.width}
+      height={props.height}
     />
   );
 }
