@@ -38,6 +38,8 @@ function Guide({ playlist, playItems, width }) {
                   <img
                     src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
                     alt=""
+                    width="320"
+                    height="180"
                   />
                   {video.title}
                 </a>
