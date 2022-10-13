@@ -8,7 +8,7 @@ export default {
 export const TextStyleDefault = () => (
   <Toolbar
     items={[
-      { text: "File" },
+      { text: "File", items: [{ text: "Save as" }, "divider"] },
       { text: "Edit" },
       { text: "View" },
       { text: "Insert" },

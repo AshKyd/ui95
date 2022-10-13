@@ -26,7 +26,7 @@ export default function ({
       </span>
     );
   }
-  if (item.items)
+  if (item.items) {
     return (
       <SubMenuItem
         {...{
@@ -40,6 +40,7 @@ export default function ({
         }}
       />
     );
+  }
 
   function click(e) {
     if (item.link) return window.open(item.link);

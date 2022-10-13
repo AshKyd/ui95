@@ -1,0 +1,45 @@
+.about-dialog-app {
+  margin: 2px;
+  width: auto;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.about-dialog-app__top {
+  background: white;
+  color: black;
+  display: flex;
+}
+.about-dialog-app__image {
+  margin-right: 10px;
+  margin: 5px 10px 5px 5px;
+}
+
+.about-dialog-app__name {
+  font-weight: bold;
+}
+
+.about-dialog-app__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-dialog-app__children {
+  margin: 5px;
+  flex: 1;
+}
+
+.about-dialog-app__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 5px;
+}
+.about-dialog-app__buttons > button {
+  width: 75px;
+  height: 24px;
+  margin: 0 6px;
+}

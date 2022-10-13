@@ -1,0 +1,11 @@
+.photo-sphere {
+  position: relative;
+  background: orange;
+}
+.photo-sphere__inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

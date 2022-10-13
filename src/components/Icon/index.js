@@ -20,7 +20,7 @@ class Icon extends Component {
       "ui95-icon",
       name,
       size,
-      (classNames || "").split(" ")
+      (classNames || "").split(" "),
     ].join(" ui95-icon--");
     return h("img", {
       className,
@@ -29,7 +29,7 @@ class Icon extends Component {
       width: this.getSize(size),
       height: this.getSize(size),
       src: url || this.getUrl(size, name),
-      alt: this.props.alt || ""
+      alt: this.props.alt || "",
     });
   }
 }

@@ -6,3 +6,4 @@ node_modules
 src/components/icon/icons/*
 storybook-static
 .nova
+.parcel-cache
