@@ -6,14 +6,11 @@ import PhotoSphere from "../../components/PhotoSphere/";
 import Toolbar from "../../components/Toolbar/";
 import icon16 from "./photosphere-16.gif";
 
-function getTitle({ title, src }) {
-  if (!title) {
-    title = src.split("/").pop().replace(/\?.*/, "");
-  }
-  return `PhotoSphere Viewer - ${title}`;
+function getTitle(src) {
+  return `PhotoSphere Viewer - ${src.split("/").pop().replace(/\?.*/, "")}`;
 }
 
-export default function PhotoSphereViewer({ title, src, wmProps }) {
+export default function PhotoSphereViewer({ src, wmProps }) {
   // const menuItems = useMemo(
   //   () => [
   //     {
@@ -34,7 +31,7 @@ export default function PhotoSphereViewer({ title, src, wmProps }) {
 
   return (
     <Window
-      title={getTitle({ title, src })}
+      title={getTitle(src)}
       classNames="webview"
       width={800}
       height={600}
