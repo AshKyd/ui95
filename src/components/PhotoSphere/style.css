@@ -1,6 +1,5 @@
 .photo-sphere {
   position: relative;
-  background: orange;
 }
 .photo-sphere__inner {
   position: absolute;

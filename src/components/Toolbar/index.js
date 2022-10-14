@@ -20,13 +20,17 @@ class Toolbar extends Component {
   }
   getItems(items = []) {
     const { onClick, variant } = this.props;
-    return items.map((item) => {
+    return items.map((item, index) => {
       const isActive = item.items && this.state.open === item.text;
       if (item === "divider") return <Divider classNames="vertical" />;
       const ToolbarItem = variants[variant || "text"];
+
       return (
         <span
           style={{ position: "relative" }}
+          ref={(element) => {
+            this.state.refs[item.text] = element;
+          }}
           onMouseEnter={() => {
             if (this.state.open) this.setState({ open: item.text });
           }}
@@ -35,6 +39,7 @@ class Toolbar extends Component {
             text={item.text}
             icon={item.icon}
             className={isActive && "active"}
+            disabled={item.disabled}
             onClick={() => {
               if (item.items) return this.setState({ open: item.text });
               return (item.onClick || onClick)(item);

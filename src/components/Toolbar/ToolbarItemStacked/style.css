@@ -15,12 +15,12 @@
   padding: 0 4px;
 }
 
-button.ui95-toolbar-stacked:hover,
+button.ui95-toolbar-stacked:not(:disabled):hover,
 button.ui95-toolbar-stacked.hover {
   border-color: var(--white) var(--grayDark) var(--grayDark) var(--white);
 }
 
-button.ui95-toolbar-stacked:active,
+button.ui95-toolbar-stacked:not(:disabled):active,
 button.ui95-toolbar-stacked.active {
   border-color: var(--grayDark) var(--white) var(--white) var(--grayDark);
 }
@@ -30,9 +30,16 @@ button.ui95-toolbar-stacked .ui95-icon {
   margin: 0 2px;
   filter: grayscale(100%);
 }
-button.ui95-toolbar-stacked:hover .ui95-icon,
-button.ui95-toolbar-stacked:hover .ui95-icon,
-button.ui95-toolbar-stacked:focus .ui95-icon,
-button.ui95-toolbar-stacked:focus .ui95-icon {
+button.ui95-toolbar-stacked:disabled .ui95-icon {
+  filter: grayscale(100%) contrast(0.3) brightness(1.4);
+}
+button.ui95-toolbar-stacked:not(:disabled):hover .ui95-icon,
+button.ui95-toolbar-stacked:not(:disabled):hover .ui95-icon,
+button.ui95-toolbar-stacked:not(:disabled):focus .ui95-icon,
+button.ui95-toolbar-stacked:not(:disabled):focus .ui95-icon {
   filter: none;
+}
+
+.ui95-toolbar-stacked--disabled {
+  color: var(--grayDark);
 }

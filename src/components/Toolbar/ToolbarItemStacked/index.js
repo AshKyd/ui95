@@ -4,7 +4,7 @@ import Text from "../../Text/";
 import "./style.css";
 
 function ToolbarItemStacked(props) {
-  const { onClick, icon, text, url } = props;
+  const { onClick, icon, text, url, disabled } = props;
   if (!icon)
     return (
       <span class="ui95-toolbar-stacked ui95-toolbar-stacked--text">
@@ -12,7 +12,13 @@ function ToolbarItemStacked(props) {
       </span>
     );
   return (
-    <button class="ui95-toolbar-stacked" onClick={onClick}>
+    <button
+      class={`ui95-toolbar-stacked ui95-toolbar-stacked--${
+        disabled ? "disabled" : "enabled"
+      }`}
+      onClick={onClick}
+      disabled={disabled}
+    >
       <Icon size={24} name={icon} url={url} />
       <Text>{text}</Text>
     </button>
