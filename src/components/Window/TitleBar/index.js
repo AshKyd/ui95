@@ -6,7 +6,6 @@ import "./style.css";
 
 export default function WindowButtons({
   icon,
-  iconUrl,
   title = "Untitled window",
   onMove,
   onClose,
@@ -25,11 +24,10 @@ export default function WindowButtons({
       }
     >
       <Text type="h1" className="ui95-window-titlebar__heading">
-        {(icon || iconUrl) && (
+        {icon && (
           <Icon
             size="16"
             name={icon}
-            url={iconUrl}
             classNames="application"
             onDblClick={onClose}
           />

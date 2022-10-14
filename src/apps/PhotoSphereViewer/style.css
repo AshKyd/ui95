@@ -5,4 +5,12 @@
   flex: 1;
   flex-direction: column;
   height: 100%;
+  min-height: 200px;
+  background: pink;
+  display: flex;
+}
+
+.photo-sphere-viewer-app__container {
+  position: relative;
+  flex: 1;
 }

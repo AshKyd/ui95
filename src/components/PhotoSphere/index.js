@@ -16,10 +16,12 @@ export default function PhotoSphere({
   width,
   height,
   ratio,
+  viewerRef,
 }) {
   const container = useRef();
   const inner = useRef();
-  const viewer = useRef();
+  const thisViewerRef = useRef();
+  const viewer = viewerRef || thisViewerRef;
   const resizeObserver = useRef();
 
   useEffect(() => {

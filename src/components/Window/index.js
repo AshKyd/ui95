@@ -186,7 +186,6 @@ class Window extends Component {
       children,
       isResizeable,
       icon,
-      iconUrl,
       title,
       buttons = ["minimize", "maximize", "close"],
       onClose,
@@ -217,7 +216,6 @@ class Window extends Component {
             onClose={onClose}
             onMinimize={onMinimize}
             icon={icon}
-            iconUrl={iconUrl}
             title={title}
             isMaximized={isMaximized}
             toggleState={(propName) =>
